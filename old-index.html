@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-10-01 Tue 08:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dr. Eric Schulte</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="data/stylesheet.css" type="text/css">
+<script type="text/javascript" src="data/homepage.js">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Dr. Eric Schulte</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#research">Research</a></li>
+<li><a href="#background">Background</a></li>
+<li><a href="#software">Software</a></li>
+<li><a href="#publications">Publications</a></li>
+<li><a href="#course-notes">Course Notes</a></li>
+<li><a href="#curriculum-vitae">Curriculum Vitae</a></li>
+</ul>
+</div>
+</div>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
+
+<a href="http://eschulte.github.io/gpolygon/?image=http://cs.unm.edu/~eschulte/data/eric-schulte.jpg" title="right click to see evolved approximation"><canvas id="me" width="300" height="300"></div></a>
+
+<div id="contact"><tt>eschulte-at-grammatech.com</tt></div>
+
+<div id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
+
+<div id="outline-container-orgbcae328" class="outline-2">
+<h2 id="research">Research</h2>
+<div class="outline-text-2" id="text-research">
+<p>
+I research methods of automating software development and reverse
+engineering tasks.  My work benefits from the understanding of
+software as an evolved system.
+</p>
+
+<p>
+I am the <i>Director of Automated Software Engineering</i> at GrammaTech,
+where I lead the <i>Program Synthesis</i> and <i>Binary Rewriting</i> research
+areas.  At GrammaTech I develop techniques automating the analysis,
+reverse engineering, maintenance, improvement, and synthesis of
+software systems.  These techniques apply variously to software source
+code repositories and/or to stripped binary executables.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8a61afc" class="outline-2">
+<h2 id="background">Background</h2>
+<div class="outline-text-2" id="text-background">
+<ul class="org-ul">
+<li>As of August 2018 I am Director of Automated Software Engineering at
+<a href="http://www.grammatech.com/">GrammaTech</a>.  At GrammaTech I get to work on the automation of
+software engineering tasks including refactoring, bug-injection,
+decompilation, and binary rewriting for hardening and program
+optimization.</li>
+<li>As of July 2014 I have completed my degree at the <a href="http://www.unm.edu/">University of New
+Mexico</a> and accepted a position at <a href="http://www.grammatech.com/">GrammaTech</a>.</li>
+<li>From August 2009 through July 2014 I was enrolled as a doctoral
+student at the <a href="http://www.unm.edu/">University of New Mexico</a> as a member of Stephanie
+Forrest's Adaptive Computation Group.</li>
+<li>For the five years previous to graduate school, I was employed by
+<a href="http://www.mitre.org/">Mitre</a>, a Federally Funded Research and Development Center.  During
+that time I was promoted to the position of <i>Senior AI Engineer</i> and
+played a key technical role supporting project Argus(<a href="http://hsgac.senate.gov/public/index.cfm?FuseAction=Files.View&amp;FileStore_id=3b5da0a2-5b3a-463e-aed5-4b2e7ec64cbf">PDF</a>).</li>
+<li>I completed my undergraduate studies at <a href="http://www.kenyon.edu/">Kenyon College</a> with a
+semester at the <a href="http://www.budapestsemesters.com/">Budapest semester in Mathematics</a>.  I graduated with
+a BA in mathematics and a minor in philosophy.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0d8bedf" class="outline-2">
+<h2 id="software">Software</h2>
+<div class="outline-text-2" id="text-software">
+<p>
+I've written, maintained or significantly contributed to the following
+software which includes large open-source projects, projects currently
+under active development at GrammaTech, and small utilities (presented
+in order of significance and activity).
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/grammatech/sel">SOFTWARE-EVOLUTION-LIBRARY</a> (SEL) is a common lisp library for the
+programmatic modification and evaluation of software.  See the <a href="https://grammatech.github.io/sel/#Top">SEL
+Manual</a> for more information.</li>
+<li>Binary Analysis and Reverse Engineering.  See <a href="https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting">this blog post</a>
+announcing the open-source release of these tools.
+<ul class="org-ul">
+<li><a href="https://github.com/grammatech/gtirb">GTIRB</a> Intermediate Representation for Binary analysis and
+transformation.  Includes a Protobuf specification and a reference
+C++ library.</li>
+<li><a href="https://github.com/grammatech/ddisasm">ddisasm</a> A fast and accurate disassembler.  A Datalog engine powers
+this high performance re-assemblable disassembler</li>
+<li><a href="https://github.com/grammatech/gtirb-pprinter">gtirb-pprinter</a> Pretty printer from GTIRB to assembly code</li>
+</ul></li>
+<li>Manipulation of C-language (and other) Abstract Syntax Trees:
+<ul class="org-ul">
+<li><a href="https://github.com/grammatech/clang-mutate">clang-mutate</a> manipulates C-family ASTs with <a href="http://clang.llvm.org">Clang</a></li>
+<li><a href="https://github.com/eschulte/cil-mutate">cil-mutate</a> manipulates C Intermediate Language ASTs with <a href="http://kerneis.github.com/cil/">CIL</a></li>
+<li><a href="http://eschulte.github.io/llvm-mutate/">llvm-mutate</a> manipulates <a href="http://llvm.org">LLVM</a> IR with an <a href="http://llvm.org/docs/WritingAnLLVMPass.html">LLVM compiler pass</a></li>
+</ul></li>
+<li><a href="http://eschulte.github.io/curry-compose-reader-macros/">CURRY-COMPOSE-READER-MACROS</a> for concise expression of function
+partial application and composition in Common Lisp.  I've also
+implemented something similar for Emacs Lisp in <a href="https://gist.github.com/eschulte/6167923">curry-compose.el</a>.</li>
+<li><a href="http://eschulte.github.com/graph/">GRAPH</a> is a Common Lisp library for graphs manipulation and analysis.</li>
+<li><a href="http://orgmode.org/worg/org-contrib/babel/index.html">Babel</a> adds <i>literate programming</i> and <i>reproducible research</i>
+functionality to <a href="http://orgmode.org/">Org-mode</a>, a major mode of the <a href="http://www.gnu.org/software/emacs/">Emacs</a> text editor.</li>
+<li><a href="http://rinari.rubyforge.org/">Rinari</a> is a <i>Ruby on Rails</i> minor mode for Emacs.</li>
+<li>Manipulation of <a href="http://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF files</a>:
+<ul class="org-ul">
+<li><a href="https://github.com/eschulte/elf">elf</a> a CLOS based API for Elf file manipulation in Common Lisp</li>
+<li><a href="https://github.com/eschulte/rw-elf">rw-elf</a> a simpler C library for ELF file manipulation</li>
+</ul></li>
+<li><a href="https://github.com/eschulte/delta-debug">DELTA-DEBUG</a> is a Common Lisp <a href="http://www.st.cs.uni-saarland.de/dd/">delta debugging</a> implementation.</li>
+</ul>
+
+<ul class="org-ul">
+<li><a href="http://eschulte.github.io/oncs/README.html">ONCs</a> is a prototype fully distributed lisp virtual machine.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd669078" class="outline-2">
+<h2 id="publications">Publications</h2>
+<div class="outline-text-2" id="text-publications">
+<ul class="org-ul">
+<li>Antonio Flores-Montoya, Eric Schulte
+<span class="underline">Datalog Disassembly</span>
+<i>arXiv Pre-Print 2019</i>
+(<a href="https://arxiv.org/pdf/1906.03969.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Suan Yong, Dave Melski.
+<span class="underline">Inuring: Live Attacker-guided Repair</span>
+<i>Workshop on Forming an Ecosystem Around Software Transformation 2019</i> (<a href="data/feast-2019-inuring.pdf">PDF</a>, <a href="data/feast-2019-inuring.bib">Bibtex</a>)</li>
+
+<li>Vineeth Kashyap, Jason Ruchti, Lucja Kot, Emma Turetsky, Rebecca Swords, David Melski, Eric Schulte
+<span class="underline">Automated Customized Bug-Benchmark Generation</span>
+<i>Source Code Analysis and Manipulation (SCAM) 2019 (<b>distinguished paper</b>)</i>
+(<a href="https://arxiv.org/pdf/1901.02819.pdf">PDF</a>, <a href="data/bug-injector.bib">Bibtex</a>, <a href="https://zenodo.org/record/3341585#.XTCQinVKiV4">Data set</a>)</li>
+
+<li>Eric Schulte, Contributors
+<span class="underline">Software Evolution Library</span>
+<i>Manual 2018</i>
+(<a href="https://github.com/GrammaTech/sel">Library Source</a>, <a href="https://grammatech.github.io/sel/">Manual HTML</a>, <a href="data/sel-manual.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Jason Ruchti, Matt Noonan, David Ciarletta, Alexey Loginov
+<span class="underline">Evolving Exact Decompilation</span>
+<i>Workshop on Binary Analysis Research 2018</i>
+(<a href="data/bed.pdf">PDF</a>, <a href="data/bed.bib">Bibtex</a>, <a href="http://storm-country.com/blog/evo-deco">Blog post</a>)</li>
+
+<li>Deborah Katz, Jason Ruchti, Eric Schulte
+<span class="underline">Using Recurrent Neural Networks for Decompilation</span>
+<i>Software Analysis, Evolution and Reengineering (SANER) 2018</i>
+(<a href="data/katz-saner-2018-preprint.pdf">PDF</a>, <a href="data/rnn-decomp.bib">Bibtex</a>)</li>
+
+<li>Benoit Baudry, Nicolas Harrand, Eric Schulte, Chris Timperley, Shin
+Hwei Tan, Marija Selakovic, Emamurho Ugherughe <span class="underline">A spoonful of DevOps
+helps the GI go down</span> <i>Genetic Improvement Workshop 2018</i>
+(<a href="data/devops-gi.pdf">PDF</a>, <a href="data/devops-gi.bib">Bibtex</a>)</li>
+
+<li>Joel Lehman, <i>et. al.</i>
+<span class="underline">The Surprising Creativity of Digital Evolution: A Collection of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities</span>
+<i>arXiv 2018</i> (<a href="https://arxiv.org/pdf/1803.03453">PDF</a>, <a href="data/surprising-creativity-of-digital-evolution.bib">Bibtex</a>)</li>
+
+<li>Vineeth Kashyap, Rebecca Swords, Eric Schulte, David Melski.
+<span class="underline">MuSynth: Program Synthesis via Code Reuse and Code Manipulation</span>
+<i>International Symposium on Search Based Software Engineering 2017</i>
+(<a href="data/musynth-ssbse-2017.pdf">PDF</a>, <a href="data/musynth-ssbse-2017.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Michael McDougal, Dave Melski.
+<span class="underline">Software Transformation: Applications, Tools, Challenges, and Program Representation</span>
+<i>Workshop on Forming an Ecosystem Around Software Transformation 2016</i> (<a href="data/feast-2016-software-transformation.pdf">PDF</a>, <a href="data/feast-2016.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Westley Weimer, Stephanie Forrest.
+<span class="underline">Repairing COTS router firmware without access to source code or test suites: A case study in evolutionary software repair</span>
+<i>Workshop on Genetic Improvement 2015 (<b>best paper</b>)</i> (<a href="data/netgear-repair-preprint.pdf">PDF</a>, <a href="data/gi-netgear-2015.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte.  <span class="underline">Neutral Networks of Real-World Programs and their
+Application to Automated Software Evolution</span> <i>Ph.D. Dissertation,
+University of New Mexico 2014</i> (<a href="dissertation/schulte-dissertation.pdf">PDF</a>, <a href="dissertation/schulte-dissertation.html">HTML</a>, <a href="data/schulte-dissertation.bib">Bibtex</a> <a href="dissertation/schulte-dissertation-presentation.pdf">slides</a>, <a href="dissertation">more</a>)</li>
+
+<li>Eric Schulte, Jonathan Dorn, Stephen Harding, Stephanie Forrest,
+Westley Weimer.  <span class="underline">Post-compiler Software Optimization for Reducing
+Energy</span> <i>Architectural Support for Programming Languages and
+Operating Systems (ASPLOS) 2014</i> (<a href="data/asplos265-schulte.pdf">PDF</a>, <a href="data/asplos-14-schulte.pdf">slides</a>, <a href="data/goa.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Zachary P. Fry, Ethan Fast, Westley Weimer, Stephanie
+Forrest.  <span class="underline">Software Mutational Robustness</span> <i>Genetic Programming and
+Evolvable Machines 2013</i> (<a href="http://arxiv.org/abs/1204.4224">arXiv</a>, <a href="http://link.springer.com/article/10.1007/s10710-013-9195-8">Springer</a>, <a href="http://arxiv.org/pdf/1204.4224v3">PDF</a>, <a href="data/schulte2013robust.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Jonathan DiLorenzo, Westley Weimer, Stephanie
+Forrest. <span class="underline">Automated Repair of Binary and Assembly Programs for
+Cooperating Embedded Devices</span> <i>Architectural Support for Programming
+Languages and Operating Systems (ASPLOS) 2013</i> (<a href="data/schulte2013embedded.pdf">PDF</a>, <a href="data/embedded.bib">Bibtex</a>, <a href="data/asplos-13-schulte.pdf">slides</a>)</li>
+
+<li>Eric Schulte, Dan Davison, Tom Dye, Carsten Dominik.
+<span class="underline">A Multi-Language Computing Environment for
+ Literate Programming and Reproducible Research</span>
+<i>Journal of Statistical Software</i>
+(<a href="http://www.jstatsoft.org/v46/i03">JSS site (supplemental materials)</a>, <a href="http://www.jstatsoft.org/v46/i03/paper">PDF</a>, <a href="http://www.jstatsoft.org/v46/i03/bibtex">Bibtex</a>)</li>
+
+<li>Eric Schulte, Dan Davison.  <span class="underline">Active Documents with Org-Mode</span>
+<i>Computing in Science &amp; Engineering 2011</i> (<a href="data/CISE-13-3-SciProg.pdf">PDF</a>, <a href="data/CISE-13-3-SciProg.bib">Bibtex</a>, <a href="https://github.com/eschulte/CiSE">source</a>)</li>
+
+<li>Eric Schulte, David Ackley.  <span class="underline">Physical Evolutionary Computation</span>
+<i>University of New Mexico TR-CS-2011-01</i> (<a href="http://cs.unm.edu/~treport/tr/11-04/paper-2011-01.pdf">PDF</a>, <a href="data/tr-cs-2011-01.bib">Bibtex</a>)</li>
+
+<li>Eric Schulte, Stephanie Forrest, Westley Weimer.  <span class="underline">Automated Program
+Repair through the Evolution of Assembly Code</span> <i>Automated Software
+Engineering (ASE) Short Paper 2010</i> (<a href="data/ase2010-asm-preprint.pdf">PDF</a>, <a href="data/ase2010-asm.bib">Bibtex</a>).
+A summary is presented in the following <a href="data/asm-gp-presentation.pdf">presentation</a> and <a href="data/asm-gp-poster.pdf">poster</a>.</li>
+
+<li>Paul Lehner, Charles Worrell, Chrissy Vu, Janet Mittel, Stephen
+Snyder, Eric Schulte, Warren Greiff, <span class="underline">An Application of Document
+Filtering in an Operational System</span> <i>Information Processing &amp;
+Management 2010</i> (<a href="data/argus-pub.bib">Bibtex</a>)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc34f28c" class="outline-2">
+<h2 id="course-notes">Course Notes</h2>
+<div class="outline-text-2" id="text-course-notes">
+<ul class="org-ul">
+<li>Spring 2013
+<ul class="org-ul">
+<li><code>biol517</code> Basic Graduate Evolution (<a href="classes/biol517/biol517.html">notes</a>)</li>
+</ul></li>
+<li>Spring 2011
+<ul class="org-ul">
+<li><code>cs591</code> Cognitive and Comp Neuroscience (<a href="classes/cs591-cog/cs591-cog.html">notes</a>)
+<ul class="org-ul">
+<li>final <a href="http://cs.unm.edu/~eschulte/classes/cs591-cog/data/ego-machine.pdf">ego-machine.pdf</a> (<a href="http://gitweb.adaptive.cs.unm.edu/ego-machine.git">code</a>, <a href="http://cs.unm.edu/~eschulte/notes/ego-machine/full-world.mp4">video</a>)</li>
+</ul></li>
+</ul></li>
+<li>Fall 2010
+<ul class="org-ul">
+<li><code>cs547</code> Neural Networks (<a href="classes/cs547/cs547.html">notes</a>)
+<ul class="org-ul">
+<li>final paper <a href="http://cs.unm.edu/~eschulte/classes/cs547/data/cs547.schulte.final-project.pdf">cs547.schulte.final-project.pdf</a></li>
+</ul></li>
+</ul></li>
+<li>Comprehensive Exam (<a href="comps/comps.html">notes</a>)</li>
+<li>Spring 2010
+<ul class="org-ul">
+<li><code>cs500</code> Theory of Computation (<a href="classes/cs500/cs500.html">notes</a>)</li>
+<li><code>cs550</code> Programming Languages &amp; Systems (<a href="classes/cs550/cs550.html">notes</a>)
+<ul class="org-ul">
+<li>final presentation <a href="http://cs.unm.edu/~eschulte/classes/cs550/data/schulte.non-von-neumann-computation.pdf">schulte.non-von-neumann-computation.pdf</a></li>
+<li>a <a href="http://repo.or.cz/w/propagator.git">concurrent propagator system</a> implemented in Clojure</li>
+</ul></li>
+<li><code>cs691</code> Robust Physical Computation Seminar (<a href="classes/cs691-rpc/cs691-rpc.html">note</a>s)</li>
+<li><code>cs691</code> Adaptive Reading Group (<a href="classes/cs691/cs691.html">notes</a>)</li>
+</ul></li>
+<li>Fall 2009
+<ul class="org-ul">
+<li><code>cs558</code> Software Foundations (<a href="classes/cs558/cs558.html">notes</a>)</li>
+<li><code>cs587</code> Advanced Operating Systems (<a href="classes/cs587/cs587.html">notes</a>)
+<ul class="org-ul">
+<li>final paper <a href="http://cs.unm.edu/~eschulte/classes/cs587/data/bfs-v-cfs_groves-knockel-schulte.pdf">bfs-v-cfs_groves-knockel-schulte.pdf</a></li>
+</ul></li>
+<li><code>cs591</code> Robust Physical Computation (<a href="classes/cs591-rpc/cs591-rpc.html">notes</a>)</li>
+<li><code>cs691</code> Adaptive Reading Group (<a href="classes/cs691/cs691.html">notes</a>)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcd631ac" class="outline-2">
+<h2 id="curriculum-vitae">Curriculum Vitae</h2>
+<div class="outline-text-2" id="text-curriculum-vitae">
+<p>
+My CV (as of April 2019) is available at <a href="data/eric-schulte-cv.pdf">eric-schulte-cv.pdf</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="clear-fix"></div>
+<div id="doc-info">
+  This document is created
+  using <a href="http://orgmode.org/">Org-mode</a>
+  and <a href="http://orgmode.org/worg/org-contrib/babel/">Org-babel</a>.
+  The original plain-text document is available
+  at <a href="eric-schulte.org">eric-schulte.org</a>
+  (<a href="eric-schulte.org.html" title="how this document looks from inside Emacs">preview</a>).
+</div>
+</div>
+</body>
+</html>

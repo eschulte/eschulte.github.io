@@ -1,0 +1,72 @@
+                          ____________________
+
+                           RESEARCH STATEMENT
+
+                              Eric Schulte
+                          ____________________
+
+
+My work applies genetic programming techniques to real world software.
+After two decades confined to simplified languages, genetic techniques
+have recently been used to repair bugs in C programs.  I have extended
+this work to multiple programming  languages, to assembly code, and to
+binary ELF files.   I've applied these techniques  in embedded systems
+[2],  to  patch  security vulnerabilities  in  closed-source  software
+before the  software vendor  [5], and to  optimize software  to reduce
+runtime and  energy consumption by  20% beyond the  best optimizations
+provided by GCC [3].
+
+I believe that  today's software tools and techniques  are the product
+of an evolutionary process in which software developers are the agents
+of  mutation  and  selection.   I have  empirically  demonstrated  the
+presence of  the high  levels of mutational  robustness in  real world
+software predicted  by this  view [4].   I would  like to  continue to
+leverage  the evolved  aspects of  software to  develop new  tools and
+techniques  with which  software developers  may improve,  extend, and
+eventually create new software.
+
+I  view  publications  as   "merely  advertising  scholarship,"  I  am
+committed  to  releasing  the   resources  and  software  required  to
+reproduce  my  work.  To  this  end,  I am  the  author  of a  popular
+open-source  reproducible  research tool  kit  [1].   Adoption is  the
+measure of success  for software engineering research,  and my primary
+goal  is the  widespread adoption  of genetic  techniques in  software
+evolution and development.
+
+References
+==========
+
+[1]
+
+Eric Schulte, Dan Davison, Thomas Dye, and Carsten Dominik. A
+multi-language computing environment for literate programming and
+reproducible research. *Journal of Statistical Software*, 46(3):1-24, 1
+2012. [http](http://www.jstatsoft.org/v46/i03)
+
+[2]
+
+Eric Schulte, Jonathan DiLorenzo, Westley Weimer, and Stephanie Forrest.
+Automated repair of binary and assembly programs for cooperating
+embedded devices. In *Proceedings of the eighteenth international
+conference on Architectural Support for Programming Languages and
+Operating Systems*. ACM, 2013.
+
+[3]
+
+Eric Schulte, Jonathan Dorn, Stephen Harding, Stephanie Forrest, and
+Westley Weimer. Post-compiler software optimization for reducing energy.
+In *Proceedings of the eighteenth international conference on
+Architectural Support for Programming Languages and Operating Systems*.
+ACM, 2014. 
+
+[4]
+
+Eric Schulte, ZacharyP. Fry, Ethan Fast, Westley Weimer, and Stephanie
+Forrest. Software mutational robustness. *Genetic Programming and
+Evolvable Machines*, pages 1-32, 2013.
+[DOI](http://dx.doi.org/10.1007/s10710-013-9195-8)
+
+[5]
+
+Eric Schulte, Westley Weimer, and Stephanie Forrest. Repairing security
+vulnerabilities in the netgear router binary. Submitted, December 2013.

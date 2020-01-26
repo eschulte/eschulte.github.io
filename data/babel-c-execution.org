@@ -1,0 +1,85 @@
+#+Title: overview of the execution of a C code block
+#+Author: Eric Schulte
+#+Style: <style type="text/css">pre{background:#232323; color:#E6E1DC;}h1,h2{border-bottom-style: solid; border-bottom-color: gray;}</style>
+
+The =org-babel-execute:C= is used to execute a block of C code.  The
+source code of this function is presented below with inline comments
+explaining the sequence of operations.
+
+In actuality =org-babel-execute:C= just calls =org-babel-C-execute=,
+which is used to execute both C and C++ code blocks.  The evaluation
+process is as follows. Note: hover your mouse over references to see
+the corresponding point in the source code -- this behavior is
+described in the Org-mode [[http://orgmode.org/manual/Literal-examples.html][manual]].
+
+1. A temporary file [[(tmp-file)]] is created to hold the source code
+   present in the code block.  A language appropriate extension is
+   added [[(ext)]].
+2. Another temporary file is created [[(bin-file)]] to hold the compiled
+   binary executable.
+3. Two header arguments which are specific to C/C++ code blocks are
+   collected.
+   - =:cmdline= [[(cmdline)]] which holds a string to pass on the command
+     line to the compiled binary when it is evaluated
+   - =:flags= [[(flags)]] which holds a string of flags to pass to the
+     compiler during execution
+4. The body of the code block is expanded [[(expand)]].  Every language
+   has an expansion function which is responsible for adding variables
+   to the code block, and in some cases wrapping the code block for
+   the collection of results.
+5. To compile the code block, the expanded body is dumped into the
+   temporary sourced code file [[(src-dump)]], the compiler command is
+   generated from the compiler, src-file-name, bin-file-name and flags
+   respectively [[(cmpl)]].
+6. The resulting binary file is then evaluated [[(evaluation)]] and the
+   output is passed to an anonymous function [[(results-processing)]] as
+   the local variable named =results=.
+7. The results are then either read into a table [[(table)]] or read into
+   an elisp data structure [[(elisp)]] depending on the values of the
+   =:results= header argument.  Optional column [[(colname)]] and row
+   [[(rowname)]] names are applied again according to the corresponding
+   header arguments.
+8. Finally the processed results are handed back to the rest of the
+   code block machinery which handles the incorporation of the results
+   into the Org-mode buffer.
+
+#+begin_src emacs-lisp -n -l "ref:%s"
+  (defun org-babel-C-execute (body params)
+    "This function should only be called by `org-babel-execute:C'
+  or `org-babel-execute:C++'."
+    (let* ((tmp-src-file (org-babel-temp-file ; ref:tmp-file
+                          "C-src-"
+                          (cond           ; ref:ext
+                           ((equal org-babel-c-variant 'c) ".c")
+                           ((equal org-babel-c-variant 'cpp) ".cpp"))))
+           (tmp-bin-file (org-babel-temp-file "C-bin-")) ; ref:bin-file
+           (cmdline (cdr (assoc :cmdline params)))       ; ref:cmdline
+           (flags (cdr (assoc :flags params)))           ; ref:flags
+           (full-body (org-babel-C-expand body params))  ; ref:expand
+           (compile
+            (progn
+              (with-temp-file tmp-src-file (insert full-body))  ; ref:src-dump
+              (org-babel-eval
+               (format "%s -o %s %s %s"   ; ref:cmpl
+                       (cond
+                        ((equal org-babel-c-variant 'c) org-babel-C-compiler)
+                        ((equal org-babel-c-variant 'cpp) org-babel-C++-compiler))
+                       (org-babel-process-file-name tmp-bin-file)
+                       (mapconcat 'identity
+                                  (if (listp flags) flags (list flags)) " ")
+                       (org-babel-process-file-name tmp-src-file)) ""))))
+      ((lambda (results)                  ; ref:results-processing
+         (org-babel-reassemble-table
+          (if (member "vector" (cdr (assoc :result-params params)))
+              (let ((tmp-file (org-babel-temp-file "c-")))
+                (with-temp-file tmp-file (insert results))
+                (org-babel-import-elisp-from-file tmp-file)) ; ref:table
+            (org-babel-read results))     ; ref:elisp
+          (org-babel-pick-name            ; ref:colname
+           (cdr (assoc :colname-names params)) (cdr (assoc :colnames params)))
+          (org-babel-pick-name            ; ref:rowname
+           (cdr (assoc :rowname-names params)) (cdr (assoc :rownames params)))))
+       (org-babel-trim
+        (org-babel-eval                   ; ref:evaluation
+         (concat tmp-bin-file (if cmdline (concat " " cmdline) "")) "")))))
+#+end_src

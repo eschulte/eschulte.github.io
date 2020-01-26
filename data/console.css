@@ -1,0 +1,61 @@
+/* based on style sheet used by the AlmostObsolete blog:
+   http://almostobsolete.net/daypage.html
+   by Thomas Parslow from Brighton from the Web September 2011.
+   Modified by me subsequently.
+   Also, some inspiration provided by the irssi website:
+   http://irssi.org/ 
+   */
+
+* {font-family: courier, monospace;} 
+body { background-color: rgb(190,180,180); }
+#title {margin: auto; width: 45em; overflow: hidden}
+#content {margin: auto; width: 38em; background-color: rgb(255,255,255); padding: 2em; border: solid 1px rgb(0,0,0); }
+
+h1 { font-size: 2em; font-weight: bold; }
+h2 { font-size: 1em; font-weight: bold; margin-left: -3ex; padding-left: 0ex;}
+h2:before {content: "* "}
+h3 { font-size: 1em; font-weight: bold; margin-left: -3ex; }
+h3:before {content: "** "}
+#title,pre {background: white; border: 0px; font-family: "Bitstream Vera Sans Mono",courier, monospace;} 
+
+a { color: darkblue; text-decoration: underline; }
+a:hover { color: black; background-color: lightblue; text-decoration: none;}
+/* a:before { content: "["; color: black; background-color: white;} */
+/* a:after { content: "]"; color: black; background-color: white;} */
+.example         { background-color: #FFF5F5; }
+dd { /* text-align: justify;*/ margin-left: 2ex; }
+dt { margin-left: 0ex; margin-top: 1em; margin-bottom: 1em; }
+li { /* text-align: justify; */}
+p { /* text-align: justify; */ margin-left: 0px; /*margin-bottom: 2em; margin-top: 2em;*/}
+pre { margin-top: 1em; margin-bottom: 1em; background-color: white;}
+pre.code, pre.example, pre.src {border: 2px dashed black;}
+p.footnote { margin-left: 6ex; text-indent: -6ex; }
+.src             { position: relative; overflow: visible; }
+.src:before      { position: absolute; top: -15px; background: #ffffff; padding: 1px; border: 1px solid #000000; font-size: small; }
+.src-sh:before   { content: 'sh'; }
+.src-bash:before { content: 'sh'; }
+.src-gams:before { content: 'GAMS'; }
+.src-jacaranda:before { content: 'Jacaranda'; }
+.src-octave:before { content: 'Octave'; }
+.src-perl:before { content: 'Perl'; }
+.src-R:before    { content: 'R'; }
+.src-sql:before  { content: 'SQL'; }
+ul {list-style-type:none; margin-left: 3ex; padding-left: 0ex; text-indent: -3ex;}
+ul li:before { content: "+ "; color: black;}
+#postamble p {
+margin: 0px;
+}
+
+.tag {
+float: right;
+background-color: white;
+color: #BEBEBE;
+}
+
+.tag span:before {
+    content: ":";
+}
+
+.tag:after {
+    content: ":";
+}

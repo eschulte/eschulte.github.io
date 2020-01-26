@@ -1,0 +1,204 @@
+# Created 2019-11-22 Fri 15:21
+#+OPTIONS: toc:t num:nil ^:nil
+#+TITLE: Dr. Eric Schulte
+#+startup: hideblocks
+#+html_head: <link rel="stylesheet" href="data/stylesheet.css" type="text/css">
+#+html_head: <script type="text/javascript" src="data/homepage.js">
+
+#+html: <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
+
+#+html: <a href="http://eschulte.github.io/gpolygon/?image=http://cs.unm.edu/~eschulte/data/eric-schulte.jpg" title="right click to see evolved approximation"><canvas id="me" width="300" height="300"></div></a>
+
+#+html: <div id="contact"><tt>eschulte-at-grammatech.com</tt></div>
+
+#+html: <div id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
+
+* Research
+I research methods of automating software development and reverse
+engineering tasks.  My work benefits from the understanding of
+software as an evolved system.
+
+I am the /Director of Automated Software Engineering/ at GrammaTech,
+where I lead the /Program Synthesis/ and /Binary Rewriting/ research
+areas.  At GrammaTech I develop techniques automating the analysis,
+reverse engineering, maintenance, improvement, and synthesis of
+software systems.  These techniques apply variously to software source
+code repositories and/or to stripped binary executables.
+
+* Background
+- As of August 2018 I am Director of Automated Software Engineering at
+  [[http://www.grammatech.com/][GrammaTech]].  At GrammaTech I get to work on the automation of
+  software engineering tasks including refactoring, bug-injection,
+  decompilation, and binary rewriting for hardening and program
+  optimization.
+- As of July 2014 I have completed my degree at the [[http://www.unm.edu/][University of New
+  Mexico]] and accepted a position at [[http://www.grammatech.com/][GrammaTech]].
+- From August 2009 through July 2014 I was enrolled as a doctoral
+  student at the [[http://www.unm.edu/][University of New Mexico]] as a member of Stephanie
+  Forrest's Adaptive Computation Group.
+- For the five years previous to graduate school, I was employed by
+  [[http://www.mitre.org/][Mitre]], a Federally Funded Research and Development Center.  During
+  that time I was promoted to the position of /Senior AI Engineer/ and
+  played a key technical role supporting project Argus([[http://hsgac.senate.gov/public/index.cfm?FuseAction=Files.View&FileStore_id=3b5da0a2-5b3a-463e-aed5-4b2e7ec64cbf][PDF]]).
+- I completed my undergraduate studies at [[http://www.kenyon.edu/][Kenyon College]] with a
+  semester at the [[http://www.budapestsemesters.com/][Budapest semester in Mathematics]].  I graduated with
+  a BA in mathematics and a minor in philosophy.
+
+* Software
+I've written, maintained or significantly contributed to the following
+software which includes large open-source projects, projects currently
+under active development at GrammaTech, and small utilities (presented
+in order of significance and activity).
+
+- [[https://github.com/grammatech/sel][SOFTWARE-EVOLUTION-LIBRARY]] (SEL) is a common lisp library for the
+  programmatic modification and evaluation of software.  See the [[https://grammatech.github.io/sel/#Top][SEL
+  Manual]] for more information.
+- Binary Analysis and Reverse Engineering.  See [[https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting][this blog post]]
+  announcing the open-source release of these tools.
+  - [[https://github.com/grammatech/gtirb][GTIRB]] Intermediate Representation for Binary analysis and
+    transformation.  Includes a Protobuf specification and a reference
+    C++ library.
+  - [[https://github.com/grammatech/ddisasm][ddisasm]] A fast and accurate disassembler.  A Datalog engine powers
+    this high performance re-assemblable disassembler
+  - [[https://github.com/grammatech/gtirb-pprinter][gtirb-pprinter]] Pretty printer from GTIRB to assembly code
+- Manipulation of C-language (and other) Abstract Syntax Trees:
+  - [[https://github.com/grammatech/clang-mutate][clang-mutate]] manipulates C-family ASTs with [[http://clang.llvm.org][Clang]]
+  - [[https://github.com/eschulte/cil-mutate][cil-mutate]] manipulates C Intermediate Language ASTs with [[http://kerneis.github.com/cil/][CIL]]
+  - [[http://eschulte.github.io/llvm-mutate/][llvm-mutate]] manipulates [[http://llvm.org][LLVM]] IR with an [[http://llvm.org/docs/WritingAnLLVMPass.html][LLVM compiler pass]]
+- [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
+  partial application and composition in Common Lisp.  I've also
+  implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
+- [[http://eschulte.github.com/graph/][GRAPH]] is a Common Lisp library for graphs manipulation and analysis.
+- [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
+  functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
+- [[http://rinari.rubyforge.org/][Rinari]] is a /Ruby on Rails/ minor mode for Emacs.
+- Manipulation of [[http://en.wikipedia.org/wiki/Executable_and_Linkable_Format][ELF files]]:
+  - [[https://github.com/eschulte/elf][elf]] a CLOS based API for Elf file manipulation in Common Lisp
+  - [[https://github.com/eschulte/rw-elf][rw-elf]] a simpler C library for ELF file manipulation
+- [[https://github.com/eschulte/delta-debug][DELTA-DEBUG]] is a Common Lisp [[http://www.st.cs.uni-saarland.de/dd/][delta debugging]] implementation.
+
+- [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully distributed lisp virtual machine.
+
+* Publications
+- Antonio Flores-Montoya, Eric Schulte
+  _Datalog Disassembly_
+  /arXiv Pre-Print 2019/
+  ([[https://arxiv.org/pdf/1906.03969.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]])
+
+- Eric Schulte, Suan Yong, Dave Melski.
+  _Inuring: Live Attacker-guided Repair_
+  /Workshop on Forming an Ecosystem Around Software Transformation 2019/ ([[file:data/feast-2019-inuring.pdf][PDF]], [[file:data/feast-2019-inuring.bib][Bibtex]])
+
+- Vineeth Kashyap, Jason Ruchti, Lucja Kot, Emma Turetsky, Rebecca Swords, David Melski, Eric Schulte
+  _Automated Customized Bug-Benchmark Generation_
+  /Source Code Analysis and Manipulation (SCAM) 2019 (*distinguished paper*)/
+  ([[https://arxiv.org/pdf/1901.02819.pdf][PDF]], [[file:data/bug-injector.bib][Bibtex]], [[https://zenodo.org/record/3341585#.XTCQinVKiV4][Data set]])
+
+- Eric Schulte, Jonathan Dorn, Antonio Flores Montoya, Aaron Ballman, Tom Johnson
+  _GTIRB: Intermediate Representation for Binaries_
+  /arXiv Pre-Print 2019/
+  ([[https://arxiv.org/pdf/1907.02859.pdf][PDF]], [[file:data/gtirb.bib][Bibtex]])
+
+- Eric Schulte, Contributors
+  _Software Evolution Library_
+  /Manual 2018/
+  ([[https://github.com/GrammaTech/sel][Library Source]], [[https://grammatech.github.io/sel/][Manual HTML]], [[file:data/sel-manual.bib][Bibtex]])
+
+- Eric Schulte, Jason Ruchti, Matt Noonan, David Ciarletta, Alexey Loginov
+  _Evolving Exact Decompilation_
+  /Workshop on Binary Analysis Research 2018/
+  ([[file:data/bed.pdf][PDF]], [[file:data/bed.bib][Bibtex]], [[http://storm-country.com/blog/evo-deco][Blog post]])
+
+- Deborah Katz, Jason Ruchti, Eric Schulte
+  _Using Recurrent Neural Networks for Decompilation_
+  /Software Analysis, Evolution and Reengineering (SANER) 2018/
+  ([[file:data/katz-saner-2018-preprint.pdf][PDF]], [[file:data/rnn-decomp.bib][Bibtex]])
+
+- Benoit Baudry, Nicolas Harrand, Eric Schulte, Chris Timperley, Shin
+  Hwei Tan, Marija Selakovic, Emamurho Ugherughe _A spoonful of DevOps
+  helps the GI go down_ /Genetic Improvement Workshop 2018/
+  ([[file:data/devops-gi.pdf][PDF]], [[file:data/devops-gi.bib][Bibtex]])
+
+- Joel Lehman, /et. al./
+  _The Surprising Creativity of Digital Evolution: A Collection of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities_
+  /arXiv 2018/ ([[https://arxiv.org/pdf/1803.03453][PDF]], [[file:data/surprising-creativity-of-digital-evolution.bib][Bibtex]])
+
+- Vineeth Kashyap, Rebecca Swords, Eric Schulte, David Melski.
+  _MuSynth: Program Synthesis via Code Reuse and Code Manipulation_
+  /International Symposium on Search Based Software Engineering 2017/
+  ([[file:data/musynth-ssbse-2017.pdf][PDF]], [[file:data/musynth-ssbse-2017.bib][Bibtex]])
+
+- Eric Schulte, Michael McDougal, Dave Melski.
+  _Software Transformation: Applications, Tools, Challenges, and Program Representation_
+  /Workshop on Forming an Ecosystem Around Software Transformation 2016/ ([[file:data/feast-2016-software-transformation.pdf][PDF]], [[file:data/feast-2016.bib][Bibtex]])
+
+- Eric Schulte, Westley Weimer, Stephanie Forrest.
+  _Repairing COTS router firmware without access to source code or test suites: A case study in evolutionary software repair_
+  /Workshop on Genetic Improvement 2015 (*best paper*)/ ([[file:data/netgear-repair-preprint.pdf][PDF]], [[file:data/gi-netgear-2015.bib][Bibtex]])
+
+- Eric Schulte.  _Neutral Networks of Real-World Programs and their
+  Application to Automated Software Evolution_ /Ph.D. Dissertation,
+  University of New Mexico 2014/ ([[file:dissertation/schulte-dissertation.pdf][PDF]], [[file:dissertation/schulte-dissertation.html][HTML]], [[file:data/schulte-dissertation.bib][Bibtex]] [[file:dissertation/schulte-dissertation-presentation.pdf][slides]], [[file:dissertation][more]])
+
+- Eric Schulte, Jonathan Dorn, Stephen Harding, Stephanie Forrest,
+  Westley Weimer.  _Post-compiler Software Optimization for Reducing
+  Energy_ /Architectural Support for Programming Languages and
+  Operating Systems (ASPLOS) 2014/ ([[file:data/asplos265-schulte.pdf][PDF]], [[file:data/asplos-14-schulte.pdf][slides]], [[file:data/goa.bib][Bibtex]])
+
+- Eric Schulte, Zachary P. Fry, Ethan Fast, Westley Weimer, Stephanie
+  Forrest.  _Software Mutational Robustness_ /Genetic Programming and
+  Evolvable Machines 2013/ ([[http://arxiv.org/abs/1204.4224][arXiv]], [[http://link.springer.com/article/10.1007/s10710-013-9195-8][Springer]], [[http://arxiv.org/pdf/1204.4224v3][PDF]], [[file:data/schulte2013robust.bib][Bibtex]], [[https://arxiv.org/abs/1901.02533][followup work by Harrand et al.]])
+
+- Eric Schulte, Jonathan DiLorenzo, Westley Weimer, Stephanie
+  Forrest. _Automated Repair of Binary and Assembly Programs for
+  Cooperating Embedded Devices_ /Architectural Support for Programming
+  Languages and Operating Systems (ASPLOS) 2013/ ([[file:data/schulte2013embedded.pdf][PDF]], [[file:data/embedded.bib][Bibtex]], [[file:data/asplos-13-schulte.pdf][slides]])
+
+- Eric Schulte, Dan Davison, Tom Dye, Carsten Dominik.
+  _A Multi-Language Computing Environment for
+   Literate Programming and Reproducible Research_
+  /Journal of Statistical Software/
+  ([[http://www.jstatsoft.org/v46/i03][JSS site (supplemental materials)]], [[http://www.jstatsoft.org/v46/i03/paper][PDF]], [[http://www.jstatsoft.org/v46/i03/bibtex][Bibtex]])
+
+- Eric Schulte, Dan Davison.  _Active Documents with Org-Mode_
+  /Computing in Science & Engineering 2011/ ([[file:data/CISE-13-3-SciProg.pdf][PDF]], [[file:data/CISE-13-3-SciProg.bib][Bibtex]], [[https://github.com/eschulte/CiSE][source]])
+
+- Eric Schulte, David Ackley.  _Physical Evolutionary Computation_
+  /University of New Mexico TR-CS-2011-01/ ([[http://cs.unm.edu/~treport/tr/11-04/paper-2011-01.pdf][PDF]], [[file:data/tr-cs-2011-01.bib][Bibtex]])
+
+- Eric Schulte, Stephanie Forrest, Westley Weimer.  _Automated Program
+  Repair through the Evolution of Assembly Code_ /Automated Software
+  Engineering (ASE) Short Paper 2010/ ([[file:data/ase2010-asm-preprint.pdf][PDF]], [[file:data/ase2010-asm.bib][Bibtex]]).
+  A summary is presented in the following [[file:data/asm-gp-presentation.pdf][presentation]] and [[file:data/asm-gp-poster.pdf][poster]].
+
+- Paul Lehner, Charles Worrell, Chrissy Vu, Janet Mittel, Stephen
+  Snyder, Eric Schulte, Warren Greiff, _An Application of Document
+  Filtering in an Operational System_ /Information Processing &
+  Management 2010/ ([[file:data/argus-pub.bib][Bibtex]])
+
+* Course Notes
+- Spring 2013
+  - =biol517= Basic Graduate Evolution ([[file:classes/biol517/biol517.org][notes]])
+- Spring 2011
+  - =cs591= Cognitive and Comp Neuroscience ([[file:classes/cs591-cog/cs591-cog.html][notes]])
+    - final [[http://cs.unm.edu/~eschulte/classes/cs591-cog/data/ego-machine.pdf][ego-machine.pdf]] ([[http://gitweb.adaptive.cs.unm.edu/ego-machine.git][code]], [[http://cs.unm.edu/~eschulte/notes/ego-machine/full-world.mp4][video]])
+- Fall 2010
+  - =cs547= Neural Networks ([[file:classes/cs547/cs547.html][notes]])
+    - final paper [[http://cs.unm.edu/~eschulte/classes/cs547/data/cs547.schulte.final-project.pdf][cs547.schulte.final-project.pdf]]
+- Comprehensive Exam ([[file:comps/comps.org][notes]])
+- Spring 2010
+  - =cs500= Theory of Computation ([[file:classes/cs500/cs500.html][notes]])
+  - =cs550= Programming Languages & Systems ([[file:classes/cs550/cs550.html][notes]])
+    - final presentation [[http://cs.unm.edu/~eschulte/classes/cs550/data/schulte.non-von-neumann-computation.pdf][schulte.non-von-neumann-computation.pdf]]
+    - a [[http://repo.or.cz/w/propagator.git][concurrent propagator system]] implemented in Clojure
+  - =cs691= Robust Physical Computation Seminar ([[file:classes/cs691-rpc/cs691-rpc.html][note]]s)
+  - =cs691= Adaptive Reading Group ([[file:classes/cs691/cs691.html][notes]])
+- Fall 2009
+  - =cs558= Software Foundations ([[file:classes/cs558/cs558.html][notes]])
+  - =cs587= Advanced Operating Systems ([[file:classes/cs587/cs587.html][notes]])
+    - final paper [[http://cs.unm.edu/~eschulte/classes/cs587/data/bfs-v-cfs_groves-knockel-schulte.pdf][bfs-v-cfs_groves-knockel-schulte.pdf]]
+  - =cs591= Robust Physical Computation ([[file:classes/cs591-rpc/cs591-rpc.html][notes]])
+  - =cs691= Adaptive Reading Group ([[file:classes/cs691/cs691.html][notes]])
+
+* Curriculum Vitae
+My CV (as of April 2019) is available at [[file:data/eric-schulte-cv.pdf][eric-schulte-cv.pdf]].

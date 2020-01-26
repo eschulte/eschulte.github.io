@@ -1,0 +1,219 @@
+                          ____________________
+
+                           RESEARCH STATEMENT
+
+                              Eric Schulte
+                          ____________________
+
+
+The current software development ecosystem arose through fifty years of
+developers selecting, re-using and modifying software development tools
+and techniques through a process that resembles natural selection.
+Effective tools and methods reproduce and evolve while less useful
+artifacts are abandoned.  This history has resulted in some surprising
+biological features of software.  My work illuminates and exploits these
+features to build novel software engineering (SE) tools and techniques.
+Specifically, I apply genetic programming (GP) techniques to two
+important real world problems; automated bug repair and program
+optimization.  After two decades confined to simplified languages and
+non-standard runtimes, genetic techniques have recently found increased
+application addressing difficult and software engineering long-stranding
+problems.
+
+I hope to continue this work towards the end of realizing the initial
+goal of GP--the automated construction of wholly new software artifacts
+and functionality--inside of the existing software development
+ecosystem.
+
+My approach to research seeks to accompany novel SE techniques with
+open-source prototype implementations and accompany empirical results
+with the tooling and instructions required for reproduction.  I find an
+early focus on software development helps to expose problems in
+impractical techniques, and released prototypes increases impact by
+allowing both researchers and software developers to reproduce, apply
+and extend my work.  To this end I have released tools for the genetic
+optimization of extant software[1], for the repair of closed source
+binaries[2], and both libraries[3] and simple command line tools[4] for
+software mutation.
+
+
+Previous Contributions
+======================
+
+  My research has focused on the natural aspects of computation with an
+  emphasis on the production of usable tools.  I have made the following
+  research contributions in reverse chronological order.
+
+  *Genetic Program Repair* As part of the Genprog project I helped to
+  develop a technique of automatic bug repair applicable to real-world
+  software.  Given a software project with a regression test suite and
+  at least one failing test, Genprog applies random "mutations" to the
+  source code of the original program yielding alternative program
+  implementations.  In a process mirroring natural selection, an
+  evolutionary algorithm searches for alternate program implementations
+  until a version of the program is found which passes the originally
+  failing test while still passing the entire regression test suite.  In
+  a systematic study of bugs culled from 8 popular open-source software
+  projects Genprog was able to repaired 55 of 105 bugs in under 2 hours
+  of runtime per repair on average.  This work is largely responsible
+  for the recent increased interest in automatic program repair in the
+  SE community.
+
+  *Genetic Program Optimization* I developed Genetic Optimization
+  Algorithm (GOA), a technique of post-compiler software optimization
+  able to reduce the runtime and energy consumption of popular benchmark
+  programs by 20% as compared to the best optimizations provided by GCC.
+  Using generic mutation operations an evolutionary algorithm is used to
+  evolve x86 assembler compiled from an original program to optimize any
+  aspect of the program's runtime behavior which may be efficiently
+  measured or modeled.  Recent advances in profiling techniques and the
+  prevalence of hardware performance counters allow even sophisticated
+  runtime properties such as energy consumption to be targets of
+  optimization.  GOA is able to find optimizations specific to both the
+  target hardware and the workload used for optimization.
+
+  *Software Representation* I've explored multiple methods of
+  representing and modifying extant software.  I've extended Genprog
+  from the modification of C source code, to the modification of LLVM IR
+  and multiple assembler languages including x86 and ARM independent of
+  the source language, and I've even extended these techniques to
+  directly modify binary executables on multiple architectures including
+  x86 and MIPS.  This work allows for wider application of genetic
+  techniques to multiple programming languages, in resource constrained
+  devices, and to software for which no source code is available (e.g.,
+  closed source binary executables).  I've demonstrated this increased
+  applicability by repairing exploits in a popular NETGEAR router
+  firmware before the company itself addressed the exploit.  I hope to
+  continue this work by investigating the power and efficiency of
+  genetic techniques across multiple representations of extant software.
+
+  *Software Mutational Robustness* I've demonstrated that extant
+  software (including both large open source projects and a number of
+  extremely well-tested benchmark programs taken from the software
+  testing community) has the "mutational robustness" (meaning the
+  software's functionality is robust to random mutations at the level of
+  source code and compiled assembly code) one would expect from an
+  evolved system.  Mutational robustness has been studied extensively in
+  biological systems where it is associated with development through
+  evolution.  Software mutations often yield algorithmically distinct
+  implementations of a project's implicit specification (demonstrated by
+  passing the software's test suite).  This work motivates a new view of
+  software as fundamentally robust to random modification, helps to
+  explain the success of previous mutation-based SE techniques, and
+  opens the door to a variety of new methods of software development.
+
+  *Physical Evolutionary Computation* I developed a physical
+  evolutionary computation (PEC) algorithm, designed to run on a unique
+  hardware platform composed of homogeneous live-plugable distributed
+  computational tiles.  By eliminating global state and control points
+  the PEC algorithm is able to run over an unbounded number of tiles,
+  make use of new tiles attached mid-computation, gracefully degrade
+  when tiles are removed mid-computation, and function as tile groups
+  are split and later reconnected.  The algorithm introduced a number of
+  unique features including real-time mutation rates, and the ability to
+  map aspects of the problem to the physical dimensions of the hardware.
+  Although this work explored novel and naturally robust models of
+  computation, the impact was limited by it's departure from standard
+  hardware and tooling.  This work taught me the importance of working
+  within the existing software development environment.
+
+  *Reproducible Research*
+        An article about computational science in a scientific
+        publication is not the scholarship itself, it is merely
+        advertising of the scholarship.  The actual scholarship is the
+        complete software development environment and complete set of
+        instructions which generated the figures. [Buckheit & Donoho]
+  I work to ensure that my published empirical results are reproducible.
+  To this end, I am the author of a widely used open source reproducible
+  research tool kit[5] with support for 52 programming languages and
+  contributions from 63 software developers.  This project has been used
+  to in publications in fields as diverse as Anthropology, Genetics and
+  of course Computer Science.
+
+
+Next Steps
+==========
+
+  I hope to continue the integration of GP techniques into the daily
+  work-flow of software developers.  This will require new areas of
+  focus in GP research and will result in the development of new SE
+  tools.
+
+  *(GP) Representation* Genetic techniques are dependent upon software
+  representations which integrate into existing software development
+  toolchains, and are modifiable by /both/ software developers and
+  genetic mutations.  Currently ASM performs surprisingly well as a
+  target of genetic modifications.  ASM has many properties in common
+  with DNA including a linear representation, sequential execution in
+  contiguous segments, the use of reading frames and local jumps.
+  Unfortunately ASM modifications are not easily communicated back to
+  software developers.  More work is required to find new program
+  representations facilitating communication between software developers
+  and genetic techniques.
+
+  *(GP) Near Optimal Search* Software requirements, like ecosystems,
+  change gradually.  Thus the evolution of extant software is similar to
+  the evolution of biological systems in that the starting point of the
+  search, the original program or the wild type organism respectively,
+  is near optimal.  This deviates sharply from traditional work in GP,
+  in which the starting population is often a collection of random
+  candidates with little or no fitness.  New GP techniques for the
+  evolution of extant software should be informed by the ways in which
+  biological adaptation is tailored to this process of repeated gradual
+  improvement.
+
+  *(SE) Software Husbandry* In addition to work on the GP front, I plan
+  to extend recently developed genetic optimization tools.  This work
+  will combine the current two phase process of (1) software development
+  followed by (2) post-compiler genetic optimization into an
+  collaborative model in which a population of evolving software objects
+  is maintained and is contributed to in parallel by software developers
+  and evolutionary operations.  This new practice of /software
+  husbandry/ should have the twin benefits of allowing GP techniques
+  increased time to improve software and granting software developers a
+  chance to influence, understand, and work with the evolutionary
+  process.
+
+
+Purpose
+=======
+
+  I hope to help make GP techniques part of the standard software
+  development toolbox.  I see this as a multi-stage project which is
+  already underway.  Program repair and optimization currently use GP to
+  modify real-world programs.  Further work refining software
+  representations and biologically-inspired mutations can increase the
+  power of such techniques.  Development of tools for software husbandry
+  will apply GP techniques to the development of novel software in a
+  setting where human developers may compensate for GP's shortcomings.
+  Through gradually reducing the role of software developers I hope this
+  work will culminate in the full GP of useful real-world software.  I
+  believe that this goal (the original vision of GP) is now become
+  practical, and although there are certainly unforeseen hurdles and
+  unasked research questions along the way this future is starting to
+  take shape.
+
+  Although this objective is ambitious and sufficient to fill many years
+  of active work, it is difficult to plan more than a few years ahead.
+  In addition to software engineering I hope work to leverage computer
+  systems to perform experimental work of interest to biologists and
+  ecologists.  Many empirical investigations of evolved systems which
+  are impractical in biological settings may now be performed in
+  computational settings.  I look forward to experimental work in both
+  biologically and computationally evolved systems, and to new tools for
+  software development and evolution.
+
+
+
+Footnotes
+_________
+
+[1] https://github.com/eschulte/optimization
+
+[2] https://github.com/eschulte/netgear-repair
+
+[3] https://github.com/eschulte/software-evolution
+
+[4] https://github.com/eschulte/{cil-mutate,clang-mutate,llvm-mutate}
+
+[5] http://www.jstatsoft.org/v46/i03/

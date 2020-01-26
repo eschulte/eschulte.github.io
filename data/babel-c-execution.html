@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>overview of the execution of a C code block</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="overview of the execution of a C code block"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2011-11-18 12:38:22 MST"/>
+<meta name="author" content="Eric Schulte"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#555577;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#555577; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<style type="text/css">pre{background:#232323; color:#E6E1DC;}h1,h2{border-bottom-style: solid; border-bottom-color: gray;}</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">overview of the execution of a C code block</h1>
+
+<p>The <code>org-babel-execute:C</code> is used to execute a block of C code.  The
+source code of this function is presented below with inline comments
+explaining the sequence of operations.
+</p>
+<p>
+In actuality <code>org-babel-execute:C</code> just calls <code>org-babel-C-execute</code>,
+which is used to execute both C and C++ code blocks.  The evaluation
+process is as follows. Note: hover your mouse over references to see
+the corresponding point in the source code &ndash; this behavior is
+described in the Org-mode <a href="http://orgmode.org/manual/Literal-examples.html">manual</a>.
+</p>
+<ol>
+<li>A temporary file <a href="#coderef-tmp-file" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-tmp-file');" onmouseout="CodeHighlightOff(this, 'coderef-tmp-file');">(tmp-file)</a> is created to hold the source code
+   present in the code block.  A language appropriate extension is
+   added <a href="#coderef-ext" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-ext');" onmouseout="CodeHighlightOff(this, 'coderef-ext');">(ext)</a>.
+</li>
+<li>Another temporary file is created <a href="#coderef-bin-file" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-bin-file');" onmouseout="CodeHighlightOff(this, 'coderef-bin-file');">(bin-file)</a> to hold the compiled
+   binary executable.
+</li>
+<li>Two header arguments which are specific to C/C++ code blocks are
+   collected.
+<ul>
+<li><code>:cmdline</code> <a href="#coderef-cmdline" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-cmdline');" onmouseout="CodeHighlightOff(this, 'coderef-cmdline');">(cmdline)</a> which holds a string to pass on the command
+     line to the compiled binary when it is evaluated
+</li>
+<li><code>:flags</code> <a href="#coderef-flags" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-flags');" onmouseout="CodeHighlightOff(this, 'coderef-flags');">(flags)</a> which holds a string of flags to pass to the
+     compiler during execution
+</li>
+</ul>
+
+</li>
+<li>The body of the code block is expanded <a href="#coderef-expand" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-expand');" onmouseout="CodeHighlightOff(this, 'coderef-expand');">(expand)</a>.  Every language
+   has an expansion function which is responsible for adding variables
+   to the code block, and in some cases wrapping the code block for
+   the collection of results.
+</li>
+<li>To compile the code block, the expanded body is dumped into the
+   temporary sourced code file <a href="#coderef-src-dump" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-src-dump');" onmouseout="CodeHighlightOff(this, 'coderef-src-dump');">(src-dump)</a>, the compiler command is
+   generated from the compiler, src-file-name, bin-file-name and flags
+   respectively <a href="#coderef-cmpl" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-cmpl');" onmouseout="CodeHighlightOff(this, 'coderef-cmpl');">(cmpl)</a>.
+</li>
+<li>The resulting binary file is then evaluated <a href="#coderef-evaluation" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-evaluation');" onmouseout="CodeHighlightOff(this, 'coderef-evaluation');">(evaluation)</a> and the
+   output is passed to an anonymous function <a href="#coderef-results-processing" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-results-processing');" onmouseout="CodeHighlightOff(this, 'coderef-results-processing');">(results-processing)</a> as
+   the local variable named <code>results</code>.
+</li>
+<li>The results are then either read into a table <a href="#coderef-table" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-table');" onmouseout="CodeHighlightOff(this, 'coderef-table');">(table)</a> or read into
+   an elisp data structure <a href="#coderef-elisp" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-elisp');" onmouseout="CodeHighlightOff(this, 'coderef-elisp');">(elisp)</a> depending on the values of the
+   <code>:results</code> header argument.  Optional column <a href="#coderef-colname" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-colname');" onmouseout="CodeHighlightOff(this, 'coderef-colname');">(colname)</a> and row
+   <a href="#coderef-rowname" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rowname');" onmouseout="CodeHighlightOff(this, 'coderef-rowname');">(rowname)</a> names are applied again according to the corresponding
+   header arguments.
+</li>
+<li>Finally the processed results are handed back to the rest of the
+   code block machinery which handles the incorporation of the results
+   into the Org-mode buffer.
+</li>
+</ol>
+
+
+
+
+
+<pre class="src src-emacs-lisp"><span class="linenr"> 1:  </span><span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">defun</span> <span style="color: #FFC66D;">org-babel-C-execute</span> <span style="color: #7f7f7f;">(</span>body params<span style="color: #7f7f7f;">)</span>
+<span class="linenr"> 2:  </span>  <span style="color: #A5C261;">"This function should only be called by `</span><span style="color: #6D9CBE;">org-babel-execute:C</span><span style="color: #A5C261;">'</span>
+<span class="linenr"> 3:  </span><span style="color: #A5C261;">or `</span><span style="color: #6D9CBE;">org-babel-execute:C++</span><span style="color: #A5C261;">'."</span>
+<span id="coderef-tmp-file" class="coderef-off"><span class="linenr"> 4:  </span>  <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">let*</span> <span style="color: #7f7f7f;">((</span>tmp-src-file <span style="color: #7f7f7f;">(</span>org-babel-temp-file <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(tmp-file)</span></span>
+<span class="linenr"> 5:  </span>                        <span style="color: #A5C261;">"C-src-"</span>
+<span id="coderef-ext" class="coderef-off"><span class="linenr"> 6:  </span>                        <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">cond</span>           <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(ext)</span></span>
+<span class="linenr"> 7:  </span>                         <span style="color: #7f7f7f;">((</span>equal org-babel-c-variant 'c<span style="color: #7f7f7f;">)</span> <span style="color: #A5C261;">".c"</span><span style="color: #7f7f7f;">)</span>
+<span class="linenr"> 8:  </span>                         <span style="color: #7f7f7f;">((</span>equal org-babel-c-variant 'cpp<span style="color: #7f7f7f;">)</span> <span style="color: #A5C261;">".cpp"</span><span style="color: #7f7f7f;">))))</span>
+<span id="coderef-bin-file" class="coderef-off"><span class="linenr"> 9:  </span>         <span style="color: #7f7f7f;">(</span>tmp-bin-file <span style="color: #7f7f7f;">(</span>org-babel-temp-file <span style="color: #A5C261;">"C-bin-"</span><span style="color: #7f7f7f;">))</span> <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(bin-file)</span></span>
+<span id="coderef-cmdline" class="coderef-off"><span class="linenr">10:  </span>         <span style="color: #7f7f7f;">(</span>cmdline <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:cmdline</span> params<span style="color: #7f7f7f;">)))</span>       <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(cmdline)</span></span>
+<span id="coderef-flags" class="coderef-off"><span class="linenr">11:  </span>         <span style="color: #7f7f7f;">(</span>flags <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:flags</span> params<span style="color: #7f7f7f;">)))</span>           <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(flags)</span></span>
+<span id="coderef-expand" class="coderef-off"><span class="linenr">12:  </span>         <span style="color: #7f7f7f;">(</span>full-body <span style="color: #7f7f7f;">(</span>org-babel-C-expand body params<span style="color: #7f7f7f;">))</span>  <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(expand)</span></span>
+<span class="linenr">13:  </span>         <span style="color: #7f7f7f;">(</span>compile
+<span class="linenr">14:  </span>          <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">progn</span>
+<span id="coderef-src-dump" class="coderef-off"><span class="linenr">15:  </span>            <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">with-temp-file</span> tmp-src-file <span style="color: #7f7f7f;">(</span>insert full-body<span style="color: #7f7f7f;">))</span>  <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(src-dump)</span></span>
+<span class="linenr">16:  </span>            <span style="color: #7f7f7f;">(</span>org-babel-eval
+<span id="coderef-cmpl" class="coderef-off"><span class="linenr">17:  </span>             <span style="color: #7f7f7f;">(</span>format <span style="color: #A5C261;">"%s -o %s %s %s"</span>   <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(cmpl)</span></span>
+<span class="linenr">18:  </span>                     <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">cond</span>
+<span class="linenr">19:  </span>                      <span style="color: #7f7f7f;">((</span>equal org-babel-c-variant 'c<span style="color: #7f7f7f;">)</span> org-babel-C-compiler<span style="color: #7f7f7f;">)</span>
+<span class="linenr">20:  </span>                      <span style="color: #7f7f7f;">((</span>equal org-babel-c-variant 'cpp<span style="color: #7f7f7f;">)</span> org-babel-C++-compiler<span style="color: #7f7f7f;">))</span>
+<span class="linenr">21:  </span>                     <span style="color: #7f7f7f;">(</span>org-babel-process-file-name tmp-bin-file<span style="color: #7f7f7f;">)</span>
+<span class="linenr">22:  </span>                     <span style="color: #7f7f7f;">(</span>mapconcat 'identity
+<span class="linenr">23:  </span>                                <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">if</span> <span style="color: #7f7f7f;">(</span>listp flags<span style="color: #7f7f7f;">)</span> flags <span style="color: #7f7f7f;">(</span>list flags<span style="color: #7f7f7f;">))</span> <span style="color: #A5C261;">" "</span><span style="color: #7f7f7f;">)</span>
+<span class="linenr">24:  </span>                     <span style="color: #7f7f7f;">(</span>org-babel-process-file-name tmp-src-file<span style="color: #7f7f7f;">))</span> <span style="color: #A5C261;">""</span><span style="color: #7f7f7f;">))))</span>
+<span id="coderef-results-processing" class="coderef-off"><span class="linenr">25:  </span>    <span style="color: #7f7f7f;">((</span><span style="color: #CC7833;">lambda</span> <span style="color: #7f7f7f;">(</span>results<span style="color: #7f7f7f;">)</span>                  <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(results-processing)</span></span>
+<span class="linenr">26:  </span>       <span style="color: #7f7f7f;">(</span>org-babel-reassemble-table
+<span class="linenr">27:  </span>        <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">if</span> <span style="color: #7f7f7f;">(</span>member <span style="color: #A5C261;">"vector"</span> <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:result-params</span> params<span style="color: #7f7f7f;">)))</span>
+<span class="linenr">28:  </span>            <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">let</span> <span style="color: #7f7f7f;">((</span>tmp-file <span style="color: #7f7f7f;">(</span>org-babel-temp-file <span style="color: #A5C261;">"c-"</span><span style="color: #7f7f7f;">)))</span>
+<span class="linenr">29:  </span>              <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">with-temp-file</span> tmp-file <span style="color: #7f7f7f;">(</span>insert results<span style="color: #7f7f7f;">))</span>
+<span id="coderef-table" class="coderef-off"><span class="linenr">30:  </span>              <span style="color: #7f7f7f;">(</span>org-babel-import-elisp-from-file tmp-file<span style="color: #7f7f7f;">))</span> <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(table)</span></span>
+<span id="coderef-elisp" class="coderef-off"><span class="linenr">31:  </span>          <span style="color: #7f7f7f;">(</span>org-babel-read results<span style="color: #7f7f7f;">))</span>     <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(elisp)</span></span>
+<span id="coderef-colname" class="coderef-off"><span class="linenr">32:  </span>        <span style="color: #7f7f7f;">(</span>org-babel-pick-name            <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(colname)</span></span>
+<span class="linenr">33:  </span>         <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:colname-names</span> params<span style="color: #7f7f7f;">))</span> <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:colnames</span> params<span style="color: #7f7f7f;">)))</span>
+<span id="coderef-rowname" class="coderef-off"><span class="linenr">34:  </span>        <span style="color: #7f7f7f;">(</span>org-babel-pick-name            <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(rowname)</span></span>
+<span class="linenr">35:  </span>         <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:rowname-names</span> params<span style="color: #7f7f7f;">))</span> <span style="color: #7f7f7f;">(</span>cdr <span style="color: #7f7f7f;">(</span>assoc <span style="color: #D0D0FF;">:rownames</span> params<span style="color: #7f7f7f;">)))))</span>
+<span class="linenr">36:  </span>     <span style="color: #7f7f7f;">(</span>org-babel-trim
+<span id="coderef-evaluation" class="coderef-off"><span class="linenr">37:  </span>      <span style="color: #7f7f7f;">(</span>org-babel-eval                   <span style="color: #BC9458; font-style: italic;">; </span><span style="color: #BC9458; font-style: italic;">(evaluation)</span></span>
+<span class="linenr">38:  </span>       <span style="color: #7f7f7f;">(</span>concat tmp-bin-file <span style="color: #7f7f7f;">(</span><span style="color: #CC7833;">if</span> cmdline <span style="color: #7f7f7f;">(</span>concat <span style="color: #A5C261;">" "</span> cmdline<span style="color: #7f7f7f;">)</span> <span style="color: #A5C261;">""</span><span style="color: #7f7f7f;">))</span> <span style="color: #A5C261;">""</span><span style="color: #7f7f7f;">)))))</span>
+</pre>
+
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2011-11-18 12:38:22 MST</p>
+<p class="author">Author: Eric Schulte</p>
+<p class="creator">Org version 7.7 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

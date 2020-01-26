@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.43 in css mode. -->
+<html>
+  <head>
+    <title>Mutation Operations</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #eeeeec;
+        background-color: #2e3436;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #73d216;
+      }
+      .comment-delimiter {
+        /* font-lock-comment-delimiter-face */
+        color: #73d216;
+      }
+      .function-name {
+        /* font-lock-function-name-face */
+        color: #fce94f;
+      }
+      .keyword {
+        /* font-lock-keyword-face */
+        color: #b4fa70;
+      }
+      .string {
+        /* font-lock-string-face */
+        color: #e9b96e;
+      }
+      .type {
+        /* font-lock-type-face */
+        color: #8cc4ff;
+      }
+      .variable-name {
+        /* font-lock-variable-name-face */
+        color: #fcaf3e;
+      }
+
+      .number {
+        /* numbering */
+        color: gray;
+      }
+
+      div.code {
+        width: 19.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        border: solid white 2px;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+
+<table>
+  <tr>
+    <td></td>
+    <td><div class="code" id="original">
+<center><h2>Original</h2></center>
+<pre>
+<span class="number"> 1</span>  <span class="type">int</span> <span class="function-name">main</span>(<span class="type">void</span>){
+<span class="number"> 2</span>    <span class="type">int</span> <span class="variable-name">p</span>,<span class="variable-name">q</span>,<span class="variable-name">i</span>,<span class="variable-name">j</span>;
+<span class="number"> 3</span>    i = j = 0;
+<span class="number"> 4</span>    <span class="keyword">while</span>(j &lt; 4){
+<span class="number"> 5</span>      <span class="keyword">if</span> (prime(i)){
+<span class="number"> 6</span>        p = pow(2,(i - 1));
+<span class="number"> 7</span>        q = pow(2,i);
+<span class="number"> 8</span>        p = p * (q - 1);
+<span class="number"> 9</span>        printf(<span class="string">"%d -&gt; %d\n"</span>, i, p);
+<span class="number">10</span>        j++;
+<span class="number">11</span>      }
+<span class="number">12</span>      i++;
+<span class="number">13</span>    }
+<span class="number">14</span>  }
+</pre>
+    </div>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+    <div class="code" id="copy" style="margin:auto;">
+<center><h2>copy</h2></center>
+<pre>
+<span class="number"> 1</span>  <span class="type">int</span> <span class="function-name">main</span>(<span class="type">void</span>){
+<span class="number"> 2</span>    <span class="type">int</span> <span class="variable-name">p</span>,<span class="variable-name">q</span>,<span class="variable-name">i</span>,<span class="variable-name">j</span>;
+<span class="number"> 3</span>    i = j = 0;
+<span class="number"> 4</span>    <span class="keyword">while</span>(j &lt; 4){
+<span class="number"> 5</span>      <span class="keyword">if</span> (prime(i)){
+<span class="number"> 6</span>        p = pow(2,(i - 1));
+<span class="number"> 7</span>        q = pow(2,i);
+<span class="number"> 8</span>        p = p * (q - 1);
+<span class="number"> 9</span>        printf(<span class="string">"%d -&gt; %d\n"</span>, i, p);
+<span class="number">10</span>        j++;
+<span class="number">11</span>      }
+<span class="number">12</span>      j++; <span class="comment-delimiter">/* </span><span class="comment">copied from line 10 </span><span class="comment-delimiter">*/</span>
+<span class="number">13</span>      i++;
+<span class="number">14</span>    }
+<span class="number">15</span>  }
+</pre>
+    </div>
+    </td>
+    <td>
+    <div class="code" id="delete">
+<center><h2>delete</h2></center>
+<pre>
+<span class="number"> 1</span>  <span class="type">int</span> <span class="function-name">main</span>(<span class="type">void</span>){
+<span class="number"> 2</span>    <span class="type">int</span> <span class="variable-name">p</span>,<span class="variable-name">q</span>,<span class="variable-name">i</span>,<span class="variable-name">j</span>;
+<span class="number"> 3</span>    i = j = 0;
+<span class="number"> 4</span>    <span class="keyword">while</span>(j &lt; 4){
+<span class="number"> 5</span>      <span class="keyword">if</span> (prime(i)){
+<span class="number"> 6</span>        p = pow(2,(i - 1));
+<span class="number"> 7</span>        q = pow(2,i);
+<span class="number"> 8</span>        <span class="comment-delimiter">/* </span><span class="comment">deleted line 8 </span><span class="comment-delimiter">*/</span>
+<span class="number"> 9</span>        printf(<span class="string">"%d -&gt; %d\n"</span>, i, p);
+<span class="number">10</span>        j++;
+<span class="number">11</span>      }
+<span class="number">12</span>      i++;
+<span class="number">13</span>    }
+<span class="number">14</span>  }
+
+</pre>
+    </div>
+    </td>
+    <td>
+    <div class="code" id="swap">
+<center><h2>swap</h2></center>
+<pre>
+<span class="number"> 1</span>  <span class="type">int</span> <span class="function-name">main</span>(<span class="type">void</span>){
+<span class="number"> 2</span>    <span class="type">int</span> <span class="variable-name">p</span>,<span class="variable-name">q</span>,<span class="variable-name">i</span>,<span class="variable-name">j</span>;
+<span class="number"> 3</span>    i = j = 0;
+<span class="number"> 4</span>    <span class="keyword">while</span>(j &lt; 4){
+<span class="number"> 5</span>      <span class="keyword">if</span> (prime(i)){
+<span class="number"> 6</span>        p = pow(2,(i - 1));
+<span class="number"> 7</span>        p = p * (q - 1); <span class="comment-delimiter">/* </span><span class="comment">swapped</span><span class="comment-delimiter">*/</span>
+<span class="number"> 8</span>        q = pow(2,i);    <span class="comment-delimiter">/* </span><span class="comment">swapped</span><span class="comment-delimiter">*/</span>
+<span class="number"> 9</span>        printf(<span class="string">"%d -&gt; %d\n"</span>, i, p);
+<span class="number">10</span>        j++;
+<span class="number">11</span>      }
+<span class="number">12</span>      i++;
+<span class="number">13</span>    }
+<span class="number">14</span>  }
+
+</pre>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+    <div class="code" id="crossover">
+<center><h2>crossover</h2></center>
+<pre>
+<span class="number"> 1</span>  <span class="type">int</span> <span class="function-name">main</span>(<span class="type">void</span>){
+<span class="number"> 2</span>    <span class="type">int</span> <span class="variable-name">p</span>,<span class="variable-name">q</span>,<span class="variable-name">i</span>,<span class="variable-name">j</span>;
+<span class="number"> 3</span>    i = j = 0;
+<span class="number"> 4</span>    <span class="keyword">while</span>(j &lt; 4){
+<span class="number"> 5</span>      <span class="keyword">if</span> (prime(i)){
+<span class="number"> 6</span>        p = pow(2,(i - 1));
+<span class="number"> 7</span>        q = pow(2,i);
+<span class="number"> 8</span>        <span class="comment-delimiter">/* </span><span class="comment">deleted line 8 </span><span class="comment-delimiter">*/</span>
+<span class="number"> 9</span>        printf(<span class="string">"%d -&gt; %d\n"</span>, i, p);
+<span class="number">10</span>        j++;
+  <span class="comment-delimiter">/* </span><span class="comment">--------crossover-point-------- </span><span class="comment-delimiter">*/</span>
+<span class="number">11</span>      }
+<span class="number">12</span>      j++; <span class="comment-delimiter">/* </span><span class="comment">copied from line 10 </span><span class="comment-delimiter">*/</span>
+<span class="number">13</span>      i++;
+<span class="number">14</span>    }
+<span class="number">15</span>  }
+</pre>
+    </div>
+    </td>
+    <td></td>
+  </tr>
+</table>
+  </body>
+</html>

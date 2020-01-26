@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Genprog Many Bugs</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Genprog Many Bugs"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-06-19T18:38-0600"/>
+<meta name="author" content="Eric Schulte"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+ border: 1pt solid #AEBDCC;
+    padding: 5pt;
+ font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<style type="text/css">pre{background:#232323; color:#E6E1DC;}h1,h2{border-bottom-style: solid; border-bottom-color: gray;}</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Genprog Many Bugs</h1>
+
+<p>Trying to make sense of the genprog many bugs repo.
+</p>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Building the Many Bugs VM from scratch</h2>
+<div class="outline-text-2" id="text-1">
+
+<ol>
+<li>Arch Linux built on an 8G QEMU image, using <code>syslinux</code> as boot
+   loader, <code>ext4</code> as the file system the <code>base</code> and <code>base-devel</code>
+   packages and defaults for all other decisions.
+
+
+
+<pre class="src src-sh">qemu-img create -f qcow2 many.qcow2 8G
+qemu-system-x86_64 many.qcow2 <span style="color: #e9b96e;">\</span>
+    -cdrom archlinux-2011.08.19-netinstall-x86_64.iso -boot d
+</pre>
+
+
+</li>
+<li>After the instillation completes, instead of rebooting shutdown the
+   VM with <code>shutdown -h 0</code> then restart the VM.
+
+
+
+<pre class="src src-sh">qemu-system-x86_64 many.qcow2 -boot d
+</pre>
+
+
+</li>
+<li>Next we'll install some required packages.
+
+
+
+<pre class="src src-sh">pacman-key --init
+pacman-key --populate archlinux
+pacman -S subversion openssh ocaml ocaml-findlib python2 re2c libxml2
+<span style="color: #73d216;"># </span><span style="color: #73d216;">we'll have to install an older version of Bison by hand</span>
+pacman -R bison
+<span style="color: #73d216;"># </span><span style="color: #73d216;">and some simple setup</span>
+ln -s /usr/bin/python2 /usr/bin/python
+cpan <span style="color: #73d216;"># </span><span style="color: #73d216;">answering "yes" to all queries</span>
+cpanp -i Switch
+</pre>
+
+
+</li>
+<li>And configure a user who will run our experiments.
+
+
+
+<pre class="src src-sh">useradd -m -g users -G audio,lp,optical,storage,video,wheel <span style="color: #e9b96e;">\</span>
+    -s /bin/bash bacon <span style="color: #e9b96e;">\</span>
+    -c <span style="color: #e9b96e;">"Francis Bacon"</span>
+passwd bacon
+mkdir /many
+chown -R bacon /many
+</pre>
+
+
+</li>
+<li>Build <code>CIL</code> and <code>bison</code> and set the <code>$CIL</code> environment variable and
+   then build the genprog code base.
+<ul>
+<li>bison
+
+
+
+<pre class="src src-sh">wget http://ftp.gnu.org/gnu/bison/bison-2.4.3.tar.bz2
+tar xjf bison-2.4.3.tar.bz2
+<span style="color: #ad7fa8;">pushd</span> bison-2.4.3
+./configure &amp;&amp; make &amp;&amp; make install
+<span style="color: #ad7fa8;">popd</span>
+</pre>
+
+</li>
+<li>CIL
+
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">cd</span> /usr/local/src/
+wget http://iweb.dl.sourceforge.net/project/cil/cil/cil-1.4.0.tar.gz
+<span style="color: #ad7fa8;">pushd</span> cil-1.4.0
+./configure &amp;&amp; make &amp;&amp; make install
+<span style="color: #ad7fa8;">echo</span> -e <span style="color: #e9b96e;">"\nCIL=\"$(pwd)\"; export CIL"</span> &gt;&gt; /etc/profile
+<span style="color: #ad7fa8;">source</span> /etc/profile
+<span style="color: #ad7fa8;">popd</span>
+</pre>
+
+</li>
+<li>Genprog
+
+
+
+<pre class="src src-sh">svn co --username username <span style="color: #e9b96e;">\</span>
+    https://turing.cs.virginia.edu/svn/genprog-code/trunk genprog
+<span style="color: #ad7fa8;">cd</span> genprog
+make all lib
+cp src/repair /usr/local/bin/
+</pre>
+
+
+</li>
+</ul>
+
+</li>
+<li>Now setup <code>sshd</code> to run on start up so we can ssh into this virtual
+   machine from a normal terminal.  In <code>/etc/rc.conf</code> add <code>sshd</code> to
+<pre class="example">
+DAEMONS = ( ... sshd ... )
+</pre>
+
+<p>   Then reboot.
+</p>
+</li>
+<li>Now we will start up the VM with network port forwarding for ssh
+   access.
+
+
+
+<pre class="src src-sh">qemu-kvm -hda many.qcow2 -nographic -daemonize <span style="color: #e9b96e;">\</span>
+    -m 1G -net nic -net user,<span style="color: #fcaf3e;">hostfwd</span>=tcp:127.0.0.1:2222-:22
+</pre>
+
+
+<p>
+   Once the machine is booted (you'll see the <code>qemu-kvm</code> process use
+   less CPU) you should be able to ssh into your VM.
+</p>
+
+
+<pre class="src src-sh">ssh -p 2222 bacon@localhost
+</pre>
+
+
+</li>
+<li>As the <code>bacon</code> user we can checkout the many bugs svn repository.
+
+
+
+<pre class="src src-sh">svn co --username username https://turing.cs.virginia.edu/svn/genprog-many-bugs
+<span style="color: #ad7fa8;">cd</span> genprog-many-bugs
+make php-all
+</pre>
+
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

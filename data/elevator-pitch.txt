@@ -1,0 +1,78 @@
+                            elevator pitch
+                            ==============
+
+Author: Eric Schulte
+Date: 2012-05-17 13:17:34 EDT
+
+
+This work is based on the fundamental idea that the modern software
+development toolchain (including languages, compilers and linkers) is
+a product of natural selection.
+
+Meaning that over the years robust and effective tools, code and
+design patterns have been copied and modified by software developers.
+With enough developers reproducing software artifacts over a long
+enough period of time we begin to see the effects of evolution.
+
+The first half of this work will investigate these effects, using the
+extensive literature on evolution in biological systems as a guide.
+
+Specifically we will look at the mutational robustness of software,
+its causes and its correlates.
+
+The second half will leverage the results of this investigation to
+evaluate new evolutionary techniques for the development and
+maintenance of software.
+
+Mutational robustness is a cornerstone evolutionary feature.  It is
+the robustness of an organism's functionality to mutation in its
+genome.
+
+Software mutational robustness measures a program's ability to
+function despite mutations to its source code.  In preliminary work we
+have found that over 35% of such software mutations have no effect on
+software functionality.
+
+There are many causes of mutational robustness in biological systems.
+Every part of the biological toolchain for DNA transcription and
+expression increases robustness.  We will determine if the same is
+true of the software toolchain of compilers and linkers.  This work
+will also look at what properties of programming languages increase
+mutational robustness.
+
+Additionally the robustness of biological systems is due in large part
+to their construction through evolution.  We will compare the
+robustness of evolved and engineered software artifacts.
+
+Understanding the causes of mutational robustness is important because
+of the many useful correlates of mutational robustness.  These include
+environmental robustness (in software this is robustness to a diverse
+range of inputs and host system functionality), and evolvability (or
+the ability to be improved through evolutionary processes).
+
+We will explore methods of leveraging the mutational robustness of
+software such as.  Using evolution to breed large diverse populations
+of functionally equivalent software variants whose diversity can
+protect against both bugs and malicious attacks.  Putting selective
+pressure on such large neutral populations to optimize for certain
+non-functional characteristics such as runtime or energy consumption.
+
+We propose "software husbandry" or the combination of different
+software projects with the goal of producing offspring with desirable
+features from both parents.
+
+We propose "software atavism".  Atavism in biological systems refers
+to their ability to "turn on" large portions of historical DNA,
+causing e.g., snakes to occasionally be born with legs.  Software
+atavism could leverage version control repositories to allow
+evolutionary operators to turn on large portions of historical code.
+
+Finally we will look at increasing the physical robustness of
+software.  While all previous work has been incremental, extending the
+existing software development framework, this effort seeks to gauge
+the potential for replacing our fundamental models of computation with
+more spatially natural alternatives.  We hope to measure the degree to
+which such alternative designs may be used to enhance the evolutionary
+effects and techniques explored elsewhere in this work.  Preliminary
+results show alternative models may be much more robust to hardware
+failures.

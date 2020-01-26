@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Optimization</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Optimization"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-09-13T16:44-0600"/>
+<meta name="author" content="Eric Schulte"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+ border: 1pt solid #AEBDCC;
+    padding: 5pt;
+ font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<style type="text/css">pre{background:#232323; color:#E6E1DC;}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Optimization</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Introduction</a></li>
+<li><a href="#sec-2">2 Reproduction Instructions</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Virtual Machine Setup</a></li>
+<li><a href="#sec-2-2">2.2 Running Graphite</a></li>
+<li><a href="#sec-2-3">2.3 Running the PARSEC benchmark with Graphite</a></li>
+<li><a href="#sec-2-4">2.4 Running a Simple Fast Fourier Transform (FFT)</a></li>
+<li><a href="#sec-2-5">2.5 Evolving a Population of Variants</a></li>
+<li><a href="#running-overlays">2.6 Running overlays</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Experimental Runs</a>
+<ul>
+<li><a href="#sec-3-1">3.1 First Serial Run</a></li>
+<li><a href="#sec-3-2">3.2 First Parallel Run</a></li>
+<li><a href="#sec-3-3">3.3 Parallel Runtime Run</a></li>
+<li><a href="#sec-3-4">3.4 Communication Minimization</a></li>
+<li><a href="#sec-3-5">3.5 runtime-2</a></li>
+<li><a href="#sec-3-6">3.6 energy-1</a></li>
+<li><a href="#sec-3-7">3.7 flits</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 Reading/References</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>During compilation and linking, non-functional properties of software
+such as running time and executable size may be optimized.  Such
+techniques have been extensively researched and implementations can be
+found in many of the cornerstones of modern software development
+environments such as GCC.
+</p>
+<p>
+Current techniques almost exclusively rely on operations which may be
+formally proven to preserve program semantics.  Using a much looser
+test-suite based definition of program behavior we are able to evolve
+neutral program variants not reachable through semantic-preserving
+operations alone.
+</p>
+<p>
+Some of these neutral variants may have desirable non-functional
+characteristics such as faster running times, reduced energy
+consumption or a smaller executable size.  By assigning fitness to
+neutral variants based on such non-functional characteristics it
+should be possible to optimize software in more radical ways than
+possible using existing techniques.  Here we investigate the
+application of neutral variants to software optimization.
+</p>
+<p>
+Modern system emulators allow fine-grained monitoring of aspects of
+program execution, such as energy consumption and communication
+overhead, which may be difficult to predict a-priori.  We use <a href="http://groups.csail.mit.edu/carbon/?page_id=111">Graphite</a>
+to calculate variant fitness in a multi-objective EC system for
+software optimization.  We hypothesize a number of benefits to such a
+software optimization system, including the following.
+</p><ul>
+<li>more radical software transformation than possible through semantic
+  preserving transformations
+</li>
+<li>optimization of software properties not readily predictable through
+  static analysis
+</li>
+<li>multi-objective fitness weights allow a natural method for
+  developers to specify priorities for non-functional optimization
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Reproduction Instructions</h2>
+<div class="outline-text-2" id="text-2">
+
+<p>The following instructions may be used to reproduce and expand upon
+these results.
+</p>
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Virtual Machine Setup</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<ol>
+<li>We will create a Qemu virtual machine and install the Debian 5.0.9
+   specifically <code>debian-5010-i386-netinst.iso</code> from
+   <a href="http://cdimage.debian.org/mirror/cdimage/archive/5.0.9/i386/iso-cd/">http://cdimage.debian.org/mirror/cdimage/archive/5.0.9/i386/iso-cd/</a>.
+
+
+
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">create the disk</span>
+qemu-img create -f qcow2 tune.qcow 4G
+<span style="color: #73d216;"># </span><span style="color: #73d216;">install the operating system</span>
+qemu-system-x86_64 tune.qcow -cdrom debian-5010-i386-netinst.iso -boot d
+</pre>
+
+
+</li>
+<li>Walk through the instillation dialog, we'll set the following
+   values.
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">hostname</td><td class="left">tune</td></tr>
+<tr><td class="left">version</td><td class="left">stable</td></tr>
+<tr><td class="left">root password</td><td class="left">password</td></tr>
+<tr><td class="left">new user full name</td><td class="left">Francis Bacon</td></tr>
+<tr><td class="left">new user login name</td><td class="left">bacon</td></tr>
+<tr><td class="left">new user password</td><td class="left">password</td></tr>
+</tbody>
+</table>
+
+
+<p>
+   As Debian Lenny is no longer supported, You will not be able to
+   find a working mirror.  When you are confronted with the warning
+   that no working mirror has been found, select the <code>&lt;Go Back&gt;</code>
+   option, and then continue installing a minimal system with no
+   working mirror.  Finish the instillation and Reboot.
+</p>
+</li>
+<li>After booting into the working system, log in as root and add old
+   Lenny archive URLs to <code>/etc/apt/sources.list</code>.
+
+
+
+<pre class="src src-sh">cp /etc/apt/sources.list /etc/apt/sources.list.backup
+<span style="color: #ad7fa8;">echo</span> <span style="color: #e9b96e;">"deb http://archive.debian.org/debian/ lenny main"</span> &gt;&gt; /etc/apt/sources.list
+<span style="color: #ad7fa8;">echo</span> <span style="color: #e9b96e;">"deb http://archive.debian.org/debian-security lenny/updates main"</span> &gt;&gt; /etc/<span style="background-color: #cd69c9;">a</span>pt/sources.list
+apt-get update
+</pre>
+
+
+</li>
+<li>Now install the Graphite and Parsec dependencies,
+
+
+
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">Graphite dependencies</span>
+apt-get install build-essential m4
+apt-get install libboost1.35-dev libboost-filesystem1.35-dev libboost-system1.35<span style="background-color: #cd69c9;">-</span>dev
+apt-get install git-core
+<span style="color: #73d216;"># </span><span style="color: #73d216;">Parsec dependencies</span>
+apt-get install automake gettext yasm
+<span style="color: #73d216;"># </span><span style="color: #73d216;">and an ssh server so we can ssh into this VM</span>
+apt-get install openssh-server
+</pre>
+
+<p>
+   give the <code>bacon</code> user <code>sudo</code> permissions,
+</p>
+
+
+<pre class="src src-sh">apt-get install sudo
+<span style="color: #ad7fa8;">echo</span> <span style="color: #e9b96e;">"bacon   ALL=(ALL) ALL"</span> &gt;&gt; /etc/sudoers
+</pre>
+
+<p>
+   and shutdown the machine.
+</p>
+
+
+<pre class="src src-sh">shutdown -h 0
+</pre>
+
+
+</li>
+<li>Start up the virtual machine with network access so we can connect
+   with ssh &ndash; allowing copy-paste from the local machine, use of a
+   normal terminal, and other niceties.
+
+
+
+<pre class="src src-sh">qemu-kvm -hda tune.qcow -nographic -cdrom data/debian-5010-amd64-netinst.iso <span style="color: #e9b96e;">\</span>
+    -m 1G -net nic -net user,<span style="color: #fcaf3e;">hostfwd</span>=tcp:127.0.0.1:2222-:22 -daemonize
+</pre>
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Running Graphite</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<ol>
+<li>Log into <code>tune</code> as <code>bacon</code>.
+
+
+
+<pre class="src src-sh">ssh -p 2222 bacon@localhost
+</pre>
+
+<p>
+   and install Graphite following these instructions from
+   <a href="https://github.com/mit-carbon/Graphite/wiki/Getting-Started">https://github.com/mit-carbon/Graphite/wiki/Getting-Started</a>,
+</p>
+
+
+<pre class="src src-sh">wget http://www.cs.virginia.edu/kim/publicity/pin/kits/pin-2.6-27887-gcc.4.0.0-i<span style="background-color: #cd69c9;">a</span>32_intel64-linux.tar.gz
+tar xzf pin-2.6-27887-gcc.4.0.0-ia32_intel64-linux.tar.gz
+<span style="color: #ad7fa8;">cd</span> pin
+git clone git://github.com/mit-carbon/Graphite.git graphite
+</pre>
+
+<p>
+   and update the <code>TARGET_ARCH</code> and <code>PIN_HOME</code> variables in <code>~/graphite/Makefile.config</code>.
+</p>
+
+
+<pre class="src src-sh">cat &lt;&lt;EOF &gt; ~/graphite/Makefile.config
+<span style="color: #ffff00; font-weight: bold;"># Use ia32 for 32-bit, x86_64 for 64-bit</span>
+<span style="color: #ffff00; font-weight: bold;">TARGET_ARCH = x86_64 # &lt;-(may be different depending on your host?)</span>
+
+<span style="color: #ffff00; font-weight: bold;"># change only if a different (more up-to-date) version of Boost is installed</span>
+<span style="color: #ffff00; font-weight: bold;">BOOST_VERSION = 1_35</span>
+
+<span style="color: #ffff00; font-weight: bold;"># where Pin is uzipped to</span>
+<span style="color: #ffff00; font-weight: bold;">PIN_HOME = /home/bacon/pin</span>
+<span style="color: #ffff00; font-weight: bold;">EOF</span>
+</pre>
+
+<p>
+   run <code>make</code> to build Graphite.
+</p>
+</li>
+<li>Confirm that the build was successful by running the following
+   which should exit successfully.
+
+
+
+<pre class="src src-sh">make ping_pong_app_test <span style="color: #fcaf3e;">CORES</span>=16 <span style="color: #fcaf3e;">PROCS</span>=2
+</pre>
+
+
+</li>
+<li>At this point the virtual machine is usable for running
+   applications through Graphite and collecting metrics.  If modeling
+   power consumption then one more dependency must be installed.
+   McPAT is available at <a href="http://www.hpl.hp.com/research/mcpat/">http://www.hpl.hp.com/research/mcpat/</a>.  The
+   tarball should be downloaded to the virtual machine and unpacked
+   into the home directory.
+
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">cd</span> ~/archives/
+wget http://www.hpl.hp.com/research/mcpat/mcpat0.8_r274.tar.gz
+<span style="color: #ad7fa8;">cd</span> ~
+tar xzf archives/mcpat0.8_r274.tar.g
+sudo apt-get install g++-multilib libc6-dev-i386
+mv mcpat0.8_r274/ mcpat/
+<span style="color: #ad7fa8;">cd</span> mcpat/
+make
+</pre>
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Running the PARSEC benchmark with Graphite</h3>
+<div class="outline-text-3" id="text-2-3">
+
+<p>Much of these instructions are adopted from <a href="https://github.com/mit-carbon/Graphite/wiki/Adding-and-Running-Applications#Running an application from the PARSEC benchmark suite">Running an application from the PARSEC benchmark suite</a>.
+</p>
+<ol>
+<li>To install Parsec, download and unpack the tarball from
+   <a href="http://coblitz.codeen.org/parsec.cs.princeton.edu/download/2.1/parsec-2.1.tar.gz">http://coblitz.codeen.org/parsec.cs.princeton.edu/download/2.1/parsec-2.1.tar.gz</a>.
+
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">cd</span> ~/archives/
+wget http://coblitz.codeen.org/parsec.cs.princeton.edu/download/2.1/parsec-2.1.t<span style="background-color: #cd69c9;">a</span>r.gz
+<span style="color: #ad7fa8;">cd</span> ~/graphite/tests/
+<span style="color: #73d216;"># </span><span style="color: #73d216;">this may take some time...</span>
+tar xzf archives/parsec-2.1.tar.gz
+</pre>
+
+
+</li>
+<li>Add Parsec and Graphite environment variables to <code>~/.profile</code>.
+
+
+
+<pre class="src src-sh">cat &lt;&lt;EOF &gt;&gt; ~/.profile
+<span style="color: #ffff00; font-weight: bold;">export GRAPHITE_HOME=$HOME/graphite</span>
+<span style="color: #ffff00; font-weight: bold;">export PARSEC_HOME=$GRAPHITE_HOME/tests/parsec-2.1</span>
+<span style="color: #ffff00; font-weight: bold;">export PARSECDIR=$PARSEC_HOME</span>
+<span style="color: #ffff00; font-weight: bold;">source $PARSEC_HOME/env.sh</span>
+<span style="color: #ffff00; font-weight: bold;">EOF</span>
+</pre>
+
+
+</li>
+<li>Now we have to fix some odd paths in <code>config/gcc.bldconf</code>.
+
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">cd</span> parsec-2.1/
+sed -i <span style="color: #e9b96e;">'s/export CC_HOME.*$/export CC_HOME="\/usr"/g'</span> <span style="color: #e9b96e;">\</span>
+    config/gcc.bldconf
+sed -i <span style="color: #e9b96e;">'s/export BINUTIL_HOME.*$/export BINUTIL_HOME="\/usr"/g'</span> <span style="color: #e9b96e;">\</span>
+    config/gcc.bldconf
+</pre>
+
+
+</li>
+<li>Next, start building the tools in PARSEC using the gcc
+   configuration file and populate the benchmark directories with a
+   copy of the gcc build configuration:
+
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">cd</span> ${<span style="color: #fcaf3e;">PARSEC_HOME</span>}
+parsecmgmt -a build -p tools
+bldconfadd -n graphite -c gcc -f
+</pre>
+
+
+</li>
+<li>Next, use the configuration file located here to build the
+   applications: <a href="http://github.com/downloads/mit-carbon/Graphite/graphite.bldconf">graphite.bldconf</a>. Place that file in the
+   <code>${PARSEC_HOME}/config</code> directory.
+
+
+
+<pre class="src src-sh">wget http://github.com/downloads/mit-carbon/Graphite/graphite.bldconf <span style="color: #e9b96e;">\</span>
+    -O ${<span style="color: #fcaf3e;">PARSEC_HOME</span>}/config/graphite.bldconf
+</pre>
+
+
+</li>
+<li>Edit <code>graphite.bldconf</code> to set the <code>GRAPHITE_HOME</code> variable to the
+   root of your Graphite source tree and add the <code>build_inplace</code> option.
+
+
+
+<pre class="src src-sh">sed -i <span style="color: #e9b96e;">"s/export GRAPHITE_HOME.*$/export GRAPHITE_HOME=\"$(echo $GRAPHITE_HOME|s</span><span style="color: #e9b96e; background-color: #cd69c9;">e</span><span style="color: #e9b96e;">d 's/\//\\\//g')\"/"</span> <span style="color: #e9b96e;">\</span>
+    ${<span style="color: #fcaf3e;">PARSEC_HOME</span>}/config/graphite.bldconf
+<span style="color: #ad7fa8;">echo</span> <span style="color: #e9b96e;">'build_inplace="TRUE"'</span> &gt;&gt; ${<span style="color: #fcaf3e;">PARSEC_HOME</span>}/config/graphite.bldconf
+</pre>
+
+
+</li>
+<li>Next build the PARSEC applications and kernels using the
+   <code>graphite.bldconf</code> configuration file:
+
+
+
+<pre class="src src-sh">parsecmgmt -a build -p apps -c graphite
+parsecmgmt -a build -p kernels -c graphite
+</pre>
+
+
+<blockquote>
+
+<p>For me, <a href="optimization.html#ID-a4a68af3-1474-4abb-bc1c-daa37d20d758">raytrace failed</a> to compile, but everything else
+succeeded. (probably C++ boost library location or some such)
+</p>
+</blockquote>
+
+
+</li>
+<li>Then from the Graphite home directory, set the <code>PARSEC_HOME</code>
+   variable in the file <code>tests/Makefile.parsec</code> to point to the source
+   of the PARSEC source tree.
+
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">cd</span> ${<span style="color: #fcaf3e;">GRAPHITE_HOME</span>}
+sed -i <span style="color: #e9b96e;">"s/^PARSEC_HOME \?= \?.*$/PARSEC_HOME=$(echo $PARSEC_HOME|sed 's/\//\\\//</span><span style="color: #e9b96e; background-color: #cd69c9;">g</span><span style="color: #e9b96e;">')/"</span> <span style="color: #e9b96e;">\</span>
+    tests/Makefile.parsec
+</pre>
+
+
+<p>
+   Run <code>make [app]_parsec</code> to simulate the <code>[app]</code> with Graphite using
+   the parameters specified in <code>tests/Makefile.parsec</code>. E.g.,
+</p>
+
+
+<pre class="src src-sh">make blackscholes_parsec
+</pre>
+
+
+<blockquote>
+
+<p>Which results in the following error.
+</p><pre class="example">
+ERROR: Unable to open file in_4k.txt.
+</pre>
+
+
+</blockquote>
+
+
+</li>
+<li>Dealing with the above error took some time, I had to
+<ol>
+<li>Run blackscholes using the parsecmgmt tool which creates the
+      <code>in_4.txt</code> file.
+
+
+
+<pre class="src src-sh">parsecmgmt -a run -p blackscholes -c graphite
+</pre>
+
+</li>
+<li>Rename <code>in_4k.txt</code> to <code>in_4.txt</code> in <code>tests/Makefile.parsec</code>.
+
+
+
+<pre class="src src-sh">sed -i <span style="color: #e9b96e;">'s/in_4k/in_4/'</span> ${<span style="color: #fcaf3e;">GRAPHITE_HOME</span>}/tests/Makefile.parsec
+</pre>
+
+</li>
+<li>Adjust the same <code>Makefile.parsec</code> to ensure that it was in the
+      run directory before it tried to run the simulator &ndash; or just
+      run the Makefile command manually, grab the commands it executes
+      from STDOUT, and then run those commands manually from the
+      shell.  That still gave the following warnings, but at least
+      completes successfully.
+<pre class="example">
+PARSEC Benchmark Suite Version 2.1
+Num of Options: 4
+Num of Runs: 100
+Size of data: 160
+0          [11485]  ( 0) [ 0]  [routine_re: 780]  *WARNING* pthread_join() is expecting a return value to be passed through value_ptr input, which is unsupported
+1013753    [11485]  ( 0) [ 0]  [routine_re: 780]  *WARNING* pthread_join() is expecting a return value to be passed through value_ptr input, which is unsupported
+1015227    [11485]  ( 0) [ 0]  [routine_re: 780]  *WARNING* pthread_join() is expecting a return value to be passed through value_ptr input, which is unsupported
+1018795    [11485]  ( 0) [ 0]  [routine_re: 780]  *WARNING* pthread_join() is expecting a return value to be passed through value_ptr input, which is unsupported
+[spawn.py] Exited with return code: 0
+</pre>
+
+</li>
+</ol>
+
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Running a Simple Fast Fourier Transform (FFT)</h3>
+<div class="outline-text-3" id="text-2-4">
+
+<p>The FFT benchmark has higher memory requirements than the simple
+ping-pong test, so for this we'll have to increase the memory of the
+VM by passing the <code>-m 1G</code> flag to the call to <code>qemu-kvm</code>.
+</p>
+
+
+<pre class="src src-sh">./src/run-vm tune.qcow 2222
+</pre>
+
+
+<p>
+This should run for a while and complete with output that looks like
+the following.
+</p><pre class="example">
+FFT with Blocking Transpose
+   65536 Complex Doubles
+   64 Processors
+   65536 Cache lines
+   16 Byte line size
+   4096 Bytes per page
+
+
+                 PROCESS STATISTICS
+            Computation      Transpose     Transpose
+ Proc          Time            Time        Fraction
+    0          79869664       27878043       0.34904
+
+                 TIMING INFORMATION
+Start time                        : 1333389980838004
+Initialization finish time        : 1333390099558235
+Overall finish time               : 1333390179427899
+Total time with initialization    :        198589895
+Total time without initialization :         79869664
+Overall transpose time            :         27878043
+Overall transpose fraction        :          0.34904
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Evolving a Population of Variants</h3>
+<div class="outline-text-3" id="text-2-5">
+
+<p>This experimental setup is held in a git directory available from
+<a href="http://gitweb.adaptive.cs.unm.edu/optimization.git">http://gitweb.adaptive.cs.unm.edu/optimization.git</a> for anonymous git
+access with the following.
+</p><pre class="example">
+git clone http://gitweb.adaptive.cs.unm.edu/optimization.git
+</pre>
+
+
+<p>
+Using the scripts in <a href="src/host-test">src/host-test</a> and <a href="src/guest-test">src/guest-test</a>,
+the experimental harness in <a href="src/optimize.lisp">src/optimize.lisp</a> and the <a href="http://gitweb.adaptive.cs.unm.edu/software-evolution.git">software evolution</a> framework it is possible to evolve populations of variants
+of the original FFT program to optimize for certain execution
+properties.  The following instructions describe how to evolve a
+population of variant programs using multiple VM back ends for
+parallel fitness evaluation.
+</p>
+<ol>
+<li>Copy the <a href="src/guest-test">src/guest-test</a> script into the <code>/home/bacon/bin/</code>
+   on the virtual machine.  Power off the virtual machine before
+   performing the next step.
+
+
+
+<pre class="src src-sh">scp src/guest-test -P 2222 bacon@localhost:bin/
+ssh -p 2222 root@localhost poweroff
+</pre>
+
+
+</li>
+<li>We will use the <a href="src/limit.c">src/limit.c</a> test harness to protect our
+   evolutionary process from the sometimes aberrant behavior of the
+   test execution shell scripts and the evolved variants which they
+   execute.  Compile both host and guest versions of this script and
+   place them for use by the host and guest test scripts.
+
+
+
+<pre class="src src-sh"><span style="color: #73d216;"># </span><span style="color: #73d216;">host limit harness</span>
+gcc -o src/limit src/limit.c
+<span style="color: #73d216;"># </span><span style="color: #73d216;">guest limit harness</span>
+scp src/limit.c -P 2222 bacon@localhost:bin/
+ssh -p 2222 bacon@localhost gcc -o bin/limit bin/limit.c
+ssh -p 2222 root@localhost poweroff
+</pre>
+
+
+</li>
+<li>The current version of <a href="src/host-test">src/host-test</a> assumes that all
+   virtual machines are running on <code>localhost</code> and that they are
+   placed behind different port numbers.  To setup multiple VMs on
+   your local machine saving their port numbers to the
+   <a href="src/REMOTES">src/REMOTES</a> file (as required by <a href="src/host-test">src/host-test</a>) follow
+   the steps in <a href="#running-overlays">Running overlays</a>.
+
+</li>
+<li>Since ssh is apparently <i>very</i> sensitive to widely readable public
+   keys, be sure to fix access permission for <a href="data/id_rsa">data/id\_rsa</a> which
+   may not be preserved by git.
+
+
+
+<pre class="src src-sh">chmod 700 data/id_rsa
+</pre>
+
+
+</li>
+<li>Change into the <code>src/</code> directory and fire up a Common Lisp
+   interpreter (SBCL version 1.0.55 was used to prepare these
+   instructions).  Ensure that the <a href="http://gitweb.adaptive.cs.unm.edu/software-evolution.git">software evolution</a> framework is
+   installed and load the <a href="src/optimize.lisp">src/optimize.lisp</a> file into your lisp
+   session.  To test that things your test scripts, virtual machines,
+   and lisp install are all working correctly evaluate the original
+   FFT program and ensure that it's fitness is equal to 1.
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">require</span> '<span style="color: #e6a8df;">software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">in-package</span> 'software-evolution<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>load <span style="color: #e9b96e;">"optimize.lisp"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">unless</span> <span style="color: #7f7f7f;">(</span>neutral-p <span style="color: #7f7f7f;">(</span>evaluate *orig*<span style="color: #7f7f7f;">))</span>
+  <span style="color: #7f7f7f;">(</span><span style="color: #ff4b4b; font-weight: bold;">error</span> <span style="color: #e9b96e;">"Something is wrong, debug your script/lisp setup."</span><span style="color: #7f7f7f;">))</span>
+</pre>
+
+
+</li>
+<li>If everything appears to be working as expected, then a population
+   of 100 variants can be evolved to minimize execution time by
+   running the following.  See <a href="src/optimize.lisp">src/optimize.lisp</a> to change the
+   default configuration of things like population size, tournament
+   size, and the features optimized for.
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-running-overlays" class="outline-3">
+<h3 id="running-overlays"><a name="sec-2-6" id="sec-2-6"></a><span class="section-number-3">2.6</span> Running overlays</h3>
+<div class="outline-text-3" id="text-running-overlays">
+
+<p>Qemu overlays create lightweight disk images based off of a starting
+disk image which can be used to store diffs from the original, and to
+run multiple instances of an original.
+</p>
+<p>
+We'll use overlays to parallelize the fitness evaluation in our
+genetic algorithm.
+</p>
+<p>
+To create some number of overlay images run;
+</p>
+
+
+<pre class="src src-sh"><span style="color: #ad7fa8;">pushd</span> overlays/
+<span style="color: #b4fa70;">for</span> i<span style="color: #b4fa70;"> in</span> $(seq 46);<span style="color: #b4fa70;">do</span>
+    <span style="color: #fcaf3e;">j</span>=$(printf <span style="color: #e9b96e;">"%0.2d"</span> i);
+    <span style="color: #b4fa70;">if</span> [ ! -f <span style="color: #e9b96e;">"$j.qcow"</span> ];<span style="color: #b4fa70;">then</span>
+        qemu-img create -b ../tune.qcow -f qcow2 <span style="color: #e9b96e;">"$j.qcow"</span>
+    <span style="color: #b4fa70;">fi</span>
+<span style="color: #b4fa70;">done</span>
+<span style="color: #ad7fa8;">popd</span>
+</pre>
+
+
+<p>
+To run all overlays daemonized;
+</p>
+
+
+<pre class="src src-sh"><span style="color: #fcaf3e;">remotes</span>=<span style="color: #e9b96e;">""</span>
+<span style="color: #ad7fa8;">pushd</span> overlays/
+<span style="color: #b4fa70;">for</span> i<span style="color: #b4fa70;"> in</span> $(seq 46);<span style="color: #b4fa70;">do</span>
+    <span style="color: #fcaf3e;">I</span>=$(printf <span style="color: #e9b96e;">"%0.2d"</span> i);
+    ../src/run-vm <span style="color: #e9b96e;">"$I.qcow"</span> <span style="color: #e9b96e;">"30$I"</span>
+    <span style="color: #fcaf3e;">remotes</span>=<span style="color: #e9b96e;">"$remotes \"30$I\""</span>
+<span style="color: #b4fa70;">done</span>
+<span style="color: #ad7fa8;">popd</span>
+cat &lt;&lt;EOF &gt; src/REMOTES
+<span style="color: #ffff00; font-weight: bold;">#!/bin/sh</span>
+<span style="color: #ffff00; font-weight: bold;">REMOTES=($remotes)</span>
+<span style="color: #ffff00; font-weight: bold;">EOF</span>
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Experimental Runs</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption>Listing of runs.</caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">run</th><th scope="col" class="left">state</th><th scope="col" class="left">git-tag</th><th scope="col" class="left">machine</th><th scope="col" class="left">results-dir</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">First Serial Run</td><td class="left">CANCELED</td><td class="left">first-serial-run</td><td class="left">loaf</td><td class="left">first-run</td></tr>
+<tr><td class="left">First Parallel Run</td><td class="left">CANCELED</td><td class="left">first-parallel-run</td><td class="left">real</td><td class="left">first-run</td></tr>
+<tr><td class="left">Parallel Runtime Run</td><td class="left">DONE</td><td class="left">pll-runtime-run</td><td class="left">real</td><td class="left">pll-2</td></tr>
+<tr><td class="left">Communication Minimization</td><td class="left">DONE</td><td class="left">packets-min</td><td class="left">complex</td><td class="left">packets-min</td></tr>
+<tr><td class="left">runtime-2</td><td class="left">STARTED</td><td class="left">runtime-2</td><td class="left">complex</td><td class="left">runtime-2</td></tr>
+</tbody>
+</table>
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> <span class="done CANCELED">CANCELED</span> First Serial Run</h3>
+<div class="outline-text-3" id="text-3-1">
+
+<ul>
+<li>State "CANCELED"   from "STARTED" <span class="timestamp-wrapper"> <span class="timestamp">2012-04-20 Fri 11:30</span></span> <br/>
+     accidentally rebooted the machine
+</li>
+</ul>
+
+<p>Running very slowly with only 1 VM running evaluations in the
+background.
+</p>
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">let</span> <span style="color: #7f7f7f;">((</span>*a-dir* <span style="color: #e9b96e;">"results/first-run/"</span><span style="color: #7f7f7f;">))</span>
+  <span style="color: #7f7f7f;">(</span>mapcar #'list <span style="color: #7f7f7f;">(</span>mapcar #'float <span style="color: #7f7f7f;">(</span>stat <span style="color: #7f7f7f;">(</span>read-run <span style="color: #ad7fa8;">:steps</span> 18<span style="color: #7f7f7f;">)))))</span>
+</pre>
+
+
+
+<div class="figure">
+<p><img src="data/first-run-generation-times-plot.svg"  alt="data/first-run-generation-times-plot.svg" /></p>
+<p>time-wo-init by generation: too few generations for a trend to develop</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> <span class="done CANCELED">CANCELED</span> First Parallel Run</h3>
+<div class="outline-text-3" id="text-3-2">
+
+<ul>
+<li>State "CANCELED"   from "DONE" <span class="timestamp-wrapper"> <span class="timestamp">2012-04-16 Mon 15:08</span></span>
+</li>
+</ul>
+
+<p>Failed to collect appropriate statistics, only have running time for
+the first generation.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> <span class="done DONE">DONE</span> Parallel Runtime Run</h3>
+<div class="outline-text-3" id="text-3-3">
+
+<p>Looks to be working, saving the full population at every generation.
+</p>
+
+</div>
+
+<div id="outline-container-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Analysis</h4>
+<div class="outline-text-4" id="text-3-3-1">
+
+<p>Analysis code in <a href="src/pll-2.lisp">src/pll-2.lisp</a>
+</p>
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span>mapcar #'list <span style="color: #7f7f7f;">(</span>cdr *times*<span style="color: #7f7f7f;">))</span>
+</pre>
+
+
+
+<pre class="src src-gnuplot">ylabel <span style="color: #e9b96e;">'time-wo-init'</span>
+xlabel <span style="color: #e9b96e;">'generation'</span>
+<span style="color: #b4fa70;">plot</span> <span style="color: #fcaf3e;">data</span>
+</pre>
+
+
+
+<div class="figure">
+<p><img src="data/pll-2-runtimes.svg"  alt="data/pll-2-runtimes.svg" /></p>
+<p>Ugh, selection must not have been working, probably a bug&hellip;</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> Use the following to restart a failing run</h4>
+<div class="outline-text-4" id="text-3-3-2">
+
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">require</span> <span style="color: #e6a8df;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">in-package</span> <span style="color: #ad7fa8;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>load <span style="color: #e9b96e;">"optimize.lisp"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *dir* <span style="color: #e9b96e;">"../results/pll-2/"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>restore <span style="color: #e9b96e;">"../results/pll-2/biased-pop-126.store"</span><span style="color: #7f7f7f;">))</span>
+<span style="color: #7f7f7f;">(</span>setf *note-level* 1<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>advise-thread-pool-size 46<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">loop</span> for n from 126 to 300 do <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"saving population ~d"</span> n<span style="color: #7f7f7f;">)</span>
+     <span style="color: #7f7f7f;">(</span>store *pop* <span style="color: #7f7f7f;">(</span>file-for-run n<span style="color: #7f7f7f;">))</span>
+     <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"generating population ~d"</span> <span style="color: #7f7f7f;">(</span>1+ n<span style="color: #7f7f7f;">))</span>
+     <span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>biased-step *pop*<span style="color: #7f7f7f;">)))</span>
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> <span class="done DONE">DONE</span> Communication Minimization</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+
+</div>
+
+<div id="outline-container-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> Analysis</h4>
+<div class="outline-text-4" id="text-3-4-1">
+
+<p>Analysis code in <a href="src/packet-min.lisp">src/packet-min.lisp</a>
+</p>
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span>mapcar #'list <span style="color: #7f7f7f;">(</span>cdr *packets*<span style="color: #7f7f7f;">))</span>
+</pre>
+
+
+
+<pre class="src src-gnuplot"><span style="color: #e6a8df;">set</span> ylabel <span style="color: #e9b96e;">'total-packets-sent'</span>
+<span style="color: #e6a8df;">set</span> xlabel <span style="color: #e9b96e;">'generation'</span>
+<span style="color: #b4fa70;">plot</span> <span style="color: #fcaf3e;">data</span>
+</pre>
+
+
+
+<div class="figure">
+<p><img src="data/packets-min-runtimes.svg"  alt="data/packets-min-runtimes.svg" /></p>
+<p>Ugh, same bug</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2"><span class="section-number-4">3.4.2</span> Restarting a stalled run</h4>
+<div class="outline-text-4" id="text-3-4-2">
+
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">require</span> <span style="color: #e6a8df;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">in-package</span> <span style="color: #ad7fa8;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>load <span style="color: #e9b96e;">"optimize.lisp"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *dir* <span style="color: #e9b96e;">"../results/packets-min/"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *note-level* 1<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *note-out* <span style="color: #7f7f7f;">(</span>open <span style="color: #e9b96e;">"../results/packets-min.session"</span>
+                       <span style="color: #ad7fa8;">:direction</span> <span style="color: #ad7fa8;">:output</span>
+                       <span style="color: #ad7fa8;">:if-exists</span> <span style="color: #ad7fa8;">:append</span><span style="color: #7f7f7f;">))</span>
+<span style="color: #7f7f7f;">(</span>advise-thread-pool-size 46<span style="color: #7f7f7f;">)</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">(biased-walk *orig* :steps 1000 :key #'total-packets-sent)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">let*</span> <span style="color: #7f7f7f;">((</span>restart 24<span style="color: #7f7f7f;">)</span>
+       <span style="color: #7f7f7f;">(</span>*pop* <span style="color: #7f7f7f;">(</span>restore <span style="color: #7f7f7f;">(</span>file-for-run restart<span style="color: #7f7f7f;">))))</span>
+  <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">loop</span> for n from restart to 1000 do <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"saving population ~d"</span> n<span style="color: #7f7f7f;">)</span>
+       <span style="color: #7f7f7f;">(</span>store *pop* <span style="color: #7f7f7f;">(</span>file-for-run n<span style="color: #7f7f7f;">))</span>
+       <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"generating population ~d"</span> <span style="color: #7f7f7f;">(</span>1+ n<span style="color: #7f7f7f;">))</span>
+       <span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>biased-step *pop* <span style="color: #ad7fa8;">:key</span> #'total-packets-sent<span style="color: #7f7f7f;">))))</span>
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> <span class="todo STARTED">STARTED</span> runtime-2</h3>
+<div class="outline-text-3" id="text-3-5">
+
+
+<p>
+Appears to be working, but slowly.
+</p>
+
+</div>
+
+<div id="outline-container-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1"><span class="section-number-4">3.5.1</span> Analysis</h4>
+<div class="outline-text-4" id="text-3-5-1">
+
+<p>Analysis code in <a href="src/runtime-2.lisp">src/runtime-2.lisp</a>
+</p>
+
+
+
+<pre class="src src-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">(mapcar #'list (cdr *times*))</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">(mapcar #'list (second *raw-times*))</span>
+*times*
+</pre>
+
+
+
+<pre class="src src-gnuplot"><span style="color: #e6a8df;">set</span> ylabel <span style="color: #e9b96e;">'time-wo-init'</span>
+<span style="color: #e6a8df;">set</span> xlabel <span style="color: #e9b96e;">'generation'</span>
+<span style="color: #b4fa70;">plot</span> <span style="color: #fcaf3e;">data</span> <span style="color: #8cc4ff;">using</span> 0:1:2 w <span style="color: #fce94f;">errorbars</span>, \
+     data <span style="color: #8cc4ff;">using</span> 0:1 w <span style="color: #fce94f;">lines</span>
+</pre>
+
+
+
+<div class="figure">
+<p><img src="data/runtime-2.svg"  alt="data/runtime-2.svg" /></p>
+<p>Run times by generation of evolution</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2"><span class="section-number-4">3.5.2</span> running</h4>
+<div class="outline-text-4" id="text-3-5-2">
+
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">require</span> <span style="color: #e6a8df;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">in-package</span> <span style="color: #ad7fa8;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>load <span style="color: #e9b96e;">"optimize.lisp"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *dir* <span style="color: #e9b96e;">"../results/runtime-2/"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *note-level* 1<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *tsize* 4<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>advise-thread-pool-size 46<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">let</span> <span style="color: #7f7f7f;">((</span>starting-file <span style="color: #7f7f7f;">(</span>file-for-run 0<span style="color: #7f7f7f;">)))</span>
+  <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">unless</span> <span style="color: #7f7f7f;">(</span>probe-file starting-file<span style="color: #7f7f7f;">)</span>
+    <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">progn</span> <span style="color: #7f7f7f;">(</span>evaluate *orig*<span style="color: #7f7f7f;">)</span>
+           <span style="color: #7f7f7f;">(</span>store <span style="color: #7f7f7f;">(</span>list *orig*<span style="color: #7f7f7f;">)</span> starting-file<span style="color: #7f7f7f;">))))</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">let</span> <span style="color: #7f7f7f;">((</span>last 0<span style="color: #7f7f7f;">))</span>
+  <span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>restore <span style="color: #7f7f7f;">(</span>file-for-run last<span style="color: #7f7f7f;">)))</span>
+  <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">loop</span> for n from last to 1000 do <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"saving population ~d"</span> n<span style="color: #7f7f7f;">)</span>
+       <span style="color: #7f7f7f;">(</span>store *pop* <span style="color: #7f7f7f;">(</span>file-for-run n<span style="color: #7f7f7f;">))</span>
+       <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"generating population ~d"</span> <span style="color: #7f7f7f;">(</span>1+ n<span style="color: #7f7f7f;">))</span>
+       <span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>biased-step *pop*<span style="color: #7f7f7f;">))))</span>
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> <span class="todo TODO">TODO</span> energy-1</h3>
+<div class="outline-text-3" id="text-3-6">
+
+<p>Looking at power consumption.
+</p>
+<p>
+Definitely a bug somewhere
+</p>
+
+</div>
+
+<div id="outline-container-3-6-1" class="outline-4">
+<h4 id="sec-3-6-1"><span class="section-number-4">3.6.1</span> running</h4>
+<div class="outline-text-4" id="text-3-6-1">
+
+
+
+
+<pre class="src src-lisp"><span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">require</span> <span style="color: #e6a8df;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">in-package</span> <span style="color: #ad7fa8;">:software-evolution</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>load <span style="color: #e9b96e;">"optimize.lisp"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *dir* <span style="color: #e9b96e;">"../results/energy-1/"</span><span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *note-level* 1<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>setf *tsize* 4<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span>advise-thread-pool-size 46<span style="color: #7f7f7f;">)</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">let</span> <span style="color: #7f7f7f;">((</span>starting-file <span style="color: #7f7f7f;">(</span>file-for-run 0<span style="color: #7f7f7f;">)))</span>
+  <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">unless</span> <span style="color: #7f7f7f;">(</span>probe-file starting-file<span style="color: #7f7f7f;">)</span>
+    <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">progn</span> <span style="color: #7f7f7f;">(</span>evaluate *orig*<span style="color: #7f7f7f;">)</span>
+           <span style="color: #7f7f7f;">(</span>store <span style="color: #7f7f7f;">(</span>list *orig*<span style="color: #7f7f7f;">)</span> starting-file<span style="color: #7f7f7f;">))))</span>
+<span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">let</span> <span style="color: #7f7f7f;">((</span>last 0<span style="color: #7f7f7f;">)</span>
+      <span style="color: #7f7f7f;">(</span>key #'static-power<span style="color: #7f7f7f;">)</span>
+      <span style="color: #7f7f7f;">(</span>test <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">lambda</span> <span style="color: #7f7f7f;">(</span>a b<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>&lt; <span style="color: #7f7f7f;">(</span>mean a<span style="color: #7f7f7f;">)</span> <span style="color: #7f7f7f;">(</span>mean b<span style="color: #7f7f7f;">)))))</span>
+  <span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>restore <span style="color: #7f7f7f;">(</span>file-for-run last<span style="color: #7f7f7f;">)))</span>
+  <span style="color: #7f7f7f;">(</span><span style="color: #b4fa70;">loop</span> for n from last to 1000 do <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"saving population ~d"</span> n<span style="color: #7f7f7f;">)</span>
+       <span style="color: #7f7f7f;">(</span>store *pop* <span style="color: #7f7f7f;">(</span>file-for-run n<span style="color: #7f7f7f;">))</span>
+       <span style="color: #7f7f7f;">(</span>note 1 <span style="color: #e9b96e;">"generating population ~d"</span> <span style="color: #7f7f7f;">(</span>1+ n<span style="color: #7f7f7f;">))</span>
+       <span style="color: #7f7f7f;">(</span>setf *pop* <span style="color: #7f7f7f;">(</span>biased-step *pop* <span style="color: #ad7fa8;">:test</span> test <span style="color: #ad7fa8;">:key</span> key<span style="color: #7f7f7f;">))))</span>
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-6-2" class="outline-4">
+<h4 id="sec-3-6-2"><span class="section-number-4">3.6.2</span> analysis</h4>
+<div class="outline-text-4" id="text-3-6-2">
+
+<p>Analysis code in <a href="src/runtime-2.lisp">src/runtime-2.lisp</a>
+</p>
+
+
+
+<pre class="src src-lisp"><span style="color: #73d216;">;; </span><span style="color: #73d216;">(mapcar #'list (cdr *times*))</span>
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">(mapcar #'list (second *raw-times*))</span>
+*powers*
+</pre>
+
+
+
+<pre class="src src-gnuplot"><span style="color: #e6a8df;">set</span> ylabel <span style="color: #e9b96e;">'static-power'</span>
+<span style="color: #e6a8df;">set</span> xlabel <span style="color: #e9b96e;">'generation'</span>
+<span style="color: #b4fa70;">plot</span> <span style="color: #fcaf3e;">data</span> <span style="color: #8cc4ff;">using</span> 0:1:2 w <span style="color: #fce94f;">errorbars</span>, \
+     data <span style="color: #8cc4ff;">using</span> 0:1 w <span style="color: #fce94f;">lines</span>
+</pre>
+
+
+
+<div class="figure">
+<p><img src="data/energy-1.svg"  alt="data/energy-1.svg" /></p>
+<p>Energy consumption by generation of evolution</p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> flits</h3>
+<div class="outline-text-3" id="text-3-7">
+
+
+</div>
+
+<div id="outline-container-3-7-1" class="outline-4">
+<h4 id="sec-3-7-1"><span class="section-number-4">3.7.1</span> analysis</h4>
+<div class="outline-text-4" id="text-3-7-1">
+
+<p>Analysis code in <a href="src/runtime-2.lisp">src/runtime-2.lisp</a>
+</p>
+
+
+
+<pre class="src src-lisp">*flits*
+</pre>
+
+
+
+<pre class="src src-gnuplot"><span style="color: #e6a8df;">set</span> ylabel <span style="color: #e9b96e;">'total flits sent'</span>
+<span style="color: #e6a8df;">set</span> xlabel <span style="color: #e9b96e;">'generation'</span>
+<span style="color: #b4fa70;">plot</span> <span style="color: #fcaf3e;">data</span> <span style="color: #8cc4ff;">using</span> 0:1:2 w <span style="color: #fce94f;">errorbars</span> <span style="color: #8cc4ff;">title</span> <span style="color: #e9b96e;">'stdev'</span>, \
+     data <span style="color: #8cc4ff;">using</span> 0:1 w <span style="color: #fce94f;">lines</span> <span style="color: #8cc4ff;">title</span> <span style="color: #e9b96e;">'mean'</span>
+</pre>
+
+
+
+<div class="figure">
+<p><img src="data/flits.svg"  alt="data/flits.svg" /></p>
+<p>Energy consumption by generation of evolution</p>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Reading/References</h2>
+<div class="outline-text-2" id="text-4">
+
+<ul>
+<li><a href="file:///home/eschulte/reading/reading.html#sitthi2011genetic">Genetic programming for shader simplification</a>
+</li>
+<li><a href="http://web.mit.edu/newsoffice/2012/faster-fourier-transform-named-one-of-worlds-most-important-emerging-technologies.html">Sparse Fourier Transform</a>
+</li>
+<li><a href="file:///home/eschulte/reading/reading.html#bruening2003infrastructure">An infrastructure for adaptive dynamic optimization</a>
+</li>
+<li><a href="file:///home/eschulte/reading/reading.html#frigo1998fftw">FFTW: An adaptive software architecture for the FFT</a>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-09-13T16:44-0600</p>
+<p class="author">Author: Eric Schulte</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.1 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
