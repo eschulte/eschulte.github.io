@@ -81,8 +81,8 @@ in order of significance and activity).
 * Publications
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
-  /arXiv Pre-Print 2019/
-  ([[https://arxiv.org/pdf/1906.03969.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]])
+  /29th USENIX Security Symposium 2020/
+  ([[https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]], [[https://github.com/grammatech/ddisasm][Software]])
 
 - Eric Schulte, Suan Yong, Dave Melski.
   _Inuring: Live Attacker-guided Repair_
