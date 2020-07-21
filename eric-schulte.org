@@ -13,6 +13,9 @@
 #+html: <div id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
 
 * Research
+  :PROPERTIES:
+  :CUSTOM_ID: research
+  :END:
 I research methods of automating software development and reverse
 engineering tasks.  My work benefits from the understanding of
 software as an evolved system.
@@ -25,6 +28,9 @@ software systems.  These techniques apply variously to software source
 code repositories and/or to stripped binary executables.
 
 * Background
+  :PROPERTIES:
+  :CUSTOM_ID: background
+  :END:
 - As of August 2018 I am Director of Automated Software Engineering at
   [[http://www.grammatech.com/][GrammaTech]].  At GrammaTech I get to work on the automation of
   software engineering tasks including refactoring, bug-injection,
@@ -44,6 +50,9 @@ code repositories and/or to stripped binary executables.
   a BA in mathematics and a minor in philosophy.
 
 * Software
+  :PROPERTIES:
+  :CUSTOM_ID: software
+  :END:
 I've written, maintained or significantly contributed to the following
 software which includes large open-source projects, projects currently
 under active development at GrammaTech, and small utilities (presented
@@ -79,6 +88,9 @@ in order of significance and activity).
 - [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully distributed lisp virtual machine.
 
 * Publications
+  :PROPERTIES:
+  :CUSTOM_ID: publications
+  :END:
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
   /29th USENIX Security Symposium 2020/
@@ -176,6 +188,9 @@ in order of significance and activity).
   Management 2010/ ([[file:data/argus-pub.bib][Bibtex]])
 
 * Course Notes
+  :PROPERTIES:
+  :CUSTOM_ID: course-notes
+  :END:
 - Spring 2013
   - =biol517= Basic Graduate Evolution ([[file:classes/biol517/biol517.org][notes]])
 - Spring 2011
@@ -200,4 +215,7 @@ in order of significance and activity).
   - =cs691= Adaptive Reading Group ([[file:classes/cs691/cs691.html][notes]])
 
 * Curriculum Vitae
+  :PROPERTIES:
+  :CUSTOM_ID: cv
+  :END:
 My CV (as of April 2019) is available at [[file:data/eric-schulte-cv.pdf][eric-schulte-cv.pdf]].
