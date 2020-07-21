@@ -53,17 +53,19 @@ code repositories and/or to stripped binary executables.
   :PROPERTIES:
   :CUSTOM_ID: software
   :END:
-I've written, maintained or significantly contributed to the following
-software which includes large open-source projects, projects currently
-under active development at GrammaTech, and small utilities (presented
-in order of significance and activity).
+I've written, managed, maintained, or significantly contributed to the
+following software which includes large open-source projects, projects
+currently under active development at GrammaTech, and small utilities
+(presented in order of significance and activity).
 
 - [[https://github.com/grammatech/sel][SOFTWARE-EVOLUTION-LIBRARY]] (SEL) is a common lisp library for the
   programmatic modification and evaluation of software.  See the [[https://grammatech.github.io/sel/#Top][SEL
   Manual]] for more information.
 - Binary Analysis and Reverse Engineering.  See [[https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting][this blog post]]
-  announcing the open-source release of these tools and [[https://grammatech.github.io/gtirb/md_stack-stamp.html][this tutorial]]
-  introducing the use of GTIRB for binary rewriting.
+  announcing the open-source release of these tools, [[https://grammatech.github.io/gtirb/md_stack-stamp.html][this tutorial]]
+  introducing the use of GTIRB for binary rewriting, and [[file:data/debloat-datasheet.pdf][this
+  datasheet]] describing open-source and commercial tools build on
+  GTIRB.
   - [[https://github.com/grammatech/gtirb][GTIRB]] Intermediate Representation for Binary analysis and
     transformation.  Includes a Protobuf specification and a reference
     C++ library.
