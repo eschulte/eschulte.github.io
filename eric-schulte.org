@@ -62,7 +62,8 @@ in order of significance and activity).
   programmatic modification and evaluation of software.  See the [[https://grammatech.github.io/sel/#Top][SEL
   Manual]] for more information.
 - Binary Analysis and Reverse Engineering.  See [[https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting][this blog post]]
-  announcing the open-source release of these tools.
+  announcing the open-source release of these tools and [[https://grammatech.github.io/gtirb/md_stack-stamp.html][this tutorial]]
+  introducing the use of GTIRB for binary rewriting.
   - [[https://github.com/grammatech/gtirb][GTIRB]] Intermediate Representation for Binary analysis and
     transformation.  Includes a Protobuf specification and a reference
     C++ library.
@@ -70,9 +71,11 @@ in order of significance and activity).
     this high performance re-assemblable disassembler
   - [[https://github.com/grammatech/gtirb-pprinter][gtirb-pprinter]] Pretty printer from GTIRB to assembly code
 - Manipulation of C-language (and other) Abstract Syntax Trees:
-  - [[https://github.com/grammatech/clang-mutate][clang-mutate]] manipulates C-family ASTs with [[http://clang.llvm.org][Clang]]
   - [[https://github.com/eschulte/cil-mutate][cil-mutate]] manipulates C Intermediate Language ASTs with [[http://kerneis.github.com/cil/][CIL]]
   - [[http://eschulte.github.io/llvm-mutate/][llvm-mutate]] manipulates [[http://llvm.org][LLVM]] IR with an [[http://llvm.org/docs/WritingAnLLVMPass.html][LLVM compiler pass]]
+  - +[[https://github.com/grammatech/clang-mutate][clang-mutate]] manipulates C-family ASTs with [[http://clang.llvm.org][Clang]]+.  Deprecated.
+    This functionality has been upstreamed into Clang as of Clang 10
+    as the new ~-ast-dump=json~ option.
 - [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
   partial application and composition in Common Lisp.  I've also
   implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
@@ -84,8 +87,8 @@ in order of significance and activity).
   - [[https://github.com/eschulte/elf][elf]] a CLOS based API for Elf file manipulation in Common Lisp
   - [[https://github.com/eschulte/rw-elf][rw-elf]] a simpler C library for ELF file manipulation
 - [[https://github.com/eschulte/delta-debug][DELTA-DEBUG]] is a Common Lisp [[http://www.st.cs.uni-saarland.de/dd/][delta debugging]] implementation.
-
-- [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully distributed lisp virtual machine.
+- [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully physically distributed lisp virtual
+  machine.
 
 * Publications
   :PROPERTIES:
