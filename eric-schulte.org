@@ -17,15 +17,15 @@
   :CUSTOM_ID: research
   :END:
 I research methods of automating software development and reverse
-engineering tasks.  My work benefits from the understanding of
-software as an evolved system.
+engineering.  My work benefits from the understanding of software as
+an evolved system.
 
 I am the /Director of Automated Software Engineering/ at GrammaTech,
 where I lead the /Program Synthesis/ and /Binary Rewriting/ research
 areas.  At GrammaTech I develop techniques automating the analysis,
 reverse engineering, maintenance, improvement, and synthesis of
 software systems.  These techniques apply variously to software source
-code repositories and/or to stripped binary executables.
+code and to stripped binary executables.
 
 * Background
   :PROPERTIES:
