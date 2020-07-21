@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-11-22 Fri 15:21 -->
+<!-- 2020-07-21 Tue 07:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dr. Eric Schulte</title>
@@ -193,6 +193,52 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="data/stylesheet.css" type="text/css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 </head>
 <body>
 <div id="content">
@@ -206,19 +252,19 @@
 <li><a href="#software">Software</a></li>
 <li><a href="#publications">Publications</a></li>
 <li><a href="#course-notes">Course Notes</a></li>
-<li><a href="#curriculum-vitae">Curriculum Vitae</a></li>
+<li><a href="#cv">Curriculum Vitae</a></li>
 </ul>
 </div>
 </div>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
 
-<img id="me" width="300" height="300" src="data/eric-schulte.jpg">
+<img id="me" width="300" height="300" src="data/eschulte.jpeg">
 
 <div id="contact"><tt>eschulte-at-grammatech.com</tt></div>
 
 <div id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
 
-<div id="outline-container-orgc9df8fc" class="outline-2">
+<div id="outline-container-orgb25f948" class="outline-2">
 <h2 id="research">Research</h2>
 <div class="outline-text-2" id="text-research">
 <p>
@@ -238,7 +284,7 @@ code repositories and/or to stripped binary executables.
 </div>
 </div>
 
-<div id="outline-container-orge641bec" class="outline-2">
+<div id="outline-container-org630d357" class="outline-2">
 <h2 id="background">Background</h2>
 <div class="outline-text-2" id="text-background">
 <ul class="org-ul">
@@ -263,14 +309,14 @@ a BA in mathematics and a minor in philosophy.</li>
 </div>
 </div>
 
-<div id="outline-container-org4d08b05" class="outline-2">
+<div id="outline-container-orga15e350" class="outline-2">
 <h2 id="software">Software</h2>
 <div class="outline-text-2" id="text-software">
 <p>
-I've written, maintained or significantly contributed to the following
-software which includes large open-source projects, projects currently
-under active development at GrammaTech, and small utilities (presented
-in order of significance and activity).
+I've written, managed, maintained, or significantly contributed to the
+following software which includes large open-source projects, projects
+currently under active development at GrammaTech, and small utilities
+(presented in order of significance and activity).
 </p>
 
 <ul class="org-ul">
@@ -278,7 +324,10 @@ in order of significance and activity).
 programmatic modification and evaluation of software.  See the <a href="https://grammatech.github.io/sel/#Top">SEL
 Manual</a> for more information.</li>
 <li>Binary Analysis and Reverse Engineering.  See <a href="https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting">this blog post</a>
-announcing the open-source release of these tools.
+announcing the open-source release of these tools, <a href="https://grammatech.github.io/gtirb/md_stack-stamp.html">this tutorial</a>
+introducing the use of GTIRB for binary rewriting, and <a href="data/debloat-datasheet.pdf">this
+datasheet</a> describing open-source and commercial tools build on
+GTIRB.
 <ul class="org-ul">
 <li><a href="https://github.com/grammatech/gtirb">GTIRB</a> Intermediate Representation for Binary analysis and
 transformation.  Includes a Protobuf specification and a reference
@@ -289,9 +338,11 @@ this high performance re-assemblable disassembler</li>
 </ul></li>
 <li>Manipulation of C-language (and other) Abstract Syntax Trees:
 <ul class="org-ul">
-<li><a href="https://github.com/grammatech/clang-mutate">clang-mutate</a> manipulates C-family ASTs with <a href="http://clang.llvm.org">Clang</a></li>
 <li><a href="https://github.com/eschulte/cil-mutate">cil-mutate</a> manipulates C Intermediate Language ASTs with <a href="http://kerneis.github.com/cil/">CIL</a></li>
 <li><a href="http://eschulte.github.io/llvm-mutate/">llvm-mutate</a> manipulates <a href="http://llvm.org">LLVM</a> IR with an <a href="http://llvm.org/docs/WritingAnLLVMPass.html">LLVM compiler pass</a></li>
+<li><del><a href="https://github.com/grammatech/clang-mutate">clang-mutate</a> manipulates C-family ASTs with <a href="http://clang.llvm.org">Clang</a></del>.  Deprecated.
+This functionality has been upstreamed into Clang as of Clang 10
+as the new <code>-ast-dump=json</code> option.</li>
 </ul></li>
 <li><a href="http://eschulte.github.io/curry-compose-reader-macros/">CURRY-COMPOSE-READER-MACROS</a> for concise expression of function
 partial application and composition in Common Lisp.  I've also
@@ -306,22 +357,20 @@ functionality to <a href="http://orgmode.org/">Org-mode</a>, a major mode of the
 <li><a href="https://github.com/eschulte/rw-elf">rw-elf</a> a simpler C library for ELF file manipulation</li>
 </ul></li>
 <li><a href="https://github.com/eschulte/delta-debug">DELTA-DEBUG</a> is a Common Lisp <a href="http://www.st.cs.uni-saarland.de/dd/">delta debugging</a> implementation.</li>
-</ul>
-
-<ul class="org-ul">
-<li><a href="http://eschulte.github.io/oncs/README.html">ONCs</a> is a prototype fully distributed lisp virtual machine.</li>
+<li><a href="http://eschulte.github.io/oncs/README.html">ONCs</a> is a prototype fully physically distributed lisp virtual
+machine.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9008031" class="outline-2">
+<div id="outline-container-orgc7129b1" class="outline-2">
 <h2 id="publications">Publications</h2>
 <div class="outline-text-2" id="text-publications">
 <ul class="org-ul">
 <li>Antonio Flores-Montoya, Eric Schulte
 <span class="underline">Datalog Disassembly</span>
-<i>arXiv Pre-Print 2019</i>
-(<a href="https://arxiv.org/pdf/1906.03969.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>)</li>
+<i>29th USENIX Security Symposium 2020</i>
+(<a href="https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>, <a href="https://github.com/grammatech/ddisasm">Software</a>)</li>
 
 <li>Eric Schulte, Suan Yong, Dave Melski.
 <span class="underline">Inuring: Live Attacker-guided Repair</span>
@@ -417,7 +466,7 @@ Management 2010</i> (<a href="data/argus-pub.bib">Bibtex</a>)</li>
 </div>
 </div>
 
-<div id="outline-container-org6792aab" class="outline-2">
+<div id="outline-container-org8b36d12" class="outline-2">
 <h2 id="course-notes">Course Notes</h2>
 <div class="outline-text-2" id="text-course-notes">
 <ul class="org-ul">
@@ -465,9 +514,9 @@ Management 2010</i> (<a href="data/argus-pub.bib">Bibtex</a>)</li>
 </div>
 </div>
 
-<div id="outline-container-org0fd009d" class="outline-2">
-<h2 id="curriculum-vitae">Curriculum Vitae</h2>
-<div class="outline-text-2" id="text-curriculum-vitae">
+<div id="outline-container-org60f3463" class="outline-2">
+<h2 id="cv">Curriculum Vitae</h2>
+<div class="outline-text-2" id="text-cv">
 <p>
 My CV (as of April 2019) is available at <a href="data/eric-schulte-cv.pdf">eric-schulte-cv.pdf</a>.
 </p>
@@ -475,15 +524,8 @@ My CV (as of April 2019) is available at <a href="data/eric-schulte-cv.pdf">eric
 </div>
 </div>
 <div id="postamble" class="status">
-<div class="clear-fix"></div>
-<div id="doc-info">
-  This document is created
-  using <a href="http://orgmode.org/">Org-mode</a>
-  and <a href="http://orgmode.org/worg/org-contrib/babel/">Org-babel</a>.
-  The original plain-text document is available
-  at <a href="eric-schulte.org">eric-schulte.org</a>
-  (<a href="eric-schulte.org.html" title="how this document looks from inside Emacs">preview</a>).
-</div>
+<p class="date">Created: 2020-07-21 Tue 07:06</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
