@@ -14,16 +14,13 @@ body {
   top: 0.5em;
   width: 300px;
   height: 300px;
-  background-image: url(eric-schulte.jpg); }
+  background-image: url(eschulte.jpeg); }
 
 @media all and (min-width: 1000px){
     #me { left: 10%; } }
 
 @media all and (max-width: 1000px){
     #me { left: 1em; } }
-
-#me:hover {
-    background-image: url(eric-schulte.png); }
 
 #contact {
   position: absolute;
