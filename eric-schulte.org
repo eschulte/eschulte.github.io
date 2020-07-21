@@ -192,33 +192,6 @@ currently under active development at GrammaTech, and small utilities
   Filtering in an Operational System_ /Information Processing &
   Management 2010/ ([[file:data/argus-pub.bib][Bibtex]])
 
-* Course Notes
-  :PROPERTIES:
-  :CUSTOM_ID: course-notes
-  :END:
-- Spring 2013
-  - =biol517= Basic Graduate Evolution ([[file:classes/biol517/biol517.org][notes]])
-- Spring 2011
-  - =cs591= Cognitive and Comp Neuroscience ([[file:classes/cs591-cog/cs591-cog.html][notes]])
-    - final [[http://cs.unm.edu/~eschulte/classes/cs591-cog/data/ego-machine.pdf][ego-machine.pdf]] ([[http://gitweb.adaptive.cs.unm.edu/ego-machine.git][code]], [[http://cs.unm.edu/~eschulte/notes/ego-machine/full-world.mp4][video]])
-- Fall 2010
-  - =cs547= Neural Networks ([[file:classes/cs547/cs547.html][notes]])
-    - final paper [[http://cs.unm.edu/~eschulte/classes/cs547/data/cs547.schulte.final-project.pdf][cs547.schulte.final-project.pdf]]
-- Comprehensive Exam ([[file:comps/comps.org][notes]])
-- Spring 2010
-  - =cs500= Theory of Computation ([[file:classes/cs500/cs500.html][notes]])
-  - =cs550= Programming Languages & Systems ([[file:classes/cs550/cs550.html][notes]])
-    - final presentation [[http://cs.unm.edu/~eschulte/classes/cs550/data/schulte.non-von-neumann-computation.pdf][schulte.non-von-neumann-computation.pdf]]
-    - a [[http://repo.or.cz/w/propagator.git][concurrent propagator system]] implemented in Clojure
-  - =cs691= Robust Physical Computation Seminar ([[file:classes/cs691-rpc/cs691-rpc.html][note]]s)
-  - =cs691= Adaptive Reading Group ([[file:classes/cs691/cs691.html][notes]])
-- Fall 2009
-  - =cs558= Software Foundations ([[file:classes/cs558/cs558.html][notes]])
-  - =cs587= Advanced Operating Systems ([[file:classes/cs587/cs587.html][notes]])
-    - final paper [[http://cs.unm.edu/~eschulte/classes/cs587/data/bfs-v-cfs_groves-knockel-schulte.pdf][bfs-v-cfs_groves-knockel-schulte.pdf]]
-  - =cs591= Robust Physical Computation ([[file:classes/cs591-rpc/cs591-rpc.html][notes]])
-  - =cs691= Adaptive Reading Group ([[file:classes/cs691/cs691.html][notes]])
-
 * Curriculum Vitae
   :PROPERTIES:
   :CUSTOM_ID: cv
