@@ -12,7 +12,6 @@ body {
 #me {
   position: absolute;
   top: 0.5em;
-  width: 300px;
   height: 300px;
   background-image: url(eschulte.jpeg); }
 
@@ -45,12 +44,12 @@ body {
 
 .title {
   text-align: left;
-  margin-left: 310px;
+  margin-left: 210px;
   border-bottom-style: solid;
   border-bottom-color: lightgray; }
 
 #table-of-contents {
-  margin-left: 310px; }
+  margin-left: 210px; }
   #table-of-contents h2 {
     display: none; }
   #table-of-contents ul {
