@@ -49,15 +49,16 @@ code and to stripped binary executables.
   semester at the [[http://www.budapestsemesters.com/][Budapest semester in Mathematics]].  I graduated with
   a BA in mathematics and a minor in philosophy.
 
-* Software
+* Projects
   :PROPERTIES:
-  :CUSTOM_ID: software
+  :CUSTOM_ID: projects
   :END:
 I've written, managed, maintained, or significantly contributed to the
 following software which includes large open-source projects, projects
 currently under active development at GrammaTech, and small utilities
 (presented in order of significance and activity).
 
+- [[https://grammatech.gitlab.io/Mnemosyne/docs/][Mnemosyne]] brings program synthesis research to the modern IDE.
 - [[https://github.com/grammatech/sel][SOFTWARE-EVOLUTION-LIBRARY]] (SEL) is a common lisp library for the
   programmatic modification and evaluation of software.  See the [[https://grammatech.github.io/sel/#Top][SEL
   Manual]] for more information.
@@ -72,12 +73,6 @@ currently under active development at GrammaTech, and small utilities
   - [[https://github.com/grammatech/ddisasm][ddisasm]] A fast and accurate disassembler.  A Datalog engine powers
     this high performance re-assemblable disassembler
   - [[https://github.com/grammatech/gtirb-pprinter][gtirb-pprinter]] Pretty printer from GTIRB to assembly code
-- Manipulation of C-language (and other) Abstract Syntax Trees:
-  - [[https://github.com/eschulte/cil-mutate][cil-mutate]] manipulates C Intermediate Language ASTs with [[http://kerneis.github.com/cil/][CIL]]
-  - [[http://eschulte.github.io/llvm-mutate/][llvm-mutate]] manipulates [[http://llvm.org][LLVM]] IR with an [[http://llvm.org/docs/WritingAnLLVMPass.html][LLVM compiler pass]]
-  - +[[https://github.com/grammatech/clang-mutate][clang-mutate]] manipulates C-family ASTs with [[http://clang.llvm.org][Clang]]+.  Deprecated.
-    This functionality has been upstreamed into Clang as of Clang 10
-    as the new ~-ast-dump=json~ option.
 - [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
   partial application and composition in Common Lisp.  I've also
   implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
@@ -85,10 +80,6 @@ currently under active development at GrammaTech, and small utilities
 - [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
   functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
 - [[http://rinari.rubyforge.org/][Rinari]] is a /Ruby on Rails/ minor mode for Emacs.
-- Manipulation of [[http://en.wikipedia.org/wiki/Executable_and_Linkable_Format][ELF files]]:
-  - [[https://github.com/eschulte/elf][elf]] a CLOS based API for Elf file manipulation in Common Lisp
-  - [[https://github.com/eschulte/rw-elf][rw-elf]] a simpler C library for ELF file manipulation
-- [[https://github.com/eschulte/delta-debug][DELTA-DEBUG]] is a Common Lisp [[http://www.st.cs.uni-saarland.de/dd/][delta debugging]] implementation.
 - [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully physically distributed lisp virtual
   machine.
 
