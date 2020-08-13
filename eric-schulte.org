@@ -89,7 +89,7 @@ currently under active development at GrammaTech, and small utilities
   :END:
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
-  /29th USENIX Security Symposium 2020/
+  /29th USENIX Security Symposium 2020 (*distinguished paper*)/
   ([[https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]], [[https://github.com/grammatech/ddisasm][Software]])
 
 - Eric Schulte, Suan Yong, Dave Melski.
