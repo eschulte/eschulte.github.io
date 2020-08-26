@@ -5,9 +5,7 @@
 #+html_head: <link rel="stylesheet" href="data/stylesheet.css" type="text/css">
 
 #+html: <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
-
 #+html: <img id="me" height="300" src="data/eric.schulte.jpg">
-
 #+html: <div class="hide-small" id="contact"><tt>eschulte-at-grammatech.com</tt></div>
 #+html: <div class="hide-large" id="small-contact"><tt>eschulte-at-grammatech.com</tt></div>
 #+html: <div class="hide-small" id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
@@ -19,7 +17,7 @@
 I build tools for people who work with software; from helping
 developers write and maintain their own projects to helping reverse
 engineers understand third-party binaries.  My work is motivated by an
-understanding of software as an evolved system that displays many
+understanding of [[https://www.cs.unm.edu/~eschulte/dissertation][software as an evolved system]] that displays many
 properties previously identified in biological systems.  I leverage a
 combination of evolutionary computation, statistical machine learning,
 and formal methods techniques towards the goal of automating many of
@@ -108,7 +106,7 @@ resolver]]) to the creative (the [[https://grammatech.gitlab.io/Mnemosyne/docs/]
 
 - Eric Schulte.  _Neutral Networks of Real-World Programs and their
   Application to Automated Software Evolution_ /Ph.D. Dissertation,
-  University of New Mexico 2014/ ([[file:dissertation/schulte-dissertation.pdf][PDF]], [[file:dissertation/schulte-dissertation.html][HTML]], [[file:data/schulte-dissertation.bib][Bibtex]] [[file:dissertation/schulte-dissertation-presentation.pdf][slides]], [[file:dissertation][more]])
+  University of New Mexico 2014/ ([[https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation.pdf][PDF]], [[https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation.html][HTML]], [[file:data/schulte-dissertation.bib][Bibtex]] [[https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation-presentation.pdf][slides]], [[https://www.cs.unm.edu/~eschulte/dissertation][more]])
 
 - Eric Schulte, Jonathan Dorn, Stephen Harding, Stephanie Forrest,
   Westley Weimer.  _Post-compiler Software Optimization for Reducing
