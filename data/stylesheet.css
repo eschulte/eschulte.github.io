@@ -44,12 +44,12 @@ body {
 
 .title {
   text-align: left;
-  margin-left: 210px;
+  margin-left: 240px;
   border-bottom-style: solid;
   border-bottom-color: lightgray; }
 
 #table-of-contents {
-  margin-left: 210px; }
+  margin-left: 240px; }
   #table-of-contents h2 {
     display: none; }
   #table-of-contents ul {
