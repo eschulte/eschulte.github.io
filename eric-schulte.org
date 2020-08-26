@@ -8,9 +8,9 @@
 
 #+html: <img id="me" height="300" src="data/eric.schulte.jpeg">
 
-#+html: <div id="contact"><tt>eschulte-at-grammatech.com</tt></div>
-
-#+html: <div id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
+#+html: <div class="hide-small" id="contact"><tt>eschulte-at-grammatech.com</tt></div>
+#+html: <div class="hide-large" id="small-contact"><tt>eschulte-at-grammatech.com</tt></div>
+#+html: <div class="hide-small" id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
 
 * Research
   :PROPERTIES:
