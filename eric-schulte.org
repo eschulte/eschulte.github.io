@@ -14,35 +14,17 @@
   :PROPERTIES:
   :CUSTOM_ID: research
   :END:
-I build tools for people who work with software; from helping
+I am the /Director of Automated Software Engineering/ at GrammaTech,
+where I lead the /Program Synthesis/ and /Binary Rewriting/ research
+areas.  I build tools for people who work with software; from helping
 developers write and maintain their own projects to helping reverse
 engineers understand third-party binaries.  My work is motivated by an
 understanding of [[https://www.cs.unm.edu/~eschulte/dissertation][software as an evolved system]] that displays many
 properties previously identified in biological systems.  I leverage a
 combination of evolutionary computation, statistical machine learning,
 and formal methods techniques towards the goal of automating many of
-the jobs of software developers from the mundane (e.g., [[https://mergeresolver.github.io][merge
-resolver]]) to the creative (the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] program synthesis framework).
-
-* Background
-  :PROPERTIES:
-  :CUSTOM_ID: background
-  :END:
-- As of August 2018 I am the /Director of Automated Software
-  Engineering/ at GrammaTech, where I lead the /Program Synthesis/ and
-  /Binary Rewriting/ research areas.
-- In July 2014 I completed my degree at the [[http://www.unm.edu/][University of New Mexico]]
-  and accepted a position at [[http://www.grammatech.com/][GrammaTech]].
-- From August 2009 through July 2014 I was enrolled as a doctoral
-  student at the [[http://www.unm.edu/][University of New Mexico]] as a member of Stephanie
-  Forrest's Adaptive Computation Group.
-- For the five years previous to graduate school, I worked at [[http://www.mitre.org/][Mitre]] --
-  a Federally Funded Research and Development Center -- where I was
-  promoted to the position of /Senior AI Engineer/ and was part of
-  [[file:./data/WilsonTestimony.pdf][project Argus]].
-- I completed my undergraduate studies at [[http://www.kenyon.edu/][Kenyon College]] with a
-  semester at the [[http://www.budapestsemesters.com/][Budapest semester in Mathematics]] graduating with a
-  BA in mathematics and a minor in philosophy.
+the jobs of software developers from the mundane ([[https://mergeresolver.github.io][merge resolver]]) to
+the creative (the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] program synthesis framework).
 
 * Publications
   :PROPERTIES:
