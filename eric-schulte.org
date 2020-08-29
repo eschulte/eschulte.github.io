@@ -22,9 +22,9 @@ engineers understand third-party binaries.  My work is motivated by an
 understanding of [[https://www.cs.unm.edu/~eschulte/dissertation][software as an evolved system]] that displays many
 properties previously identified in biological systems.  I leverage a
 combination of evolutionary computation, statistical machine learning,
-and formal methods techniques towards the goal of automating many of
-the jobs of software developers from the mundane ([[https://mergeresolver.github.io][merge resolver]]) to
-the creative (the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] program synthesis framework).
+and formal methods techniques towards the goal of automating software
+development tasks from the mundane ([[https://mergeresolver.github.io][merge resolver]]) to the creative
+(the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] program synthesis framework).
 
 * Publications
   :PROPERTIES:
