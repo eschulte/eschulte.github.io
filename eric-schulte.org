@@ -1,6 +1,5 @@
-# Created 2019-11-22 Fri 15:21
-#+OPTIONS: toc:t num:nil ^:nil
 #+TITLE: Dr. Eric Schulte
+#+OPTIONS: toc:t num:nil ^:nil
 #+startup: hideblocks
 #+html_head: <link rel="stylesheet" href="data/stylesheet.css" type="text/css">
 
