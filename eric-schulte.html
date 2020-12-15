@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2020-12-15 Tue 07:46 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dr. Eric Schulte</title>
-<!-- 2020-08-28 Fri 20:33 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Eric Schulte" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Eric Schulte" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -33,7 +40,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -46,30 +53,127 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -86,54 +190,31 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="data/stylesheet.css" type="text/css">
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 </head>
 <body>
@@ -151,13 +232,13 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
-<img id="me" height="300" src="data/eric.schulte.jpg">
+<img id="me" height="300" src="data/headshot-masked.jpg">
 <div class="hide-small" id="contact"><tt>eschulte-at-grammatech.com</tt></div>
 <div class="hide-large" id="small-contact"><tt>eschulte-at-grammatech.com</tt></div>
 <div class="hide-small" id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
 
 <div id="outline-container-research" class="outline-2">
-<h2 id="research"><a id="sec-1" name="sec-1"></a>Research</h2>
+<h2 id="research">Research</h2>
 <div class="outline-text-2" id="text-research">
 <p>
 I am the <i>Director of Automated Software Engineering</i> at GrammaTech,
@@ -176,131 +257,110 @@ development tasks from the mundane (<a href="https://mergeresolver.github.io">me
 </div>
 
 <div id="outline-container-publications" class="outline-2">
-<h2 id="publications"><a id="sec-2" name="sec-2"></a>Publications</h2>
+<h2 id="publications">Publications</h2>
 <div class="outline-text-2" id="text-publications">
 <ul class="org-ul">
 <li>Antonio Flores-Montoya, Eric Schulte
 <span class="underline">Datalog Disassembly</span>
 <i>29th USENIX Security Symposium 2020 (<b>distinguished paper</b>)</i>
-(<a href="https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>, <a href="https://github.com/grammatech/ddisasm">Software</a>)
-</li>
+(<a href="https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>, <a href="https://github.com/grammatech/ddisasm">Software</a>)</li>
 
 <li>Eric Schulte, Suan Yong, Dave Melski.
 <span class="underline">Inuring: Live Attacker-guided Repair</span>
-<i>Workshop on Forming an Ecosystem Around Software Transformation 2019</i> (<a href="data/feast-2019-inuring.pdf">PDF</a>, <a href="data/feast-2019-inuring.bib">Bibtex</a>)
-</li>
+<i>Workshop on Forming an Ecosystem Around Software Transformation 2019</i> (<a href="data/feast-2019-inuring.pdf">PDF</a>, <a href="data/feast-2019-inuring.bib">Bibtex</a>)</li>
 
 <li>Vineeth Kashyap, Jason Ruchti, Lucja Kot, Emma Turetsky, Rebecca Swords, David Melski, Eric Schulte
 <span class="underline">Automated Customized Bug-Benchmark Generation</span>
 <i>Source Code Analysis and Manipulation (SCAM) 2019 (<b>distinguished paper</b>)</i>
-(<a href="https://arxiv.org/pdf/1901.02819.pdf">PDF</a>, <a href="data/bug-injector.bib">Bibtex</a>, <a href="https://zenodo.org/record/3341585#.XTCQinVKiV4">Data set</a>)
-</li>
+(<a href="https://arxiv.org/pdf/1901.02819.pdf">PDF</a>, <a href="data/bug-injector.bib">Bibtex</a>, <a href="https://zenodo.org/record/3341585#.XTCQinVKiV4">Data set</a>)</li>
 
 <li>Eric Schulte, Jonathan Dorn, Antonio Flores Montoya, Aaron Ballman, Tom Johnson
 <span class="underline">GTIRB: Intermediate Representation for Binaries</span>
 <i>arXiv Pre-Print 2019</i>
-(<a href="https://arxiv.org/pdf/1907.02859.pdf">PDF</a>, <a href="data/gtirb.bib">Bibtex</a>)
-</li>
+(<a href="https://arxiv.org/pdf/1907.02859.pdf">PDF</a>, <a href="data/gtirb.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte, Contributors
 <span class="underline">Software Evolution Library</span>
 <i>Manual 2018</i>
-(<a href="https://github.com/GrammaTech/sel">Library Source</a>, <a href="https://grammatech.github.io/sel/">Manual HTML</a>, <a href="data/sel-manual.bib">Bibtex</a>)
-</li>
+(<a href="https://github.com/GrammaTech/sel">Library Source</a>, <a href="https://grammatech.github.io/sel/">Manual HTML</a>, <a href="data/sel-manual.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte, Jason Ruchti, Matt Noonan, David Ciarletta, Alexey Loginov
 <span class="underline">Evolving Exact Decompilation</span>
 <i>Workshop on Binary Analysis Research 2018</i>
-(<a href="data/bed.pdf">PDF</a>, <a href="data/bed.bib">Bibtex</a>, <a href="http://storm-country.com/blog/evo-deco">Blog post</a>)
-</li>
+(<a href="data/bed.pdf">PDF</a>, <a href="data/bed.bib">Bibtex</a>, <a href="http://storm-country.com/blog/evo-deco">Blog post</a>)</li>
 
 <li>Deborah Katz, Jason Ruchti, Eric Schulte
 <span class="underline">Using Recurrent Neural Networks for Decompilation</span>
 <i>Software Analysis, Evolution and Reengineering (SANER) 2018</i>
-(<a href="data/katz-saner-2018-preprint.pdf">PDF</a>, <a href="data/rnn-decomp.bib">Bibtex</a>)
-</li>
+(<a href="data/katz-saner-2018-preprint.pdf">PDF</a>, <a href="data/rnn-decomp.bib">Bibtex</a>)</li>
 
 <li>Benoit Baudry, Nicolas Harrand, Eric Schulte, Chris Timperley, Shin
 Hwei Tan, Marija Selakovic, Emamurho Ugherughe <span class="underline">A spoonful of DevOps
 helps the GI go down</span> <i>Genetic Improvement Workshop 2018</i>
-(<a href="data/devops-gi.pdf">PDF</a>, <a href="data/devops-gi.bib">Bibtex</a>)
-</li>
+(<a href="data/devops-gi.pdf">PDF</a>, <a href="data/devops-gi.bib">Bibtex</a>)</li>
 
 <li>Joel Lehman, <i>et. al.</i>
-  <span class="underline">The Surprising Creativity of Digital Evolution: A Collection of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities</span>
-  <i>arXiv 2018</i> (<a href="https://arxiv.org/pdf/1803.03453">PDF</a>, <a href="data/surprising-creativity-of-digital-evolution.bib">Bibtex</a>)
-</li>
+<span class="underline">The Surprising Creativity of Digital Evolution: A Collection of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities</span>
+<i>arXiv 2018</i> (<a href="https://arxiv.org/pdf/1803.03453">PDF</a>, <a href="data/surprising-creativity-of-digital-evolution.bib">Bibtex</a>)</li>
 
 <li>Vineeth Kashyap, Rebecca Swords, Eric Schulte, David Melski.
 <span class="underline">MuSynth: Program Synthesis via Code Reuse and Code Manipulation</span>
 <i>International Symposium on Search Based Software Engineering 2017</i>
-(<a href="data/musynth-ssbse-2017.pdf">PDF</a>, <a href="data/musynth-ssbse-2017.bib">Bibtex</a>)
-</li>
+(<a href="data/musynth-ssbse-2017.pdf">PDF</a>, <a href="data/musynth-ssbse-2017.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte, Michael McDougal, Dave Melski.
 <span class="underline">Software Transformation: Applications, Tools, Challenges, and Program Representation</span>
-<i>Workshop on Forming an Ecosystem Around Software Transformation 2016</i> (<a href="data/feast-2016-software-transformation.pdf">PDF</a>, <a href="data/feast-2016.bib">Bibtex</a>)
-</li>
+<i>Workshop on Forming an Ecosystem Around Software Transformation 2016</i> (<a href="data/feast-2016-software-transformation.pdf">PDF</a>, <a href="data/feast-2016.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte, Westley Weimer, Stephanie Forrest.
 <span class="underline">Repairing COTS router firmware without access to source code or test suites: A case study in evolutionary software repair</span>
-<i>Workshop on Genetic Improvement 2015 (<b>best paper</b>)</i> (<a href="data/netgear-repair-preprint.pdf">PDF</a>, <a href="data/gi-netgear-2015.bib">Bibtex</a>)
-</li>
+<i>Workshop on Genetic Improvement 2015 (<b>best paper</b>)</i> (<a href="data/netgear-repair-preprint.pdf">PDF</a>, <a href="data/gi-netgear-2015.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte.  <span class="underline">Neutral Networks of Real-World Programs and their
 Application to Automated Software Evolution</span> <i>Ph.D. Dissertation,
-University of New Mexico 2014</i> (<a href="https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation.pdf">PDF</a>, <a href="https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation.html">HTML</a>, <a href="data/schulte-dissertation.bib">Bibtex</a> <a href="https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation-presentation.pdf">slides</a>, <a href="https://www.cs.unm.edu/~eschulte/dissertation">more</a>)
-</li>
+University of New Mexico 2014</i> (<a href="https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation.pdf">PDF</a>, <a href="https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation.html">HTML</a>, <a href="data/schulte-dissertation.bib">Bibtex</a> <a href="https://www.cs.unm.edu/~eschulte/dissertation/schulte-dissertation-presentation.pdf">slides</a>, <a href="https://www.cs.unm.edu/~eschulte/dissertation">more</a>)</li>
 
 <li>Eric Schulte, Jonathan Dorn, Stephen Harding, Stephanie Forrest,
 Westley Weimer.  <span class="underline">Post-compiler Software Optimization for Reducing
 Energy</span> <i>Architectural Support for Programming Languages and
-Operating Systems (ASPLOS) 2014</i> (<a href="data/asplos265-schulte.pdf">PDF</a>, <a href="data/asplos-14-schulte.pdf">slides</a>, <a href="data/goa.bib">Bibtex</a>)
-</li>
+Operating Systems (ASPLOS) 2014</i> (<a href="data/asplos265-schulte.pdf">PDF</a>, <a href="data/asplos-14-schulte.pdf">slides</a>, <a href="data/goa.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte, Zachary P. Fry, Ethan Fast, Westley Weimer, Stephanie
 Forrest.  <span class="underline">Software Mutational Robustness</span> <i>Genetic Programming and
-Evolvable Machines 2013</i> (<a href="http://arxiv.org/abs/1204.4224">arXiv</a>, <a href="http://link.springer.com/article/10.1007/s10710-013-9195-8">Springer</a>, <a href="http://arxiv.org/pdf/1204.4224v3">PDF</a>, <a href="data/schulte2013robust.bib">Bibtex</a>, <a href="https://arxiv.org/abs/1901.02533">followup work by Harrand et al.</a>)
-</li>
+Evolvable Machines 2013</i> (<a href="http://arxiv.org/abs/1204.4224">arXiv</a>, <a href="http://link.springer.com/article/10.1007/s10710-013-9195-8">Springer</a>, <a href="http://arxiv.org/pdf/1204.4224v3">PDF</a>, <a href="data/schulte2013robust.bib">Bibtex</a>, <a href="https://arxiv.org/abs/1901.02533">followup work by Harrand et al.</a>)</li>
 
 <li>Eric Schulte, Jonathan DiLorenzo, Westley Weimer, Stephanie
 Forrest. <span class="underline">Automated Repair of Binary and Assembly Programs for
 Cooperating Embedded Devices</span> <i>Architectural Support for Programming
-Languages and Operating Systems (ASPLOS) 2013</i> (<a href="data/schulte2013embedded.pdf">PDF</a>, <a href="data/embedded.bib">Bibtex</a>, <a href="data/asplos-13-schulte.pdf">slides</a>)
-</li>
+Languages and Operating Systems (ASPLOS) 2013</i> (<a href="data/schulte2013embedded.pdf">PDF</a>, <a href="data/embedded.bib">Bibtex</a>, <a href="data/asplos-13-schulte.pdf">slides</a>)</li>
 
 <li>Eric Schulte, Dan Davison, Tom Dye, Carsten Dominik.
 <span class="underline">A Multi-Language Computing Environment for
  Literate Programming and Reproducible Research</span>
 <i>Journal of Statistical Software</i>
-(<a href="http://www.jstatsoft.org/v46/i03">JSS site (supplemental materials)</a>, <a href="http://www.jstatsoft.org/v46/i03/paper">PDF</a>, <a href="http://www.jstatsoft.org/v46/i03/bibtex">Bibtex</a>)
-</li>
+(<a href="http://www.jstatsoft.org/v46/i03">JSS site (supplemental materials)</a>, <a href="http://www.jstatsoft.org/v46/i03/paper">PDF</a>, <a href="http://www.jstatsoft.org/v46/i03/bibtex">Bibtex</a>)</li>
 
 <li>Eric Schulte, Dan Davison.  <span class="underline">Active Documents with Org-Mode</span>
-  <i>Computing in Science &amp; Engineering 2011</i> (<a href="data/CISE-13-3-SciProg.pdf">PDF</a>, <a href="data/CISE-13-3-SciProg.bib">Bibtex</a>, <a href="https://github.com/eschulte/CiSE">source</a>)
-</li>
+<i>Computing in Science &amp; Engineering 2011</i> (<a href="data/CISE-13-3-SciProg.pdf">PDF</a>, <a href="data/CISE-13-3-SciProg.bib">Bibtex</a>, <a href="https://github.com/eschulte/CiSE">source</a>)</li>
 
 <li>Eric Schulte, David Ackley.  <span class="underline">Physical Evolutionary Computation</span>
-  <i>University of New Mexico TR-CS-2011-01</i> (<a href="http://cs.unm.edu/~treport/tr/11-04/paper-2011-01.pdf">PDF</a>, <a href="data/tr-cs-2011-01.bib">Bibtex</a>)
-</li>
+<i>University of New Mexico TR-CS-2011-01</i> (<a href="http://cs.unm.edu/~treport/tr/11-04/paper-2011-01.pdf">PDF</a>, <a href="data/tr-cs-2011-01.bib">Bibtex</a>)</li>
 
 <li>Eric Schulte, Stephanie Forrest, Westley Weimer.  <span class="underline">Automated Program
 Repair through the Evolution of Assembly Code</span> <i>Automated Software
 Engineering (ASE) Short Paper 2010</i> (<a href="data/ase2010-asm-preprint.pdf">PDF</a>, <a href="data/ase2010-asm.bib">Bibtex</a>).
-A summary is presented in the following <a href="data/asm-gp-presentation.pdf">presentation</a> and <a href="data/asm-gp-poster.pdf">poster</a>.
-</li>
+A summary is presented in the following <a href="data/asm-gp-presentation.pdf">presentation</a> and <a href="data/asm-gp-poster.pdf">poster</a>.</li>
 
 <li>Paul Lehner, Charles Worrell, Chrissy Vu, Janet Mittel, Stephen
 Snyder, Eric Schulte, Warren Greiff, <span class="underline">An Application of Document
 Filtering in an Operational System</span> <i>Information Processing &amp;
-Management 2010</i> (<a href="data/argus-pub.bib">Bibtex</a>)
-</li>
+Management 2010</i> (<a href="data/argus-pub.bib">Bibtex</a>)</li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-projects" class="outline-2">
-<h2 id="projects"><a id="sec-3" name="sec-3"></a>Projects</h2>
+<h2 id="projects">Projects</h2>
 <div class="outline-text-2" id="text-projects">
 <p>
 I've written, managed, maintained, or significantly contributed to the
@@ -310,12 +370,10 @@ currently under active development at GrammaTech, and small utilities
 </p>
 
 <ul class="org-ul">
-<li><a href="https://grammatech.gitlab.io/Mnemosyne/docs/">Mnemosyne</a> brings program synthesis research to the modern IDE.
-</li>
+<li><a href="https://grammatech.gitlab.io/Mnemosyne/docs/">Mnemosyne</a> brings program synthesis research to the modern IDE.</li>
 <li><a href="https://github.com/grammatech/sel">SOFTWARE-EVOLUTION-LIBRARY</a> (SEL) is a common lisp library for the
 programmatic modification and evaluation of software.  See the <a href="https://grammatech.github.io/sel/#Top">SEL
-Manual</a> for more information.
-</li>
+Manual</a> for more information.</li>
 <li>Binary Analysis and Reverse Engineering.  See <a href="https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting">this blog post</a>
 announcing the open-source release of these tools, <a href="https://grammatech.github.io/gtirb/md_stack-stamp.html">this tutorial</a>
 introducing the use of GTIRB for binary rewriting, and <a href="data/debloat-datasheet.pdf">this
@@ -324,35 +382,26 @@ GTIRB.
 <ul class="org-ul">
 <li><a href="https://github.com/grammatech/gtirb">GTIRB</a> Intermediate Representation for Binary analysis and
 transformation.  Includes a Protobuf specification and a reference
-C++ library.
-</li>
+C++ library.</li>
 <li><a href="https://github.com/grammatech/ddisasm">ddisasm</a> A fast and accurate disassembler.  A Datalog engine powers
-this high performance re-assemblable disassembler
-</li>
-<li><a href="https://github.com/grammatech/gtirb-pprinter">gtirb-pprinter</a> Pretty printer from GTIRB to assembly code
-</li>
-</ul>
-</li>
+this high performance re-assemblable disassembler</li>
+<li><a href="https://github.com/grammatech/gtirb-pprinter">gtirb-pprinter</a> Pretty printer from GTIRB to assembly code</li>
+</ul></li>
 <li><a href="http://eschulte.github.io/curry-compose-reader-macros/">CURRY-COMPOSE-READER-MACROS</a> for concise expression of function
 partial application and composition in Common Lisp.  I've also
-implemented something similar for Emacs Lisp in <a href="https://gist.github.com/eschulte/6167923">curry-compose.el</a>.
-</li>
-<li><a href="http://eschulte.github.com/graph/">GRAPH</a> is a Common Lisp library for graphs manipulation and analysis.
-</li>
+implemented something similar for Emacs Lisp in <a href="https://gist.github.com/eschulte/6167923">curry-compose.el</a>.</li>
+<li><a href="http://eschulte.github.com/graph/">GRAPH</a> is a Common Lisp library for graphs manipulation and analysis.</li>
 <li><a href="http://orgmode.org/worg/org-contrib/babel/index.html">Babel</a> adds <i>literate programming</i> and <i>reproducible research</i>
-  functionality to <a href="http://orgmode.org/">Org-mode</a>, a major mode of the <a href="http://www.gnu.org/software/emacs/">Emacs</a> text editor.
-</li>
-<li><a href="http://rinari.rubyforge.org/">Rinari</a> is a <i>Ruby on Rails</i> minor mode for Emacs.
-</li>
+functionality to <a href="http://orgmode.org/">Org-mode</a>, a major mode of the <a href="http://www.gnu.org/software/emacs/">Emacs</a> text editor.</li>
+<li><a href="http://rinari.rubyforge.org/">Rinari</a> is a <i>Ruby on Rails</i> minor mode for Emacs.</li>
 <li><a href="http://eschulte.github.io/oncs/README.html">ONCs</a> is a prototype fully physically distributed lisp virtual
-machine.
-</li>
+machine.</li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-cv" class="outline-2">
-<h2 id="cv"><a id="sec-4" name="sec-4"></a>Curriculum Vitae</h2>
+<h2 id="cv">Curriculum Vitae</h2>
 <div class="outline-text-2" id="text-cv">
 <p>
 My CV (as of April 2019) is available at <a href="data/eric-schulte-cv.pdf">eric-schulte-cv.pdf</a>.
@@ -362,9 +411,8 @@ My CV (as of April 2019) is available at <a href="data/eric-schulte-cv.pdf">eric
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Eric Schulte</p>
-<p class="date">Created: 2020-08-28 Fri 20:33</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2020-12-15 Tue 07:46</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
