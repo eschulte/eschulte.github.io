@@ -38,7 +38,7 @@ development tasks from the mundane ([[https://mergeresolver.github.io][merge res
   _Inuring: Live Attacker-guided Repair_
   /Workshop on Forming an Ecosystem Around Software Transformation 2019/ ([[file:data/feast-2019-inuring.pdf][PDF]], [[file:data/feast-2019-inuring.bib][Bibtex]])
 
-- Vineeth Kashyap, Jason Ruchti, Lucja Kot, Emma Turetsky, Rebecca Swords, David Melski, Eric Schulte
+- Vineeth Kashyap, Jason Ruchti, Lucja Kot, Emma Turetsky, Rebecca Swords, Shih An Pan, Julien Henry, David Melski, Eric Schulte
   _Automated Customized Bug-Benchmark Generation_
   /Source Code Analysis and Manipulation (SCAM) 2019 (*distinguished paper*)/
   ([[https://arxiv.org/pdf/1901.02819.pdf][PDF]], [[file:data/bug-injector.bib][Bibtex]], [[https://zenodo.org/record/3341585#.XTCQinVKiV4][Data set]])
