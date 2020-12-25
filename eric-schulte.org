@@ -125,9 +125,9 @@ development tasks from the mundane ([[https://mergeresolver.github.io][merge res
   Filtering in an Operational System_ /Information Processing &
   Management 2010/ ([[file:data/argus-pub.bib][Bibtex]])
 
-* Projects
+* Software Projects
   :PROPERTIES:
-  :CUSTOM_ID: projects
+  :CUSTOM_ID: software-projects
   :END:
 I've written, managed, maintained, or significantly contributed to the
 following software which includes large open-source projects, projects
