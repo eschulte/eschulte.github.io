@@ -51,8 +51,7 @@ body {
 #small-contact {
   position: absolute;
   left: 260px; 
-  font-size: 0.625em;
-  top: 6.125em; }
+  font-size: 0.625em; }
 
 @media all and (min-width: 1000px){
     #pgp { right: 10%; } }
