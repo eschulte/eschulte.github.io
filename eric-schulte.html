@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-11-23 Tue 08:25 -->
+<!-- 2022-01-25 Tue 12:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dr. Eric Schulte</title>
@@ -242,7 +242,7 @@
 <div class="outline-text-2" id="text-research">
 <p>
 I am the <i>Director of Automated Software Engineering</i> at GrammaTech,
-where I lead the <i>Program Synthesis</i> and <i>Binary Rewriting</i> research
+where I lead the <a href="https://grammatech.github.io/ra/machine-programming/"><i>Machine Programming</i></a> and <a href="https://grammatech.github.io/ra/binary-rewriting/"><i>Binary Rewriting</i></a> research
 areas.  I build tools for people who work with software; from helping
 developers write and maintain their own projects to helping reverse
 engineers understand third-party binaries.  My work is motivated by an
@@ -251,7 +251,7 @@ properties previously identified in biological systems.  I leverage a
 combination of evolutionary computation, statistical machine learning,
 and formal methods techniques towards the goal of automating software
 development tasks from the mundane (<a href="https://mergeresolver.github.io">merge resolver</a>) to the creative
-(the <a href="https://grammatech.gitlab.io/Mnemosyne/docs/">mnemosyne</a> program synthesis framework).
+(the <a href="https://grammatech.gitlab.io/Mnemosyne/docs/">mnemosyne</a> automated software development assistant).
 </p>
 </div>
 </div>
@@ -263,7 +263,7 @@ development tasks from the mundane (<a href="https://mergeresolver.github.io">me
 <li>Antonio Flores-Montoya, Eric Schulte
 <span class="underline">Datalog Disassembly</span>
 <i>29th USENIX Security Symposium 2020 (<b>distinguished paper</b>)</i>
-(<a href="https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>, <a href="https://github.com/grammatech/ddisasm">Software</a>)</li>
+(<a href="https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf">PDF</a>, <a href="data/ddisasm.bib">Bibtex</a>, <a href="https://github.com/grammatech/ddisasm">Software</a>, <a href="https://patentimages.storage.googleapis.com/21/69/b4/be81600799ca51/US10705814.pdf">Patent</a>)</li>
 
 <li>Eric Schulte, Suan Yong, Dave Melski.
 <span class="underline">Inuring: Live Attacker-guided Repair</span>
@@ -370,30 +370,88 @@ currently under active development at GrammaTech, and small utilities
 </p>
 
 <ul class="org-ul">
-<li><a href="https://grammatech.gitlab.io/Mnemosyne/docs/">Mnemosyne</a> brings program synthesis research to the modern IDE.</li>
-<li><a href="https://github.com/grammatech/sel">SOFTWARE-EVOLUTION-LIBRARY</a> (SEL) is a common lisp library for the
-programmatic modification and evaluation of software.  See the <a href="https://grammatech.github.io/sel/#Top">SEL
-Manual</a> for more information.</li>
-<li>Binary Analysis and Reverse Engineering.  See <a href="https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting">this blog post</a>
-announcing the open-source release of these tools, <a href="https://grammatech.github.io/gtirb/md_stack-stamp.html">this tutorial</a>
-introducing the use of GTIRB for binary rewriting, and <a href="data/debloat-datasheet.pdf">this
-datasheet</a> describing open-source and commercial tools build on
-GTIRB.
-<ul class="org-ul">
-<li><a href="https://github.com/grammatech/gtirb">GTIRB</a> Intermediate Representation for Binary analysis and
-transformation.  Includes a Protobuf specification and a reference
-C++ library.</li>
-<li><a href="https://github.com/grammatech/ddisasm">ddisasm</a> A fast and accurate disassembler.  A Datalog engine powers
-this high performance re-assemblable disassembler</li>
-<li><a href="https://github.com/grammatech/gtirb-pprinter">gtirb-pprinter</a> Pretty printer from GTIRB to assembly code</li>
-</ul></li>
+<li><a href="https://grammatech.gitlab.io/Mnemosyne/docs/">Mnemosyne</a> is an automated software development assistant.  It
+suggests code, tests, and types directly in your IDE.</li>
+
+<li><p>
+An ecosystem of tools for binary analysis and transformation built
+around the <a href="https://grammatech.github.io/prj/gtirb/">GTIRB</a> intermediate representation for binaries.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Tool</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><a href="https://github.com/grammatech/ddisasm">DDisasm</a></td>
+<td class="org-left">Fast and accurate disassembler which produces GTIRB</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/grammatech/gtirb-pprinter">GTIRB-PPrinter</a></td>
+<td class="org-left">Pretty print GTIRB to assembler or a binary executable</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://grammatech.github.io/prj/gtirb-vscode/">GTIRB-VSCode</a></td>
+<td class="org-left">VSCode extension to read, navigate, and (re)write GTIRB files</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/grammatech/gtirb-rewriting">gtirb-rewriting</a></td>
+<td class="org-left">Python API for rewriting GTIRB files</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/grammatech/gtirb-functions">gtirb-functions</a></td>
+<td class="org-left">APIs for working with functions in GTIRB files</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/grammatech/gtirb-ghidra-plugin">gtirb-ghidra-plugin</a></td>
+<td class="org-left">Import/Export GTIRB files to/from Ghidra</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/GrammaTech/gtirb-capstone">gtirb-capstone</a></td>
+<td class="org-left">Integration with the [Capstone][] decoder</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/grammatech/gtirb-stack-stamp">gtirb-stack-stamp</a></td>
+<td class="org-left">Example hardening transform over GTIRB</td>
+</tr>
+</tbody>
+</table></li>
+
+<li>The <a href="https://grammatech.github.io/prj/sel/">Software Evolution Library</a> (SEL) provides for the programmatic
+manipulation of programs.  It builds on GitHub's <a href="https://tree-sitter.github.io/tree-sitter/">tree-sitter</a> parsers
+to provide support for dozens of programming languages.  SEL
+provides both <a href="https://github.com/grammatech/sel">Common Lisp</a> and <a href="https://pypi.org/project/asts/">Python</a> APIs. See the <a href="https://grammatech.github.io/sel/#Top">SEL Manual</a> for
+more information.</li>
+
+<li><a href="http://eschulte.github.com/graph/">GRAPH</a> is a Common Lisp library for graphs manipulation and analysis.</li>
+
+<li><a href="http://orgmode.org/worg/org-contrib/babel/index.html">Babel</a> adds <i>literate programming</i> and <i>reproducible research</i>
+functionality to <a href="http://orgmode.org/">Org-mode</a>, a major mode of the <a href="http://www.gnu.org/software/emacs/">Emacs</a> text editor.</li>
+
 <li><a href="http://eschulte.github.io/curry-compose-reader-macros/">CURRY-COMPOSE-READER-MACROS</a> for concise expression of function
 partial application and composition in Common Lisp.  I've also
 implemented something similar for Emacs Lisp in <a href="https://gist.github.com/eschulte/6167923">curry-compose.el</a>.</li>
-<li><a href="http://eschulte.github.com/graph/">GRAPH</a> is a Common Lisp library for graphs manipulation and analysis.</li>
-<li><a href="http://orgmode.org/worg/org-contrib/babel/index.html">Babel</a> adds <i>literate programming</i> and <i>reproducible research</i>
-functionality to <a href="http://orgmode.org/">Org-mode</a>, a major mode of the <a href="http://www.gnu.org/software/emacs/">Emacs</a> text editor.</li>
+
 <li><a href="http://rinari.rubyforge.org/">Rinari</a> is a <i>Ruby on Rails</i> minor mode for Emacs.</li>
+
 <li><a href="http://eschulte.github.io/oncs/README.html">ONCs</a> is a prototype fully physically distributed lisp virtual
 machine.</li>
 </ul>
@@ -404,14 +462,14 @@ machine.</li>
 <h2 id="cv">Curriculum Vitae</h2>
 <div class="outline-text-2" id="text-cv">
 <p>
-My CV (as of April 2019) is available at <a href="data/eric-schulte-cv.pdf">eric-schulte-cv.pdf</a>.
+My CV is available at <a href="data/eric-schulte-cv.pdf">eric-schulte-cv.pdf</a>.
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Eric Schulte</p>
-<p class="date">Created: 2021-11-23 Tue 08:25</p>
+<p class="date">Created: 2022-01-25 Tue 12:50</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -14,7 +14,7 @@
   :CUSTOM_ID: research
   :END:
 I am the /Director of Automated Software Engineering/ at GrammaTech,
-where I lead the /Program Synthesis/ and /Binary Rewriting/ research
+where I lead the [[https://grammatech.github.io/ra/machine-programming/][/Machine Programming/]] and [[https://grammatech.github.io/ra/binary-rewriting/][/Binary Rewriting/]] research
 areas.  I build tools for people who work with software; from helping
 developers write and maintain their own projects to helping reverse
 engineers understand third-party binaries.  My work is motivated by an
@@ -23,16 +23,17 @@ properties previously identified in biological systems.  I leverage a
 combination of evolutionary computation, statistical machine learning,
 and formal methods techniques towards the goal of automating software
 development tasks from the mundane ([[https://mergeresolver.github.io][merge resolver]]) to the creative
-(the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] program synthesis framework).
+(the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] automated software development assistant).
 
 * Publications
   :PROPERTIES:
   :CUSTOM_ID: publications
   :END:
+
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
   /29th USENIX Security Symposium 2020 (*distinguished paper*)/
-  ([[https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]], [[https://github.com/grammatech/ddisasm][Software]])
+  ([[https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]], [[https://github.com/grammatech/ddisasm][Software]], [[https://patentimages.storage.googleapis.com/21/69/b4/be81600799ca51/US10705814.pdf][Patent]])
 
 - Eric Schulte, Suan Yong, Dave Melski.
   _Inuring: Live Attacker-guided Repair_
@@ -134,28 +135,40 @@ following software which includes large open-source projects, projects
 currently under active development at GrammaTech, and small utilities
 (presented in order of significance and activity).
 
-- [[https://grammatech.gitlab.io/Mnemosyne/docs/][Mnemosyne]] brings program synthesis research to the modern IDE.
-- [[https://github.com/grammatech/sel][SOFTWARE-EVOLUTION-LIBRARY]] (SEL) is a common lisp library for the
-  programmatic modification and evaluation of software.  See the [[https://grammatech.github.io/sel/#Top][SEL
-  Manual]] for more information.
-- Binary Analysis and Reverse Engineering.  See [[https://blogs.grammatech.com/open-source-tools-for-binary-analysis-and-rewriting][this blog post]]
-  announcing the open-source release of these tools, [[https://grammatech.github.io/gtirb/md_stack-stamp.html][this tutorial]]
-  introducing the use of GTIRB for binary rewriting, and [[file:data/debloat-datasheet.pdf][this
-  datasheet]] describing open-source and commercial tools build on
-  GTIRB.
-  - [[https://github.com/grammatech/gtirb][GTIRB]] Intermediate Representation for Binary analysis and
-    transformation.  Includes a Protobuf specification and a reference
-    C++ library.
-  - [[https://github.com/grammatech/ddisasm][ddisasm]] A fast and accurate disassembler.  A Datalog engine powers
-    this high performance re-assemblable disassembler
-  - [[https://github.com/grammatech/gtirb-pprinter][gtirb-pprinter]] Pretty printer from GTIRB to assembly code
+- [[https://grammatech.gitlab.io/Mnemosyne/docs/][Mnemosyne]] is an automated software development assistant.  It
+  suggests code, tests, and types directly in your IDE.
+
+- An ecosystem of tools for binary analysis and transformation built
+  around the [[https://grammatech.github.io/prj/gtirb/][GTIRB]] intermediate representation for binaries.
+
+  | Tool                | Description                                                   |
+  |---------------------+---------------------------------------------------------------|
+  | [[https://github.com/grammatech/ddisasm][DDisasm]]             | Fast and accurate disassembler which produces GTIRB           |
+  | [[https://github.com/grammatech/gtirb-pprinter][GTIRB-PPrinter]]      | Pretty print GTIRB to assembler or a binary executable        |
+  | [[https://grammatech.github.io/prj/gtirb-vscode/][GTIRB-VSCode]]        | VSCode extension to read, navigate, and (re)write GTIRB files |
+  | [[https://github.com/grammatech/gtirb-rewriting][gtirb-rewriting]]     | Python API for rewriting GTIRB files                          |
+  | [[https://github.com/grammatech/gtirb-functions][gtirb-functions]]     | APIs for working with functions in GTIRB files                |
+  | [[https://github.com/grammatech/gtirb-ghidra-plugin][gtirb-ghidra-plugin]] | Import/Export GTIRB files to/from Ghidra                      |
+  | [[https://github.com/GrammaTech/gtirb-capstone][gtirb-capstone]]      | Integration with the [Capstone][] decoder                     |
+  | [[https://github.com/grammatech/gtirb-stack-stamp][gtirb-stack-stamp]]   | Example hardening transform over GTIRB                        |
+
+- The [[https://grammatech.github.io/prj/sel/][Software Evolution Library]] (SEL) provides for the programmatic
+  manipulation of programs.  It builds on GitHub's [[https://tree-sitter.github.io/tree-sitter/][tree-sitter]] parsers
+  to provide support for dozens of programming languages.  SEL
+  provides both [[https://github.com/grammatech/sel][Common Lisp]] and [[https://pypi.org/project/asts/][Python]] APIs. See the [[https://grammatech.github.io/sel/#Top][SEL Manual]] for
+  more information.
+
+- [[http://eschulte.github.com/graph/][GRAPH]] is a Common Lisp library for graphs manipulation and analysis.
+
+- [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
+  functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
+
 - [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
   partial application and composition in Common Lisp.  I've also
   implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
-- [[http://eschulte.github.com/graph/][GRAPH]] is a Common Lisp library for graphs manipulation and analysis.
-- [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
-  functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
+
 - [[http://rinari.rubyforge.org/][Rinari]] is a /Ruby on Rails/ minor mode for Emacs.
+
 - [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully physically distributed lisp virtual
   machine.
 
@@ -163,4 +176,4 @@ currently under active development at GrammaTech, and small utilities
   :PROPERTIES:
   :CUSTOM_ID: cv
   :END:
-My CV (as of April 2019) is available at [[file:data/eric-schulte-cv.pdf][eric-schulte-cv.pdf]].
+My CV is available at [[file:data/eric-schulte-cv.pdf][eric-schulte-cv.pdf]].
