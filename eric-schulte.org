@@ -33,7 +33,12 @@ development tasks from the mundane ([[https://mergeresolver.github.io][merge res
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
   /29th USENIX Security Symposium 2020 (*distinguished paper*)/
-  ([[https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]], [[https://github.com/grammatech/ddisasm][Software]], [[file:data/US10705814.pdf][Patent]])
+  ([[https://www.usenix.org/system/files/sec20fall_flores-montoya_prepub_0.pdf][PDF]], [[file:data/ddisasm.bib][Bibtex]], [[https://github.com/grammatech/ddisasm][Software]])
+
+- Eric Schulte, Antonio Flores-Montoya.
+  _Systems and/or methods for generating reassemblable disassemblies of binaries using declarative logic_
+  /U.S. Patent US010705814B2 2020/
+  ([[file:data/US10705814.pdf][PDF]], [[file:data/datalog-disassembly-patent.bib][Bibtex]])
 
 - Eric Schulte, Suan Yong, Dave Melski.
   _Inuring: Live Attacker-guided Repair_
