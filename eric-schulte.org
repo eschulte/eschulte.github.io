@@ -54,6 +54,11 @@ development tasks from the mundane ([[https://mergeresolver.github.io][merge res
   /arXiv Pre-Print 2019/
   ([[https://arxiv.org/pdf/1907.02859.pdf][PDF]], [[file:data/gtirb.bib][Bibtex]])
 
+- Bill Langdon, /et. al./
+  _The State and Future of Genetic Improvement_
+  /ACM SIGSOFT Software Engineering Notes/
+  ([[https://arxiv.org/pdf/1907.03773][PDF]], [[file:data/gi-2019.bib][Bibtex]])
+
 - Eric Schulte, Contributors
   _Software Evolution Library_
   /Manual 2018/
