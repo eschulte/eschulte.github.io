@@ -31,9 +31,9 @@ development tasks from the mundane ([[https://mergeresolver.github.io][merge res
   :END:
 
 - Eric Schulte and Vlad Folts and Michael Brown
-  _Binary Lifter Evaluation_
-  /arXiv Pre-Print 2022/
-  ([[https://arxiv.org/pdf/2203.13231.pdf][PDF]], [[https://grammatech.gitlab.io/lifter-eval/][HTML]], [[file:data/lifter-eval.bib][Bibtex]], [[https://gitlab.com/GrammaTech/lifter-eval][Repo]])
+  _A Broad Comparative Evaluation of x86-64 Binary Rewriters_
+  /Cyber Security Experimentation and Test Workshop 2022/
+  ([[file:data/lifter-eval.pdf][PDF]], [[https://grammatech.gitlab.io/lifter-eval/][HTML]], [[file:data/lifter-eval.bib][Bibtex]], [[https://gitlab.com/GrammaTech/lifter-eval][Repo]])
 
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
