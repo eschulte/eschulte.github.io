@@ -6,24 +6,62 @@
 #+html: <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
 #+html: <img id="me" height="300" src="data/headshot-masked.jpg">
 #+html: <div class="hide-small" id="contact"><tt>schulte-dot-eric-at-gmail.com</tt></div>
-#+html: <div class="hide-large" id="small-contact"><tt>schulte-dot-eric-at-gmail.com</tt></div>
+#+html: <div class="hide-large" id="small-contact"><tt>schulte.eric-at-gmail.com</tt></div>
 #+html: <div class="hide-small" id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
 
-* Research
-  :PROPERTIES:
-  :CUSTOM_ID: research
-  :END:
-I am the /Director of Automated Software Engineering/ at GrammaTech,
-where I lead the [[https://grammatech.github.io/ra/machine-programming/][/Machine Programming/]] and [[https://grammatech.github.io/ra/binary-rewriting/][/Binary Rewriting/]] research
-areas.  I build tools for people who work with software; from helping
+I am currently fun-employed but will be starting work in Google's
+/Engineering Productivity/ group this fall.  I was previously the
+/Director of Automated Software Engineering/ at [[https://grammatech.github.io][GrammaTech]].
+
+I build tools for people who work with software; from helping
 developers write and maintain their own projects to helping reverse
-engineers understand third-party binaries.  My work is motivated by an
-understanding of [[https://www.cs.unm.edu/~eschulte/dissertation][software as an evolved system]] that displays many
-properties previously identified in biological systems.  I leverage a
-combination of evolutionary computation, statistical machine learning,
-and formal methods techniques towards the goal of automating software
-development tasks from the mundane ([[https://mergeresolver.github.io][merge resolver]]) to the creative
-(the [[https://grammatech.gitlab.io/Mnemosyne/docs/][mnemosyne]] automated software development assistant).
+engineers understand third-party binaries.  My graduate work was
+motivated by an understanding of [[https://www.cs.unm.edu/~eschulte/dissertation][software as an evolved system]] that
+displays many properties previously identified in biological systems.
+This complex systems view of the software ecosystem continues to
+inform my professional work.
+
+* Software Projects
+  :PROPERTIES:
+  :CUSTOM_ID: software-projects
+  :END:
+I've written, managed, maintained, or significantly contributed to the
+following software which includes large open-source projects, projects
+currently under active development at GrammaTech, and small utilities
+(presented in order of significance and activity).
+
+- The [[https://grammatech.github.io/prj/gtirb/][GTIRB]] intermediate representation for binaries supports an
+  [[https://grammatech.github.io/prj/gtirb/#gtirb-ecosystem][ecosystem of tools]] for binary analysis and rewriting.
+
+  | Tool                | Description                                                   |
+  |---------------------+---------------------------------------------------------------|
+  | [[https://github.com/grammatech/ddisasm][DDisasm]]             | Fast and accurate disassembler which produces GTIRB           |
+  | [[https://github.com/grammatech/gtirb-pprinter][GTIRB-PPrinter]]      | Pretty print GTIRB to assembler or a binary executable        |
+  | [[https://grammatech.github.io/prj/gtirb-vscode/][GTIRB-VSCode]]        | VSCode extension to read, navigate, and (re)write GTIRB files |
+  | [[https://github.com/grammatech/gtirb-rewriting][gtirb-rewriting]]     | Python API for rewriting GTIRB files                          |
+  | [[https://github.com/grammatech/gtirb-ghidra-plugin][gtirb-ghidra-plugin]] | Import/Export GTIRB files to/from Ghidra                      |
+
+- The [[https://grammatech.github.io/prj/sel/][Software Evolution Library]] (SEL) provides for the programmatic
+  manipulation of programs.  It builds on GitHub's [[https://tree-sitter.github.io/tree-sitter/][tree-sitter]] parsers
+  to provide support for dozens of programming languages.  SEL is
+  available for [[https://github.com/grammatech/sel][Common Lisp]] and [[https://pypi.org/project/asts/][Python]].
+
+- [[https://grammatech.gitlab.io/Mnemosyne/docs/][Mnemosyne]] is an automated software development assistant.  It
+  suggests code, tests, and types directly in your IDE.
+
+- [[http://eschulte.github.com/graph/][GRAPH]] is a Common Lisp library for graphs manipulation and analysis.
+
+- [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
+  functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
+
+- [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
+  partial application and composition in Common Lisp.  I've also
+  implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
+
+- [[http://rinari.rubyforge.org/][Rinari]] is a /Ruby on Rails/ minor mode for Emacs.
+
+- [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully physically distributed lisp virtual
+  machine.
 
 * Publications
   :PROPERTIES:
@@ -140,52 +178,6 @@ development tasks from the mundane ([[https://mergeresolver.github.io][merge res
   Snyder, Eric Schulte, Warren Greiff, _An Application of Document
   Filtering in an Operational System_ /Information Processing &
   Management 2010/ ([[file:data/argus-pub.bib][Bibtex]])
-
-* Software Projects
-  :PROPERTIES:
-  :CUSTOM_ID: software-projects
-  :END:
-I've written, managed, maintained, or significantly contributed to the
-following software which includes large open-source projects, projects
-currently under active development at GrammaTech, and small utilities
-(presented in order of significance and activity).
-
-- [[https://grammatech.gitlab.io/Mnemosyne/docs/][Mnemosyne]] is an automated software development assistant.  It
-  suggests code, tests, and types directly in your IDE.
-
-- An ecosystem of tools for binary analysis and transformation built
-  around the [[https://grammatech.github.io/prj/gtirb/][GTIRB]] intermediate representation for binaries.
-
-  | Tool                | Description                                                   |
-  |---------------------+---------------------------------------------------------------|
-  | [[https://github.com/grammatech/ddisasm][DDisasm]]             | Fast and accurate disassembler which produces GTIRB           |
-  | [[https://github.com/grammatech/gtirb-pprinter][GTIRB-PPrinter]]      | Pretty print GTIRB to assembler or a binary executable        |
-  | [[https://grammatech.github.io/prj/gtirb-vscode/][GTIRB-VSCode]]        | VSCode extension to read, navigate, and (re)write GTIRB files |
-  | [[https://github.com/grammatech/gtirb-rewriting][gtirb-rewriting]]     | Python API for rewriting GTIRB files                          |
-  | [[https://github.com/grammatech/gtirb-functions][gtirb-functions]]     | APIs for working with functions in GTIRB files                |
-  | [[https://github.com/grammatech/gtirb-ghidra-plugin][gtirb-ghidra-plugin]] | Import/Export GTIRB files to/from Ghidra                      |
-  | [[https://github.com/GrammaTech/gtirb-capstone][gtirb-capstone]]      | Integration with the [Capstone][] decoder                     |
-  | [[https://github.com/grammatech/gtirb-stack-stamp][gtirb-stack-stamp]]   | Example hardening transform over GTIRB                        |
-
-- The [[https://grammatech.github.io/prj/sel/][Software Evolution Library]] (SEL) provides for the programmatic
-  manipulation of programs.  It builds on GitHub's [[https://tree-sitter.github.io/tree-sitter/][tree-sitter]] parsers
-  to provide support for dozens of programming languages.  SEL
-  provides both [[https://github.com/grammatech/sel][Common Lisp]] and [[https://pypi.org/project/asts/][Python]] APIs. See the [[https://grammatech.github.io/sel/#Top][SEL Manual]] for
-  more information.
-
-- [[http://eschulte.github.com/graph/][GRAPH]] is a Common Lisp library for graphs manipulation and analysis.
-
-- [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
-  functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
-
-- [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
-  partial application and composition in Common Lisp.  I've also
-  implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
-
-- [[http://rinari.rubyforge.org/][Rinari]] is a /Ruby on Rails/ minor mode for Emacs.
-
-- [[http://eschulte.github.io/oncs/README.html][ONCs]] is a prototype fully physically distributed lisp virtual
-  machine.
 
 * Curriculum Vitae
   :PROPERTIES:
