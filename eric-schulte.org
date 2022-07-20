@@ -49,6 +49,10 @@ currently under active development at GrammaTech, and small utilities
 - [[https://grammatech.gitlab.io/Mnemosyne/docs/][Mnemosyne]] is an automated software development assistant.  It
   suggests code, tests, and types directly in your IDE.
 
+- [[https://github.com/grammatech/resolve][Resolve]] is a tool for AST tree difference calculation for accurate
+  differencing and merging of software.  [[https://mergeresolver.github.io][MergeResolver]] is a tool for
+  automated merge conflict resolution that builds on Resolve.
+
 - [[http://eschulte.github.com/graph/][GRAPH]] is a Common Lisp library for graphs manipulation and analysis.
 
 - [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
