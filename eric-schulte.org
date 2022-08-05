@@ -75,7 +75,7 @@ currently under active development at GrammaTech, and small utilities
 - Eric Schulte and Vlad Folts and Michael Brown
   _A Broad Comparative Evaluation of x86-64 Binary Rewriters_
   /Cyber Security Experimentation and Test Workshop 2022/
-  ([[https://arxiv.org/pdf/2203.13231][PDF]], [[file:data/lifter-eval.bib][Bibtex]], [[https://gitlab.com/GrammaTech/lifter-eval][Repo]], [[https://gitlab.com/GrammaTech/lifter-eval-artifacts][Data set]])
+  ([[https://arxiv.org/pdf/2203.13231][PDF]], [[file:data/lifter-eval.bib][Bibtex]], [[file:data/cset22-16-slides.pdf][Slides]], [[https://gitlab.com/GrammaTech/lifter-eval][Repo]], [[https://gitlab.com/GrammaTech/lifter-eval-artifacts][Data set]])
 
 - Antonio Flores-Montoya, Eric Schulte
   _Datalog Disassembly_
