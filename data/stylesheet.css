@@ -98,7 +98,8 @@ body {
   border: 2px solid lightgray;
   padding: 1em;
   margin: 1em;
-  list-style-type: none; }
+  list-style-type: none; 
+  line-height: 1.5; }
 
 #text-publications li {
   margin: 1em;
