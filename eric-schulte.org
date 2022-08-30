@@ -183,6 +183,47 @@ currently under active development at GrammaTech, and small utilities
   Filtering in an Operational System_ /Information Processing &
   Management 2010/ ([[file:data/argus-pub.bib][Bibtex]])
 
+* Botanical Drawing
+  :PROPERTIES:
+  :CUSTOM_ID: botanical-drawing
+  :END:
+#+COMMENT: cd drawings/; mogrify -format gif -thumbnail 100x100 *.jpeg
+
+#+BEGIN_EXPORT html
+
+<ul>
+
+<li>
+Savoy Cabbage.</br>
+<a href="drawings/savoy-cabbage.jpeg"><img src="drawings/savoy-cabbage.gif"></a>
+</li>
+
+<li>
+Hemingway Daiguiri.</br>
+<a href="drawings/hemingway-daiguiri.jpeg"><img src="drawings/hemingway-daiguiri.gif"></a>
+</li>
+
+<li>
+Geranium Leaf.</br>
+<a href="drawings/geranium-leaf.jpeg"><img src="drawings/geranium-leaf.gif"></a>
+</li>
+
+<li>
+Black Alder.</br>
+<a href="drawings/black-alder.jpeg"><img src="drawings/black-alder.gif"></a>
+</li>
+
+<li>
+Alstroemeria.</br>
+<a href="drawings/alstroemeria.jpeg"><img src="drawings/alstroemeria.gif"></a>
+</li>
+
+</ul>
+
+<div style="clear;both"></div>
+
+#+END_EXPORT
+
 * Curriculum Vitae
   :PROPERTIES:
   :CUSTOM_ID: cv

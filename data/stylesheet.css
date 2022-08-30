@@ -92,6 +92,14 @@ body {
   margin: 1em;
   list-style-type: none; }
 
+#text-botanical-drawing li {
+  display: inline-block;
+  text-align: center;
+  border: 2px solid lightgray;
+  padding: 1em;
+  margin: 1em;
+  list-style-type: none; }
+
 #text-publications li {
   margin: 1em;
   list-style-type: none; }
