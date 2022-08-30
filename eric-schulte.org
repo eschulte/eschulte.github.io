@@ -194,27 +194,27 @@ currently under active development at GrammaTech, and small utilities
 <ul>
 
 <li>
-Savoy Cabbage.</br>
+Savoy Cabbage</br>
 <a href="drawings/savoy-cabbage.jpeg"><img src="drawings/savoy-cabbage.gif"></a>
 </li>
 
 <li>
-Hemingway Daiquiri.</br>
+Hemingway Daiquiri</br>
 <a href="drawings/hemingway-daiquiri.jpeg"><img src="drawings/hemingway-daiquiri.gif"></a>
 </li>
 
 <li>
-Geranium Leaf.</br>
+Geranium Leaf</br>
 <a href="drawings/geranium-leaf.jpeg"><img src="drawings/geranium-leaf.gif"></a>
 </li>
 
 <li>
-Black Alder.</br>
+Black Alder</br>
 <a href="drawings/black-alder.jpeg"><img src="drawings/black-alder.gif"></a>
 </li>
 
 <li>
-Alstroemeria.</br>
+Alstroemeria</br>
 <a href="drawings/alstroemeria.jpeg"><img src="drawings/alstroemeria.gif"></a>
 </li>
 
