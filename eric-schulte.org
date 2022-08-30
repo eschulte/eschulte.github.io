@@ -199,8 +199,8 @@ Savoy Cabbage.</br>
 </li>
 
 <li>
-Hemingway Daiguiri.</br>
-<a href="drawings/hemingway-daiguiri.jpeg"><img src="drawings/hemingway-daiguiri.gif"></a>
+Hemingway Daiquiri.</br>
+<a href="drawings/hemingway-daiquiri.jpeg"><img src="drawings/hemingway-daiquiri.gif"></a>
 </li>
 
 <li>
