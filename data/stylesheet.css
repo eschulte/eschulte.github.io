@@ -51,7 +51,7 @@ body {
 #small-contact {
   position: absolute;
   top: 100px;
-  left: 250px; 
+  left: 250px;
   font-size: 0.625em; }
 
 @media (min-width:400px){
@@ -98,7 +98,7 @@ body {
   border: 2px solid lightgray;
   padding: 1em;
   margin: 1em;
-  list-style-type: none; 
+  list-style-type: none;
   line-height: 1.5; }
 
 #text-publications li {
