@@ -58,6 +58,11 @@ currently under active development at GrammaTech, and small utilities
 - [[http://orgmode.org/worg/org-contrib/babel/index.html][Babel]] adds /literate programming/ and /reproducible research/
   functionality to [[http://orgmode.org/][Org-mode]], a major mode of the [[http://www.gnu.org/software/emacs/][Emacs]] text editor.
 
+- [[https://github.com/eschulte/markdown-mime][Markdown-Mime]] provides WYSiWYG HTML email authoring for [[http://www.gnu.org/software/emacs/][Emacs]]
+  message mode, making it easy to send the HTML emails that most
+  people seem to be expecting these days (while including a legible
+  ~text/plain~ alternative for those with class).
+
 - [[http://eschulte.github.io/curry-compose-reader-macros/][CURRY-COMPOSE-READER-MACROS]] for concise expression of function
   partial application and composition in Common Lisp.  I've also
   implemented something similar for Emacs Lisp in [[https://gist.github.com/eschulte/6167923][curry-compose.el]].
