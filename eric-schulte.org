@@ -223,6 +223,11 @@ Alstroemeria</br>
 <a href="drawings/alstroemeria.jpeg"><img src="drawings/alstroemeria.gif"></a>
 </li>
 
+<li>
+Geranium Roots</br>
+<a href="drawings/geranium-roots.jpeg"><img src="drawings/geranium-roots.gif"></a>
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
