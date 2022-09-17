@@ -9,9 +9,9 @@
 #+html: <div class="hide-large" id="small-contact"><tt>schulte.eric-at-gmail.com</tt></div>
 #+html: <div class="hide-small" id="pgp"><a href="data/eschulte-key.txt" title="PGP Key"><tt>FA8D C2C3 E8A0 A749 34CD  9DCF 3C1B 8581 614C A05D</tt></a></div>
 
-I am currently fun-employed but will be starting work in Google's
-/Engineering Productivity/ group this fall.  I was previously the
-/Director of Automated Software Engineering/ at [[https://grammatech.github.io][GrammaTech]].
+I am a software engineer in [[https://landing.google.com/engprod/][/Engineering Productivity/]] at Google.  I
+was previously the /Director of Automated Software Engineering/ at
+[[https://grammatech.github.io][GrammaTech]].
 
 I build tools for people who work with software; from helping
 developers write and maintain their own projects to helping reverse
