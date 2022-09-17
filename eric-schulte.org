@@ -228,6 +228,11 @@ Geranium Roots</br>
 <a href="drawings/geranium-roots.jpeg"><img src="drawings/geranium-roots.gif"></a>
 </li>
 
+<li>
+Rose</br>
+<a href="drawings/rose.jpeg"><img src="drawings/rose.gif"></a>
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
