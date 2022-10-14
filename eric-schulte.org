@@ -233,6 +233,11 @@ Rose</br>
 <a href="drawings/rose.jpeg"><img src="drawings/rose.gif"></a>
 </li>
 
+<li>
+Cinnamomum</br>
+<a href="drawings/cinnamomum.jpeg"><img src="drawings/cinnamomum.gif"></a>
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
