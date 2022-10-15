@@ -95,11 +95,16 @@ body {
 #text-botanical-drawing li {
   display: inline-block;
   text-align: center;
-  border: 2px solid lightgray;
-  padding: 1em;
+  /* border: 2px solid lightgray; */
+  /* padding: 1em; */
   margin: 1em;
   list-style-type: none;
-  line-height: 1.5; }
+  line-height: 1.5;
+  /* transform: scale(0.75); */
+  /* transition: transform .2s; */ }
+
+/* #text-botanical-drawing li:hover { */
+/*     transform: scale(1); } */
 
 #text-publications li {
   margin: 1em;

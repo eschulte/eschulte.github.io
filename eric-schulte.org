@@ -199,43 +199,43 @@ currently under active development at GrammaTech, and small utilities
 <ul>
 
 <li>
-Savoy Cabbage</br>
-<a href="drawings/savoy-cabbage.jpeg"><img src="drawings/savoy-cabbage.gif"></a>
+<a href="drawings/savoy-cabbage/index.html"><img src="drawings/savoy-cabbage.gif"></a></br>
+Savoy Cabbage
 </li>
 
 <li>
-Hemingway Daiquiri</br>
-<a href="drawings/hemingway-daiquiri.jpeg"><img src="drawings/hemingway-daiquiri.gif"></a>
+<a href="drawings/hemingway-daiquiri/index.html"><img src="drawings/hemingway-daiquiri.gif"></a></br>
+Hemingway Daiquiri
 </li>
 
 <li>
-Geranium Leaf</br>
-<a href="drawings/geranium-leaf.jpeg"><img src="drawings/geranium-leaf.gif"></a>
+<a href="drawings/geranium-leaf/index.html"><img src="drawings/geranium-leaf.gif"></a></br>
+Geranium Leaf
 </li>
 
 <li>
-Black Alder</br>
-<a href="drawings/black-alder.jpeg"><img src="drawings/black-alder.gif"></a>
+<a href="drawings/black-alder/index.html"><img src="drawings/black-alder.gif"></a></br>
+Black Alder
 </li>
 
 <li>
-Alstroemeria</br>
-<a href="drawings/alstroemeria.jpeg"><img src="drawings/alstroemeria.gif"></a>
+<a href="drawings/alstroemeria/index.html"><img src="drawings/alstroemeria.gif"></a></br>
+Alstroemeria
 </li>
 
 <li>
-Geranium Roots</br>
-<a href="drawings/geranium-roots.jpeg"><img src="drawings/geranium-roots.gif"></a>
+<a href="drawings/geranium-roots/index.html"><img src="drawings/geranium-roots.gif"></a></br>
+Geranium Roots
 </li>
 
 <li>
-Rose</br>
-<a href="drawings/rose.jpeg"><img src="drawings/rose.gif"></a>
+<a href="drawings/rose/index.html"><img src="drawings/rose.gif"></a></br>
+Rose
 </li>
 
 <li>
-Cinnamomum</br>
-<a href="drawings/cinnamomum.jpeg"><img src="drawings/cinnamomum.gif"></a>
+<a href="drawings/cinnamomum/index.html"><img src="drawings/cinnamomum.gif"></a></br>
+Cinnamomum
 </li>
 
 </ul>
