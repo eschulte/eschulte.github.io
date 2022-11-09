@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Sunflower</title>
+</head>
+<body>
+<style>
+  img.main {
+      display: block;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  ul.row {
+      list-style-type: none;
+  }
+  ul.row li {
+      /* margin: 1em; */
+      float: left;
+      transform: scale(0.75);
+      transition: transform .2s; /* Animation */
+  }
+  ul.row li:hover {
+      transform: scale(1);
+  }
+  @media (max-width:600px){
+      ul.row li a img {
+          max-width: 100px;
+      }
+  }
+</style>
+<h1>Sunflower</h1>
+
+<a href="../sunflower.jpeg"><img class="main" src="../sunflower.jpeg"></a>
+
+<ul class="row">
+  <li><a href="IMG_0012.jpeg"><img src="IMG_0012.gif"></a></li>
+  <li><a href="IMG_0018.jpeg"><img src="IMG_0018.gif"></a></li>
+  <li><a href="IMG_0020.jpeg"><img src="IMG_0020.gif"></a></li>
+  <li><a href="IMG_0112.jpeg"><img src="IMG_0112.gif"></a></li>
+  <li><a href="IMG_0154.jpeg"><img src="IMG_0154.gif"></a></li>
+  <li><a href="IMG_0162.jpeg"><img src="IMG_0162.gif"></a></li>
+  <li><a href="IMG_0166.jpeg"><img src="IMG_0166.gif"></a></li>
+</body>
+</html>
