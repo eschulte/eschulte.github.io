@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Lavender</title>
+</head>
+<body>
+<style>
+  img.main {
+      display: block;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  ul.row {
+      list-style-type: none;
+  }
+  ul.row li {
+      /* margin: 1em; */
+      float: left;
+      transform: scale(0.75);
+      transition: transform .2s; /* Animation */
+  }
+  ul.row li:hover {
+      transform: scale(1);
+  }
+  @media (max-width:600px){
+      ul.row li a img {
+          max-width: 100px;
+      }
+  }
+</style>
+<h1>Lavender</h1>
+
+<a href="../lavender.jpeg"><img class="main" src="../lavender.jpeg"></a>
+
+<ul class="row">
+  <li><a href="IMG_0634.jpeg"><img src="IMG_0634.gif"></a></li>
+  <li><a href="IMG_0636.jpeg"><img src="IMG_0636.gif"></a></li>
+  <li><a href="IMG_1202.jpeg"><img src="IMG_1202.gif"></a></li>
+  <li><a href="IMG_1230.jpeg"><img src="IMG_1230.gif"></a></li>
+</body>
+</html>

@@ -248,6 +248,11 @@ Sunflower
 Ginko Branch
 </li>
 
+<li>
+<a href="drawings/lavender/index.html"><img src="drawings/lavender.gif"></a></br>
+Lavender
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
