@@ -253,6 +253,21 @@ Ginko Branch
 Lavender
 </li>
 
+<li>
+<a href="drawings/moth-orchid/index.html"><img src="drawings/moth-orchid.gif"></a></br>
+Moth Orchid
+</li>
+
+<li>
+<a href="drawings/oak-seedling/index.html"><img src="drawings/oak-seedling.gif"></a></br>
+Oak Seedling
+</li>
+
+<li>
+<a href="drawings/gherkin/index.html"><img src="drawings/gherkin.gif"></a></br>
+Gherkin
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
