@@ -273,6 +273,11 @@ Gherkin
 Lady's Glove
 </li>
 
+<li>
+<a href="drawings/closed-sunflower/index.html"><img src="drawings/closed-sunflower.gif"></a></br>
+Closed Sunflower
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
