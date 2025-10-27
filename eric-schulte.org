@@ -278,6 +278,36 @@ Lady's Glove
 Closed Sunflower
 </li>
 
+<li>
+<a href="drawings/button-mushroom.jpeg"><img src="drawings/button-mushroom.gif"></a></br>
+Button Mushroom
+</li>
+
+<li>
+<a href="drawings/mushroom-family.jpeg"><img src="drawings/mushroom-family.gif"></a></br>
+Mushroom Family
+</li>
+
+<li>
+<a href="drawings/tomato-and-green-onion.jpeg"><img src="drawings/tomato-and-green-onion.gif"></a></br>
+Tomato and Green Onion
+</li>
+
+<li>
+<a href="drawings/pumpkin.jpeg"><img src="drawings/pumpkin.gif"></a></br>
+Pumpkin
+</li>
+
+<li>
+<a href="drawings/cherry-tomatoes.jpeg"><img src="drawings/cherry-tomatoes.gif"></a></br>
+Cherry Tomatoes
+</li>
+
+<li>
+<a href="drawings/hibiscus.jpeg"><img src="drawings/hibiscus.gif"></a></br>
+Hibiscus
+</li>
+
 </ul>
 
 <div style="clear;both"></div>
